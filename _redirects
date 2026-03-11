@@ -1,3 +1,3 @@
 /oauth/callback/*  https://info.healthmaster.app/oauth/callback/:splat  200
 /api/oauth/callback/*  https://api.healthmaster.app/oauth/callback/:splat  200
-/whoop/callback/*  https://info.healthmaster.app/whoop/callback/:splat  200
+/whoop/callback/*  https://api.healthmaster.app/whoop/callback/:splat  200
