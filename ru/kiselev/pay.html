@@ -126,6 +126,8 @@
                     confirmation_token: token,
                     return_url: returnUrl,
                     customization: {
+                        // Только форма карты — Sber ID и ЮMoney-login не отображаются.
+                        payment_methods: ['bank_card'],
                         colors: {
                             control_primary: '#4CAF50',
                             background: '#1a1f2e'
