@@ -61,15 +61,13 @@
             <div class="legal-grid">
                 <div class="legal-item">
                     <span class="label">Организация</span>
-                    <span class="value">Индивидуальный предприниматель КИСЕЛЕВ ПЕТР АЛЕКСЕЕВИЧ</span>
+                    <span class="value">Самозанятый Минаков Павел Олегович</span>
                 </div>
                 <div class="legal-item">
-                    <span class="label">ОГРНИП</span>
-                    <span class="value">324180000015181</span>
-                </div>
+                 
                 <div class="legal-item">
                     <span class="label">ИНН</span>
-                    <span class="value">183108472921</span>
+                    <span class="value">773172389090</span>
                 </div>
                 <div class="legal-item">
                     <span class="label">Email</span>
