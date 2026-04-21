@@ -79,7 +79,7 @@
         </header>
 
         <section class="pay-wrapper">
-            <div class="pay-title">Оплата подписки</div>
+            <div class="pay-title">Оплата доступа на 30 дней</div>
             <div id="payment-form"></div>
             <div id="pay-status" class="pay-status" style="display:none;"></div>
         </section>
@@ -126,8 +126,9 @@
                     confirmation_token: token,
                     return_url: returnUrl,
                     customization: {
-                        // Только форма карты — Sber ID и ЮMoney-login не отображаются.
-                        payment_methods: ['bank_card'],
+                        // payment_methods: ['bank_card'] требует активации у
+                        // менеджера ЮКассы (ошибка customization_of_payment_methods_not_allowed
+                        // без неё). Возвращаю после активации на магазине.
                         colors: {
                             control_primary: '#4CAF50',
                             background: '#1a1f2e'
