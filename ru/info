@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthMaster — Твой AI-помощник по питанию</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="glass-container">
+        <header>
+            <div class="logo">
+                <span class="logo-emoji">🥗</span>
+                <h1>Healthmaster</h1>
+            </div>
+            <p class="tagline">Твой персональный AI-диетолог в Telegram</p>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Контролируй питание просто</h2>
+                <p>Мы используем передовые технологии искусственного интеллекта, чтобы сделать учет калорий и нутриентов
+                    таким же простым, как отправка фото или сообщения.</p>
+                <div class="cta-group">
+                    <a href="https://t.me/AIHealthMasterBot" class="btn btn-primary" target="_blank">Открыть в
+                        Telegram</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>Распознавание по фото</h3>
+                <p>Просто сфотографируй еду, и наш AI мгновенно рассчитает КБЖУ.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✍️</div>
+                <h3>Текстовый ввод</h3>
+                <p>Напиши «Кофе с молоком и два сырника», и бот все посчитает.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Статистика</h3>
+                <p>Наглядные отчеты за день, неделю и месяц для достижения твоих целей.</p>
+            </div>
+        </section>
+
+        <footer class="legal-info">
+            <div class="legal-grid">
+                <div class="legal-item">
+                    <span class="label">Организация</span>
+                    <span class="value">Индивидуальный предприниматель КИСЕЛЕВ ПЕТР АЛЕКСЕЕВИЧ</span>
+                </div>
+                <div class="legal-item">
+                    <span class="label">ОГРНИП</span>
+                    <span class="value">324180000015181</span>
+                </div>
+                <div class="legal-item">
+                    <span class="label">ИНН</span>
+                    <span class="value">183108472921</span>
+                </div>
+                <div class="legal-item">
+                    <span class="label">Email</span>
+                    <span class="value"><a href="mailto:support@healthmaster.app"
+                            style="color: inherit; text-decoration: none;">support@healthmaster.app</a></span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Healthmaster. Все права защищены.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Simple reveal animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .legal-info').forEach(el => {
+            el.classList.add('reveal');
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
