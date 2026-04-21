@@ -1,4 +1,7 @@
 / /eng/ 302
-/oauth/callback/*  https://info.healthmaster.app/oauth/callback/:splat  200
-/api/oauth/callback/*  https://api.healthmaster.app/oauth/callback/:splat  200
-/whoop/callback/*  https://api.healthmaster.app/whoop/callback/:splat  200
+/about.html /eng/about.html 302
+/privacy.html /eng/privacy.html 302
+/contact.html /eng/contact.html 302
+/oauth/callback/* https://info.healthmaster.app/oauth/callback/:splat 200
+/api/oauth/callback/* https://api.healthmaster.app/oauth/callback/:splat 200
+/whoop/callback/* https://api.healthmaster.app/whoop/callback/:splat 200
