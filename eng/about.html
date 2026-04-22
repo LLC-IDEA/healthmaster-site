@@ -3,70 +3,148 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About – HealthMaster</title>
+    <title>Privacy Policy – HealthMaster</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0px 40px;
-            background: #f7f7f7;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 760px;
-            margin: 0 auto;
-            background: white;
-            padding: 0px 20px;
-            border-radius: 12px;
-            box-shadow: 0px 2px 20px rgba(0,0,0,0.08);
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 15px;
-            text-align: center;
-            color: #999;
-        }
-
-        /* Стили меню */
         nav {
-            padding: 15px;
-            background: #f5f5f5;
-            border-bottom: 1px solid #ddd;
             text-align: center;
+            margin-bottom: 32px;
         }
 
         nav a {
-            margin-right: 15px;
-            color: #000;
+            margin: 0 12px;
+            color: #e2e8f0;
             text-decoration: none;
-            font-weight: normal;
+            font-weight: 500;
         }
 
         nav a:hover {
             text-decoration: underline;
         }
+
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p, li {
+            color: var(--text-muted);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+        }
+
+        .legal-links {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .legal-links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <!-- Навигация -->
-    <nav>
-        <a href="/index.html">Home</a>
-        <a href="/about.html">About</a>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/contact.html">Contact</a>
-    </nav>
-    <!-- Контент -->
-    <div class="container">
-        <h1>About HealthMaster</h1>
-        <p>HealthMaster is a nutrition tracking and AI coaching app delivered via Telegram.</p>
-</p>Users can log meals, track weight, and receive AI-powered daily recommendations to improve nutrition habits and work toward their health goals.</p>
-</p>The product includes free basic tracking features and a premium AI coaching plan.</p>
-    <footer>
-    © 2026 HealthMaster. Operated by TradeShield Network LLC 
-</footer>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
+
+    <main class="glass-container">
+        <nav>
+            <a href="/index.html">Home</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms</a>
+            <a href="/refund.html">Refund Policy</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
+
+        <div class="content">
+            <h1>Privacy Policy</h1>
+            <p>Last updated: April 2026</p>
+
+            <p>
+                HealthMaster is a nutrition tracking and AI coaching service delivered via Telegram.
+                This Privacy Policy explains what data we collect, how we use it, and how we protect it.
+            </p>
+
+            <h3>1. Data We Collect</h3>
+            <p>We may collect the following data:</p>
+            <ul>
+                <li>Telegram user ID and basic profile information</li>
+                <li>Food logs and meal descriptions</li>
+                <li>Weight entries and goals</li>
+                <li>User messages sent to the bot</li>
+            </ul>
+
+            <h3>2. How We Use Data</h3>
+            <ul>
+                <li>To provide nutrition tracking and AI coaching</li>
+                <li>To generate personalized recommendations</li>
+                <li>To improve product functionality</li>
+            </ul>
+
+            <h3>3. Data Sharing</h3>
+            <p>
+                We do not sell or share personal data with third parties.
+                Payment processing is handled by third-party providers (e.g., YooKassa).
+            </p>
+
+            <h3>4. Data Storage</h3>
+            <p>
+                Data is stored securely and retained only as long as necessary to provide the service.
+            </p>
+
+            <h3>5. User Rights</h3>
+            <p>
+                Users may request deletion of their data at any time by contacting support.
+            </p>
+
+            <h3>6. Security</h3>
+            <p>
+                We take reasonable measures to protect user data from unauthorized access or misuse.
+            </p>
+
+            <h3>7. Contact</h3>
+            <p>Email: support@healthmaster.app</p>
+
+            <footer>
+                <div>© 2026 HealthMaster</div>
+                <div class="legal-links">
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms</a>
+                    <a href="/refund.html">Refund Policy</a>
+                    <a href="/contact.html">Contact</a>
+                </div>
+            </footer>
+        </div>
+    </main>
 </body>
 </html>
