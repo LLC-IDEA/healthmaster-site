@@ -1,81 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HealthMaster</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthMaster – AI Nutrition Tracking in Telegram</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0px;
-            background: #f7f7f7;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 760px;
-            margin: auto;
-            background: white;
-            padding: 0px 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            text-align: left;
-        }
-        footer {
-            margin-top: 40px;
-            font-size: 15px;
-            color: #999;
-            text-align: center;
-        }
-/* Стили меню */
         nav {
-            padding: 15px;
-            background: #f5f5f5;
-            border-bottom: 1px solid #ddd;
             text-align: center;
+            margin-bottom: 32px;
         }
 
         nav a {
-            margin-right: 15px;
-            color: #000;
+            margin: 0 12px;
+            color: #e2e8f0;
             text-decoration: none;
-            font-weight: normal;
+            font-weight: 500;
         }
 
         nav a:hover {
             text-decoration: underline;
         }
+
+        .pricing-section {
+            margin-bottom: 80px;
+        }
+
+        .pricing-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 32px;
+            border-radius: 24px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .pricing-box p,
+        .pricing-box li {
+            color: var(--text-muted);
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #f8fafc;
+            margin: 12px 0 16px;
+        }
+
+        .pricing-box ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .telegram-icon-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        .telegram-icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #229ED9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(34, 158, 217, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .telegram-icon-circle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 26px rgba(34, 158, 217, 0.4);
+        }
+
+        .telegram-icon-circle svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        .legal-links {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .legal-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                display: inline-block;
+                margin: 6px 8px;
+            }
+
+            .pricing-box {
+                padding: 24px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Навигация -->
-    <nav>
-        <a href="/index.html">Home</a>
-        <a href="/about.html">About</a>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/contact.html">Contact</a>
-    <div class="container">
-        <h1>HealthMaster</h1>
-
-        <p>
-            We help people improve their health and daily well-being through simple,
-            effective habits. Better energy, better sleep, better mood — one small
-            step at a time.
-        </p>
-
-        <p>
-            Our goal is to make people feel lighter, calmer, more balanced,
-            and as a natural result — happier.
-        </p>
-
-        <p>
-            No pressure, no complications. Just clarity, care, and tools that help you
-            feel better every day.
-        </p>
-
-        <footer>
-            © 2025 HealthMaster. Operated by TradeShield Network LLC
-        </footer>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
+
+    <main class="glass-container">
+        <nav>
+            <a href="/index.html">Home</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms</a>
+            <a href="/refund.html">Refund Policy</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
+
+        <header>
+            <div class="logo">
+                <span class="logo-emoji">🥗</span>
+                <h1>HealthMaster</h1>
+            </div>
+            <p class="tagline">AI nutrition tracking and coaching in Telegram</p>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Track nutrition with AI, right inside Telegram</h2>
+                <p>
+                    HealthMaster helps users log meals, track weight, and receive AI-powered daily nutrition guidance.
+                    The product is designed to make calorie and nutrition tracking simple through text, photos, and clear recommendations.
+                </p>
+
+                <div class="cta-group">
+                    <a href="https://t.me/AIHealthMasterBot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        Try in Telegram
+                    </a>
+                </div>
+
+                <a href="https://t.me/AIHealthMasterBot" class="telegram-icon-link" target="_blank" rel="noopener noreferrer" aria-label="Open HealthMaster in Telegram">
+                    <span class="telegram-icon-circle">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9.78 18.65c-.4 0-.33-.15-.47-.53l-1.2-3.95 9.24-5.84"></path>
+                            <path d="M9.78 18.65c.31 0 .45-.14.63-.31l1.68-1.63-2.09-1.26"></path>
+                            <path d="M9.99 14.2l5.08 3.75c.58.32 1 .15 1.14-.54l2.03-9.56c.2-.85-.31-1.23-.86-.98L5.47 11.45c-.81.32-.8.77-.15.97l3.06.96 7.08-4.46c.33-.2.63-.09.38.13"></path>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>Meal logging</h3>
+                <p>Users can log meals using text or food photos directly in Telegram.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3>Weight tracking</h3>
+                <p>Track weight changes over time and keep progress visible in one place.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI coaching</h3>
+                <p>Get daily AI-powered nutrition analysis and simple recommendations based on logged meals.</p>
+            </div>
+        </section>
+
+        <section class="pricing-section" id="pricing">
+            <h2>Pricing</h2>
+            <div class="pricing-box">
+                <p><strong>Free</strong></p>
+                <ul>
+                    <li>Text-based food logging</li>
+                    <li>Basic calorie tracking</li>
+                    <li>Weight tracking</li>
+                </ul>
+
+                <p><strong>Premium</strong></p>
+                <div class="price">$2.99 / 30 days</div>
+                <ul>
+                    <li>AI Coach with personalized daily guidance</li>
+                    <li>Nutrition analysis based on logged meals</li>
+                    <li>Barcode food scanning</li>
+                </ul>
+
+                <p>No automatic renewal. Access is provided for 30 days after purchase.</p>
+            </div>
+        </section>
+
+        <footer class="legal-info">
+            <div class="footer-bottom">
+                <p>© 2026 HealthMaster. All rights reserved.</p>
+                <div class="legal-links">
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms</a>
+                    <a href="/refund.html">Refund Policy</a>
+                    <a href="/contact.html">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </main>
 </body>
 </html>
