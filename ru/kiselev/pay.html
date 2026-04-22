@@ -250,8 +250,7 @@
                 checkout = YooMoneyCheckout(shopId);
             } catch (e) {
                 console.error('YooMoneyCheckout init error:', e);
-                fatal('Не удалось загрузить форму оплаты.<br>' +
-                    'Если у вас VPN или блокировщик — отключите их или добавьте yookassa.ru в исключения и обновите страницу.');
+                fatal('Не удалось загрузить форму оплаты. Обновите страницу или попробуйте чуть позже.');
                 return;
             }
 
@@ -312,7 +311,7 @@
                 } catch (err) {
                     console.error('tokenize threw:', err);
                     showStatus('error',
-                        'Сбой связи с ЮKassa. Если включён VPN — отключите или добавьте yookassa.ru в исключения и попробуйте ещё раз.'
+                        'Сбой связи с ЮKassa. Проверьте соединение и попробуйте ещё раз.'
                     );
                     setLoading(false);
                     return;
