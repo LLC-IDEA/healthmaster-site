@@ -277,16 +277,40 @@
             }
 
             function friendlyTokenizeError(res) {
-                // res.error.type — категория, например 'invalid_number'/'expired_card'
-                const type = res && res.error && res.error.type;
-                const map = {
+                // YooKassa возвращает {status, error: {type, status_code, message}}
+                const err = res && res.error;
+                const type = err && err.type;
+                const message = err && err.message;
+
+                // authentication_error — магазин не имеет прав на Checkout.js
+                // (буквальный message от ЮKassa: «Вы не можете принимать платежи с
+                // карт. Обратитесь к менеджеру»). Это конфиг, не карта. Юзеру не
+                // имеет смысла ничего проверять — направляем на Stars.
+                if (type === 'authentication_error') {
+                    return 'Оплата с карт временно недоступна — идёт настройка платёжной системы.<br>' +
+                           'Альтернатива — Telegram Stars ⭐ (кнопка в боте рядом с «Оплатить»).';
+                }
+
+                // Ошибки самой карты — юзер может исправить ввод
+                const cardErrors = {
                     invalid_number: 'Проверьте номер карты.',
                     invalid_cvc: 'Проверьте CVC.',
                     invalid_expiry: 'Проверьте срок действия карты.',
                     expired_card: 'Срок действия карты истёк.',
                     card_declined: 'Банк отклонил карту. Попробуйте другую.',
                 };
-                return map[type] || 'Не удалось обработать данные карты. Проверьте введённое.';
+                if (cardErrors[type]) return cardErrors[type];
+
+                // validation_error — обычно сам ЮKassa пишет понятный message
+                // («Неверный формат номера карты» и т.д.). Показываем как есть.
+                if (type === 'validation_error') {
+                    return message || 'Проверьте введённые данные карты.';
+                }
+
+                // Fallback: покажем сам message от ЮKassa, если он есть —
+                // юзеру и нам полезнее увидеть реальный текст, чем общий «не удалось».
+                if (message) return 'Ошибка оплаты: ' + message;
+                return 'Не удалось обработать данные карты. Проверьте введённое и попробуйте ещё раз.';
             }
 
             form.addEventListener('submit', async (e) => {
