@@ -4,157 +4,147 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Privacy Policy – HealthMaster</title>
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0px 40px;
-            background: #f7f7f7;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 760px;
-            margin: 0 auto;
-            background: white;
-            padding: 0px 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-        }
-        footer {
-            margin-top: 40px;
-            font-size: 15px;
-            color: #999;
-            text-align: center;
-        }
-         /* Стили меню */
         nav {
-            padding: 15px;
-            background: #f5f5f5;
-            border-bottom: 1px solid #ddd;
             text-align: center;
+            margin-bottom: 32px;
         }
 
         nav a {
-            margin-right: 15px;
-            color: #000;
+            margin: 0 12px;
+            color: #e2e8f0;
             text-decoration: none;
-            font-weight: normal;
+            font-weight: 500;
         }
 
         nav a:hover {
             text-decoration: underline;
         }
+
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        p, li {
+            color: var(--text-muted);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+        }
+
+        .legal-links {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .legal-links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
 
-    <!-- Навигация -->
-    <nav>
-        <a href="/index.html">Home</a>
-        <a href="/about.html">About</a>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/contact.html">Contact</a>
-    </nav>
-</div>
-<div class="container">
-  <h1>Privacy Policy</h1>
-  <p>Last updated: 14 April 2026</p>
+    <main class="glass-container">
+        <nav>
+            <a href="/index.html">Home</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms</a>
+            <a href="/refund.html">Refund Policy</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
 
-  <p>
-    HealthMaster respects user privacy and is committed to protecting personal data.
-    This Privacy Policy explains what data we collect, how we use it, and what rights users have.
-  </p>
+        <div class="content">
+            <h1>Privacy Policy</h1>
+            <p>Last updated: April 2026</p>
 
-  <p>HealthMaster is operated by TradeShield Network LLC.</p>
+            <p>
+                HealthMaster is a nutrition tracking and AI coaching service delivered via Telegram.
+                This Privacy Policy explains what data we collect, how we use it, and how we protect it.
+            </p>
 
-  <h3>1. Scope of this Policy</h3>
-  <p>
-    This Privacy Policy applies to all HealthMaster services, including the HealthMaster website,
-    Telegram bot and messaging interfaces, and integrations with third-party platforms and devices (such as Garmin).
-  </p>
+            <h3>1. Data We Collect</h3>
+            <p>We may collect the following data:</p>
+            <ul>
+                <li>Telegram user ID and basic profile information</li>
+                <li>Food logs and meal descriptions</li>
+                <li>Weight entries and goals</li>
+                <li>User messages sent to the bot</li>
+            </ul>
 
-  <h3>2. Data We Collect</h3>
+            <h3>2. How We Use Data</h3>
+            <ul>
+                <li>To provide nutrition tracking and AI coaching</li>
+                <li>To generate personalized recommendations</li>
+                <li>To improve product functionality</li>
+            </ul>
 
-  2.1 Data provided directly by users
-  <p>We may collect data voluntarily provided by users, including:</p>
-  <ul>
-    <li>food descriptions and meal entries</li>
-    <li>subjective inputs such as mood or self-reported sleep quality</li>
-    <li>messages sent via the Telegram bot or contact forms</li>
-  </ul>
+            <h3>3. Data Sharing</h3>
+            <p>
+                We do not sell or share personal data with third parties.
+                Payment processing is handled by third-party providers (e.g., YooKassa).
+            </p>
 
-  2.2 Data from connected devices and platforms
-  <p>
-    If a user explicitly connects a third-party account (for example, Garmin), HealthMaster may receive fitness and wellness data,
-    such as activity data (steps, workouts, energy expenditure), sleep data, and related wellness metrics made available by the connected platform.
-  </p>
-  <p>
-    We only receive data that the user explicitly authorizes during the connection process.
-  </p>
+            <h3>4. Data Storage</h3>
+            <p>
+                Data is stored securely and retained only as long as necessary to provide the service.
+            </p>
 
-  <h3>3. Purpose of Data Processing</h3>
-  <p>We process personal data solely for the following purposes:</p>
-  <ul>
-    <li>providing personal wellness insights and summaries</li>
-    <li>calculating and displaying consumed and expended energy</li>
-    <li>analyzing trends related to activity, sleep, and nutrition</li>
-    <li>improving the quality and reliability of HealthMaster services</li>
-  </ul>
-  <p>
-    We do <strong>not</strong> use personal data for advertising, profiling for marketing purposes, or resale.
-  </p>
+            <h3>5. User Rights</h3>
+            <p>
+                Users may request deletion of their data at any time by contacting support.
+            </p>
 
-  <h3>4. Legal Basis for Processing</h3>
-  <p>
-    Personal data is processed based on the user’s explicit consent and the user’s voluntary interaction with HealthMaster services.
-    Users may withdraw consent at any time by disconnecting integrations or requesting data deletion.
-  </p>
+            <h3>6. Security</h3>
+            <p>
+                We take reasonable measures to protect user data from unauthorized access or misuse.
+            </p>
 
-  <h3>5. Data Sharing</h3>
-  <p>
-    HealthMaster does <strong>not</strong> sell, rent, or share personal data with third parties.
-    Data received from connected platforms (such as Garmin) is used exclusively within HealthMaster and strictly in accordance with
-    the permissions granted by the user and applicable platform policies.
-  </p>
+            <h3>7. Contact</h3>
+            <p>Email: support@healthmaster.app</p>
 
-  <h3>6. Data Storage and Retention</h3>
-  <p>
-    We retain personal data only for as long as necessary to provide the service.
-    Users may request access to their data or deletion of their data. Upon request, all associated personal data will be permanently deleted within a reasonable timeframe.
-  </p>
-
-  <h3>7. User Rights</h3>
-  <p>
-    Depending on applicable laws, users have the right to access their personal data, request correction or deletion,
-    withdraw consent, and disconnect third-party integrations at any time.
-  </p>
-
-  <h3>8. Security</h3>
-  <p>
-    We implement reasonable technical and organizational measures to protect personal data against unauthorized access, loss, or misuse.
-  </p>
-
-  <h3>9. Children’s Privacy</h3>
-  <p>
-    HealthMaster services are not intended for children under the age of 16, and we do not knowingly collect personal data from children.
-  </p>
-
-  <h3>10. Changes to This Policy</h3>
-  <p>
-    We may update this Privacy Policy from time to time. The latest version will always be available on this page.
-  </p>
-
-  <h3>11. Contact Information</h3>
-  <p>
-    For privacy-related questions or requests, please contact:
-  </p>
-  <ul>
-    <li>Email: support@healthmaster.app</li>
-    <li>Website: https://healthmaster.app</li>
-  </ul>
-
-  <footer>
-    © 2025 HealthMaster. Operated by TradeShield Network LLC
-  </footer>
-</div>
+            <footer>
+                <div>© 2026 HealthMaster</div>
+                <div class="legal-links">
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms</a>
+                    <a href="/refund.html">Refund Policy</a>
+                    <a href="/contact.html">Contact</a>
+                </div>
+            </footer>
+        </div>
+    </main>
+</body>
+</html>
