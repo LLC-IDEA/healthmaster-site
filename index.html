@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HealthMaster – AI Nutrition Tracking in Telegram</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico">
-    <link rel="icon" type="image/png" href="/favicon-heart.png">
-    <link rel="shortcut icon" href="/favicon-heart.ico">
-    <link rel="apple-touch-icon" href="/favicon-heart.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico" />
+    <link rel="icon" type="image/png" href="/favicon-heart.png" />
+    <link rel="shortcut icon" href="/favicon-heart.ico" />
+    <link rel="apple-touch-icon" href="/favicon-heart.png" />
 
     <style>
         html {
@@ -26,7 +26,7 @@
 
         nav a {
             margin: 0 12px;
-            color: #e2e8f0;
+            color: #ffffff;
             text-decoration: none;
             font-weight: 500;
         }
@@ -53,6 +53,10 @@
 
         .cta-group {
             margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
         }
 
         .telegram-icon-link {
@@ -102,6 +106,31 @@
             text-align: center;
         }
 
+        .how-it-works {
+            margin-bottom: 48px;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .how-it-works-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 24px;
+            border-radius: 24px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .how-it-works-box ol {
+            margin: 0;
+            padding-left: 22px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
         .pricing-section {
             margin-bottom: 40px;
         }
@@ -141,8 +170,19 @@
             font-size: 2rem;
             font-weight: 800;
             color: #f8fafc;
-            margin: 10px 0 16px;
+            margin: 10px 0 10px;
             line-height: 1.2;
+        }
+
+        .price-note {
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .pricing-actions {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
         }
 
         .legal-info {
@@ -203,11 +243,16 @@
                 margin-bottom: 36px;
             }
 
+            .how-it-works {
+                margin-bottom: 36px;
+            }
+
             .pricing-section {
                 margin-bottom: 32px;
             }
 
-            .pricing-box {
+            .pricing-box,
+            .how-it-works-box {
                 padding: 20px;
             }
 
@@ -250,13 +295,16 @@
             <div class="hero-content">
                 <p class="hero-subtitle">Track nutrition with AI, right inside Telegram</p>
                 <p>
-                    HealthMaster helps users log meals, track weight, and receive AI-powered daily nutrition guidance.
-                    The product is designed to make calorie and nutrition tracking simple through text, photos, and clear recommendations.
+                    HealthMaster is an AI-powered nutrition assistant in Telegram.
+                    Users can log meals by text or photo, track weight, and receive personalized nutrition recommendations based on their goals.
                 </p>
 
                 <div class="cta-group">
                     <a href="https://t.me/AIHealthMasterBot?start=w" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
                         Try in Telegram
+                    </a>
+                    <a href="/pay" class="btn btn-secondary">
+                        Pay for Premium
                     </a>
                 </div>
 
@@ -290,6 +338,17 @@
             </div>
         </section>
 
+        <section class="how-it-works">
+            <h2>How it works</h2>
+            <div class="how-it-works-box">
+                <ol>
+                    <li>Open the bot in Telegram</li>
+                    <li>Log your meals by text or photo</li>
+                    <li>Get AI-powered insights and recommendations</li>
+                </ol>
+            </div>
+        </section>
+
         <section class="pricing-section" id="pricing">
             <h2>Pricing</h2>
             <div class="pricing-box">
@@ -302,11 +361,17 @@
 
                 <p><strong>Premium</strong></p>
                 <div class="price">$2.99 / 30&nbsp;days</div>
+                <div class="price-note">No auto-renewal</div>
+
                 <ul>
                     <li>AI Coach with personalized daily guidance</li>
                     <li>Nutrition analysis based on logged meals</li>
                     <li>Food recognition by photo and barcode</li>
                 </ul>
+
+                <div class="pricing-actions">
+                    <a href="/pay" class="btn btn-primary">Pay for Premium</a>
+                </div>
             </div>
         </section>
 
