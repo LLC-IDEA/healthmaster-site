@@ -1,15 +1,17 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Privacy Policy – HealthMaster</title>
+    <title>Contact – HealthMaster</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/png" href="/favicon-heart.png">
+    <link rel="shortcut icon" href="/favicon-heart.ico">
+    <link rel="apple-touch-icon" href="/favicon-heart.png">
 
     <style>
         nav {
@@ -35,22 +37,58 @@
 
         h1 {
             text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .page-meta {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .intro {
+            color: var(--text-muted);
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        h3 {
+            margin-top: 24px;
+            margin-bottom: 10px;
+            color: var(--text-main);
         }
 
         p, li {
             color: var(--text-muted);
+            line-height: 1.7;
         }
 
-        ul {
-            padding-left: 20px;
+        p {
+            margin-bottom: 12px;
+        }
+
+        .card {
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            margin-top: 16px;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-label {
+            color: var(--text-main);
+            font-weight: 600;
         }
 
         footer {
             margin-top: 40px;
             text-align: center;
             color: var(--text-muted);
-            border-top: 1px solid var(--glass-border);
-            padding-top: 20px;
+            padding-top: 12px;
         }
 
         .legal-links {
@@ -68,6 +106,42 @@
 
         .legal-links a:hover {
             text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                display: inline-block;
+                margin: 6px 8px;
+            }
+
+            .content {
+                max-width: 100%;
+            }
+
+            h1 {
+                margin-bottom: 12px;
+            }
+
+            .page-meta {
+                margin-bottom: 18px;
+            }
+
+            .intro {
+                margin-bottom: 22px;
+            }
+
+            h3 {
+                margin-top: 20px;
+                margin-bottom: 8px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .legal-links {
+                gap: 12px;
+            }
         }
     </style>
 </head>
@@ -88,53 +162,29 @@
         </nav>
 
         <div class="content">
-            <h1>Privacy Policy</h1>
-            <p>Last updated: April 2026</p>
+            <h1>Contact</h1>
+            <p class="page-meta">Last updated: April 2026</p>
 
-            <p>
-                HealthMaster is a nutrition tracking and AI coaching service delivered via Telegram.
-                This Privacy Policy explains what data we collect, how we use it, and how we protect it.
+            <p class="intro">
+                If you have questions about the product, partnerships, integrations, or legal matters,
+                you can reach HealthMaster using the contact details below.
             </p>
 
-            <h3>1. Data We Collect</h3>
-            <p>We may collect the following data:</p>
-            <ul>
-                <li>Telegram user ID and basic profile information</li>
-                <li>Food logs and meal descriptions</li>
-                <li>Weight entries and goals</li>
-                <li>User messages sent to the bot</li>
-            </ul>
-
-            <h3>2. How We Use Data</h3>
-            <ul>
-                <li>To provide nutrition tracking and AI coaching</li>
-                <li>To generate personalized recommendations</li>
-                <li>To improve product functionality</li>
-            </ul>
-
-            <h3>3. Data Sharing</h3>
+            <h3>Direct contact</h3>
             <p>
-                We do not sell or share personal data with third parties.
-                Payment processing is handled by third-party providers (e.g., YooKassa).
+                For support, partnership, integration, or legal questions, please use one of the following contact methods.
             </p>
 
-            <h3>4. Data Storage</h3>
-            <p>
-                Data is stored securely and retained only as long as necessary to provide the service.
-            </p>
-
-            <h3>5. User Rights</h3>
-            <p>
-                Users may request deletion of their data at any time by contacting support.
-            </p>
-
-            <h3>6. Security</h3>
-            <p>
-                We take reasonable measures to protect user data from unauthorized access or misuse.
-            </p>
-
-            <h3>7. Contact</h3>
-            <p>Email: support@healthmaster.app</p>
+            <div class="card">
+                <p>
+                    <span class="contact-label">Email:</span><br>
+                    support@healthmaster.app
+                </p>
+                <p>
+                    <span class="contact-label">Telegram:</span><br>
+                    @HealthMasterAdmin
+                </p>
+            </div>
 
             <footer>
                 <div>© 2026 HealthMaster</div>
@@ -149,4 +199,3 @@
     </main>
 </body>
 </html>
-```
