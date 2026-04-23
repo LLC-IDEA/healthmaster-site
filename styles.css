@@ -156,6 +156,11 @@ h2 {
     color: #f8fafc;
 }
 
+.hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
 .hero-content p {
     font-size: 1.2rem;
     color: var(--text-muted);
