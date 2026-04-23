@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/png" href="/favicon-heart.png">
+    <link rel="shortcut icon" href="/favicon-heart.ico">
+    <link rel="apple-touch-icon" href="/favicon-heart.png">
 
     <style>
         nav {
@@ -30,26 +33,43 @@
         .content {
             max-width: 760px;
             margin: 0 auto;
+            text-align: center;
         }
 
         h1 {
             text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
 
         p, li {
             color: var(--text-muted);
         }
 
+        p {
+            margin-bottom: 12px;
+        }
+
         ul {
-            padding-left: 20px;
+            padding-left: 0;
+            list-style: none;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
         }
 
         footer {
             margin-top: 40px;
             text-align: center;
             color: var(--text-muted);
-            border-top: 1px solid var(--glass-border);
-            padding-top: 20px;
+            padding-top: 12px;
         }
 
         .legal-links {
@@ -67,6 +87,21 @@
 
         .legal-links a:hover {
             text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                display: inline-block;
+                margin: 6px 8px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .legal-links {
+                gap: 12px;
+            }
         }
     </style>
 </head>
