@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HealthMaster – Premium</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
 
-    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico">
-    <link rel="icon" type="image/png" href="/favicon-heart.png">
-    <link rel="shortcut icon" href="/favicon-heart.ico">
-    <link rel="apple-touch-icon" href="/favicon-heart.png">
+    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico" />
+    <link rel="icon" type="image/png" href="/favicon-heart.png" />
+    <link rel="shortcut icon" href="/favicon-heart.ico" />
+    <link rel="apple-touch-icon" href="/favicon-heart.png" />
 
     <style>
         html {
@@ -27,7 +27,7 @@
 
         nav a {
             margin: 0 12px;
-            color: #e2e8f0;
+            color: #ffffff;
             text-decoration: none;
             font-weight: 500;
         }
@@ -46,7 +46,15 @@
 
         .payment-section h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
+        }
+
+        .payment-subtitle {
+            max-width: 760px;
+            margin: 0 auto 28px;
+            text-align: center;
+            color: var(--text-muted);
+            line-height: 1.7;
         }
 
         .payment-box {
@@ -57,6 +65,13 @@
             max-width: 720px;
             margin: 0 auto;
             text-align: center;
+        }
+
+        .product-note {
+            max-width: 620px;
+            margin: 0 auto 18px;
+            color: var(--text-muted);
+            line-height: 1.7;
         }
 
         .payment-box ul {
@@ -74,7 +89,12 @@
             font-size: 2.2rem;
             font-weight: 800;
             color: #f8fafc;
-            margin: 12px 0 20px;
+            margin: 12px 0 10px;
+        }
+
+        .price-note {
+            color: var(--text-muted);
+            margin-bottom: 20px;
         }
 
         .cta-group {
@@ -89,6 +109,28 @@
             border-radius: 18px;
             border: 1px dashed var(--glass-border);
             color: var(--text-muted);
+        }
+
+        .how-it-works {
+            max-width: 720px;
+            margin: 32px auto 0;
+            padding: 24px;
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .how-it-works h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .how-it-works ol {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-muted);
+            line-height: 1.8;
         }
 
         .legal-info {
@@ -125,7 +167,6 @@
     </div>
 
     <main class="glass-container">
-
         <nav>
             <a href="/index.html">Home</a>
             <a href="/privacy.html">Privacy Policy</a>
@@ -144,9 +185,20 @@
         <section class="payment-section">
             <h2>HealthMaster Premium</h2>
 
+            <p class="payment-subtitle">
+                HealthMaster is an AI-powered nutrition assistant in Telegram.
+                Log meals by text or photo and get personalized recommendations based on your goals.
+            </p>
+
             <div class="payment-box">
+                <p class="product-note">
+                    You are purchasing access to HealthMaster Premium.
+                    Premium gives you AI-powered nutrition analysis, personalized daily recommendations,
+                    and food recognition by photo and barcode.
+                </p>
 
                 <div class="price">$2.99 / 30&nbsp;days</div>
+                <div class="price-note">No auto-renewal</div>
 
                 <ul>
                     <li>AI Coach with personalized daily guidance</li>
@@ -161,7 +213,15 @@
                 <div id="checkout-container" class="checkout-placeholder">
                     Payment will be available here
                 </div>
+            </div>
 
+            <div class="how-it-works">
+                <h3>How it works</h3>
+                <ol>
+                    <li>Open the bot in Telegram</li>
+                    <li>Log your meals by text or photo</li>
+                    <li>Get AI-powered insights and recommendations</li>
+                </ol>
             </div>
         </section>
 
@@ -176,7 +236,6 @@
                 </div>
             </div>
         </footer>
-
     </main>
 </body>
 </html>
