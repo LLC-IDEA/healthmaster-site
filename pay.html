@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css">
+
     <link rel="icon" type="image/x-icon" href="/favicon-heart.ico">
     <link rel="icon" type="image/png" href="/favicon-heart.png">
     <link rel="shortcut icon" href="/favicon-heart.ico">
@@ -51,56 +52,43 @@
         .payment-box {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--glass-border);
-            padding: 24px;
+            padding: 28px;
             border-radius: 24px;
             max-width: 720px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .payment-box p {
-            margin-bottom: 8px;
-        }
-
         .payment-box ul {
             padding-left: 0;
-            margin: 10px 0 20px;
+            margin: 16px 0 24px;
             list-style: none;
-            text-align: center;
         }
 
         .payment-box li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: var(--text-muted);
         }
 
         .price {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: #f8fafc;
-            margin: 10px 0 16px;
-            line-height: 1.2;
-        }
-
-        .payment-note {
-            color: var(--text-muted);
-            margin-top: 12px;
-        }
-
-        .checkout-placeholder {
-            margin-top: 24px;
-            padding: 24px;
-            border-radius: 18px;
-            border: 1px dashed var(--glass-border);
-            color: var(--text-muted);
+            margin: 12px 0 20px;
         }
 
         .cta-group {
-            margin-top: 20px;
+            margin-top: 24px;
             display: flex;
             justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
+        }
+
+        .checkout-placeholder {
+            margin-top: 28px;
+            padding: 20px;
+            border-radius: 18px;
+            border: 1px dashed var(--glass-border);
+            color: var(--text-muted);
         }
 
         .legal-info {
@@ -109,7 +97,6 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 0;
         }
 
         .legal-links {
@@ -128,39 +115,6 @@
         .legal-links a:hover {
             text-decoration: underline;
         }
-
-        @media (max-width: 768px) {
-            nav {
-                margin-bottom: 16px;
-            }
-
-            nav a {
-                display: inline-block;
-                margin: 6px 8px;
-            }
-
-            header {
-                margin-bottom: 20px;
-            }
-
-            .payment-section {
-                margin-bottom: 32px;
-            }
-
-            .payment-box {
-                padding: 20px;
-            }
-
-            .price {
-                font-size: 1.7rem;
-                line-height: 1.2;
-            }
-
-            .legal-links {
-                gap: 12px;
-                margin-top: 10px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -171,6 +125,7 @@
     </div>
 
     <main class="glass-container">
+
         <nav>
             <a href="/index.html">Home</a>
             <a href="/privacy.html">Privacy Policy</a>
@@ -190,7 +145,7 @@
             <h2>HealthMaster Premium</h2>
 
             <div class="payment-box">
-                <p><strong>Premium</strong></p>
+
                 <div class="price">$2.99 / 30&nbsp;days</div>
 
                 <ul>
@@ -199,16 +154,14 @@
                     <li>Food recognition by photo and barcode</li>
                 </ul>
 
-                <p class="payment-note">No auto-renewal</p>
-
                 <div class="cta-group">
                     <a href="#" class="btn btn-primary">Continue to payment</a>
-                    <a href="/index.html#pricing" class="btn btn-secondary">Back to pricing</a>
                 </div>
 
                 <div id="checkout-container" class="checkout-placeholder">
-                    Paddle checkout will be connected here
+                    Payment will be available here
                 </div>
+
             </div>
         </section>
 
@@ -223,6 +176,7 @@
                 </div>
             </div>
         </footer>
+
     </main>
 </body>
 </html>
