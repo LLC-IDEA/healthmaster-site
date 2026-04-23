@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HealthMaster — Payment</title>
+</head>
+<body style="font-family: Arial; text-align: center; padding: 40px;">
+
+  <h1>HealthMaster Premium</h1>
+  <p>$2.99 / 30 days</p>
+
+  <div id="checkout-container"></div>
+
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+  <script>
+    Paddle.Setup({
+      vendor: YOUR_VENDOR_ID
+    });
+
+    Paddle.Checkout.open({
+      product: YOUR_PRODUCT_ID
+    });
+  </script>
+
+</body>
+</html>
