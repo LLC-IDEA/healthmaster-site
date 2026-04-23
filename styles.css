@@ -204,6 +204,7 @@ h2 {
     padding: 32px;
     border-radius: 24px;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .feature-card:hover {
@@ -215,6 +216,11 @@ h2 {
 .feature-icon {
     font-size: 2rem;
     margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
 }
 
 .feature-card h3 {
