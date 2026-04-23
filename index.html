@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,6 +31,10 @@
 
         .pricing-section {
             margin-bottom: 80px;
+        }
+
+        .pricing-section h2 {
+            text-align: center;
         }
 
         .pricing-box {
@@ -150,12 +156,12 @@
                 </p>
 
                 <div class="cta-group">
-                    <a href="https://t.me/AIHealthMasterBot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                    <a href="https://t.me/AIHealthMasterBot?start=w" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
                         Try in Telegram
                     </a>
                 </div>
 
-                <a href="https://t.me/AIHealthMasterBot" class="telegram-icon-link" target="_blank" rel="noopener noreferrer" aria-label="Open HealthMaster in Telegram">
+                <a href="https://t.me/AIHealthMasterBot?start=w" class="telegram-icon-link" target="_blank" rel="noopener noreferrer" aria-label="Open HealthMaster in Telegram">
                     <span class="telegram-icon-circle">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M9.78 18.65c-.4 0-.33-.15-.47-.53l-1.2-3.95 9.24-5.84"></path>
@@ -200,10 +206,8 @@
                 <ul>
                     <li>AI Coach with personalized daily guidance</li>
                     <li>Nutrition analysis based on logged meals</li>
-                    <li>Barcode food scanning</li>
+                    <li>Food recognition by photo and barcode</li>
                 </ul>
-
-                <p>No automatic renewal. Access is provided for 30 days after purchase.</p>
             </div>
         </section>
 
@@ -221,3 +225,8 @@
     </main>
 </body>
 </html>
+"""
+
+path = Path("/mnt/data/index_updated.html")
+path.write_text(html, encoding="utf-8")
+print(path)
