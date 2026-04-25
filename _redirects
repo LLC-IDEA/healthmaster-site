@@ -10,7 +10,7 @@
 /favicon-heart.png /eng/favicon-heart.png 200
 /logo.png /eng/logo.png 200
 
-healthmaster.app/pay → eng/pay.html
+/pay /eng/pay.html 200
 info.healthmaster.app/pay → info/pay.html
 
 /oauth/callback/* https://info.healthmaster.app/oauth/callback/:splat 200
