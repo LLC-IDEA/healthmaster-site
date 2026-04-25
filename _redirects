@@ -1,3 +1,17 @@
+/ /eng/index.html 200
+/index.html /eng/index.html 200
+/about.html /eng/about.html 200
+/privacy.html /eng/privacy.html 200
+/terms.html /eng/terms.html 200
+/refund.html /eng/refund.html 200
+/contact.html /eng/contact.html 200
+/styles.css /eng/styles.css 200
+/favicon-heart.ico /eng/favicon-heart.ico 200
+/favicon-heart.png /eng/favicon-heart.png 200
+/logo.png /eng/logo.png 200
+
+/pay /info/pay.html 200
+
 /oauth/callback/* https://info.healthmaster.app/oauth/callback/:splat 200
 /api/oauth/callback/* https://api.healthmaster.app/oauth/callback/:splat 200
 /whoop/callback/* https://api.healthmaster.app/whoop/callback/:splat 200
