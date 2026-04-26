@@ -405,12 +405,37 @@
         (function () {
             const params = new URLSearchParams(window.location.search);
             const RETURN_URL = 'https://t.me/AIHealthMasterBot';
-            const API_URL = 'https://admin.healthmaster.app/api/checkout/create-payment';
-            const REQUIRED = ['u', 'a', 't', 'ts', 'sh', 'sig'];
+            const API_BASE = 'https://admin.healthmaster.app/api/checkout';
+            const API_URL = API_BASE + '/create-payment';
+            const EVENT_URL = API_BASE + '/event';
+            const REQUIRED = ['u', 'a', 't', 'ts', 'sh', 's', 'pa', 'sig'];
 
             const statusEl = document.getElementById('pay-status');
             const form = document.getElementById('card-form');
             const payBtn = document.getElementById('pay-btn');
+
+            // Funnel-события (PAYMENT_PAGE_OPENED / FORM_SUBMIT / FORM_ERROR)
+            // отправляются в admin/api/checkout/event. Подпись (sig) обязательна —
+            // без неё admin не сможет атрибутировать событие к юзеру и просто
+            // вернёт {status: "ignored"} (HTTP 200, чтобы фронт не словил catch).
+            function logFunnelEvent(eventType, payload) {
+                const body = { event_type: eventType, payload: payload || {} };
+                ['u', 'a', 't', 'm', 'ts', 'sh', 's', 'pa', 'sig'].forEach(k => {
+                    body[k] = params.get(k) || '';
+                });
+                try {
+                    fetch(EVENT_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body),
+                        // keepalive позволяет отправить событие даже при
+                        // переходе на другую страницу (3DS-redirect).
+                        keepalive: true,
+                    }).catch(err => console.warn('event ' + eventType + ' failed:', err));
+                } catch (e) {
+                    console.warn('event ' + eventType + ' threw:', e);
+                }
+            }
 
             function showStatus(type, html) {
                 statusEl.className = 'pay-status ' + type;
@@ -448,6 +473,8 @@
             document.getElementById('pay-amount').textContent = amount + ' ₽';
             payBtn.textContent = 'Оплатить ' + amount + ' ₽';
 
+            logFunnelEvent('PAYMENT_PAGE_OPENED', { token_present: true });
+
             const shopId = parseInt(params.get('sh'), 10);
             if (!shopId || isNaN(shopId)) {
                 fatal('Некорректный магазин в ссылке.');
@@ -459,6 +486,10 @@
                 checkout = YooMoneyCheckout(shopId);
             } catch (e) {
                 console.error('YooMoneyCheckout init error:', e);
+                logFunnelEvent('PAYMENT_FORM_ERROR', {
+                    error_type: 'widget_load_error',
+                    error_message: String(e && (e.message || e)).slice(0, 500),
+                });
                 fatal('Не удалось загрузить форму оплаты. Обновите страницу или попробуйте чуть позже.');
                 return;
             }
@@ -511,16 +542,32 @@
                 const year = document.getElementById('cc-year').value;
 
                 if (!number || !cvc || !month || !year) {
+                    logFunnelEvent('PAYMENT_FORM_ERROR', {
+                        error_type: 'submit_error',
+                        error_message: 'empty_fields',
+                    });
                     showStatus('error', 'Заполните все поля.');
                     setLoading(false);
                     return;
                 }
+
+                // PAYMENT_FORM_SUBMIT — нажали «Оплатить», поля заполнены.
+                // Событие пишется ДО tokenize, чтобы видеть попытку даже если
+                // токенизация упадёт.
+                logFunnelEvent('PAYMENT_FORM_SUBMIT', {
+                    method: 'card',
+                    amount: parseFloat(amount),
+                });
 
                 let tokenRes;
                 try {
                     tokenRes = await checkout.tokenize({ number, cvc, month, year });
                 } catch (err) {
                     console.error('tokenize threw:', err);
+                    logFunnelEvent('PAYMENT_FORM_ERROR', {
+                        error_type: 'js_error',
+                        error_message: 'tokenize_threw: ' + String(err && (err.message || err)).slice(0, 400),
+                    });
                     showStatus('error', 'Сбой связи с ЮKassa. Проверьте соединение и попробуйте ещё раз.');
                     setLoading(false);
                     return;
@@ -528,6 +575,11 @@
 
                 if (!tokenRes || tokenRes.status !== 'success' ||
                     !tokenRes.data || !tokenRes.data.response || !tokenRes.data.response.paymentToken) {
+                    const ykErr = tokenRes && tokenRes.error;
+                    logFunnelEvent('PAYMENT_FORM_ERROR', {
+                        error_type: (ykErr && ykErr.type) || 'tokenize_failed',
+                        error_message: (ykErr && ykErr.message) || 'no_payment_token',
+                    });
                     showStatus('error', friendlyTokenizeError(tokenRes));
                     setLoading(false);
                     return;
@@ -548,12 +600,18 @@
                             m: params.get('m') || '',
                             ts: params.get('ts'),
                             sh: params.get('sh'),
+                            s: params.get('s') || '',
+                            pa: params.get('pa') || '',
                             sig: params.get('sig'),
                         }),
                     });
                     apiData = await apiRes.json();
                 } catch (err) {
                     console.error('create-payment fetch failed:', err);
+                    logFunnelEvent('PAYMENT_FORM_ERROR', {
+                        error_type: 'js_error',
+                        error_message: 'create_payment_fetch_failed: ' + String(err && (err.message || err)).slice(0, 400),
+                    });
                     showStatus('error', 'Не удалось связаться с сервером. Проверьте соединение и попробуйте ещё раз.');
                     setLoading(false);
                     return;
@@ -573,6 +631,10 @@
                 }
 
                 const errCode = (apiData && apiData.error) || 'unknown_error';
+                logFunnelEvent('PAYMENT_FORM_ERROR', {
+                    error_type: 'submit_error',
+                    error_message: 'backend_' + errCode,
+                });
                 const friendly = {
                     invalid_signature: 'Ссылка оплаты устарела или повреждена. Вернитесь в бот и запросите оплату заново.',
                     missing_fields: 'В ссылке оплаты не хватает данных. Вернитесь в бот.',
