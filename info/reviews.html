@@ -34,9 +34,10 @@
 
         .content { max-width: 900px; margin: 0 auto; }
 
-        .page-header { text-align: center; margin-bottom: 32px; }
-        .page-header h1 { margin-bottom: 8px; font-size: 2rem; }
-        .page-header p { color: var(--text-muted); font-size: 1rem; }
+        .page-header { text-align: center; margin-bottom: 28px; }
+        .page-header h1 { margin-bottom: 8px; font-size: clamp(1.5rem, 4vw, 1.875rem); font-weight: 800; letter-spacing: -0.02em; }
+        .page-header p { color: var(--text-muted); font-size: 0.95rem; }
+        .review-text { color: #e2e8f0; font-size: 0.95rem; line-height: 1.7; margin: 0; }
 
         .stats-bar {
             display: flex;
@@ -103,19 +104,20 @@
             gap: 10px;
         }
         .avatar {
-            width: 38px;
-            height: 38px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 1rem;
             flex-shrink: 0;
             color: #fff;
             overflow: hidden;
         }
         .avatar svg { display: block; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         .review-meta { flex: 1; }
         .review-name { font-weight: 600; font-size: 0.95rem; color: #f8fafc; line-height: 1.2; }
@@ -220,7 +222,7 @@
                 <div class="review-card" data-filter="loss">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#10b981"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#34d399"/><circle cx="19" cy="15" r="6.5" fill="#fde68a"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-1-1.5-3.5-6.5-3.5s-6.5 2.5-6.5 3.5z" fill="#78350f"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/15.jpg" alt="Алексей" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Алексей</div>
@@ -235,7 +237,7 @@
                 <div class="review-card" data-filter="loss">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#3b82f6"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#93c5fd"/><circle cx="19" cy="15" r="6.5" fill="#fed7aa"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#292524"/><rect x="12" y="13.5" width="2.5" height="10" rx="1.25" fill="#292524"/><rect x="23.5" y="13.5" width="2.5" height="10" rx="1.25" fill="#292524"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Марина" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Марина</div>
@@ -262,7 +264,7 @@
                 <div class="review-card" data-filter="loss">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#f59e0b"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#fcd34d"/><circle cx="19" cy="8" r="3.5" fill="#92400e"/><circle cx="19" cy="16" r="6.5" fill="#fed7aa"/><path d="M12.5 16c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#92400e"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Ольга" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Ольга</div>
@@ -277,7 +279,7 @@
                 <div class="review-card" data-filter="loss">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#06b6d4"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#67e8f9"/><circle cx="19" cy="15" r="6.5" fill="#fde68a"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-1-1.5-3.5-6.5-3.5s-6.5 2.5-6.5 3.5z" fill="#1c1917"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Дмитрий" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Дмитрий</div>
@@ -291,7 +293,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#ec4899"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#f9a8d4"/><circle cx="19" cy="15" r="6.5" fill="#fed7aa"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#b45309"/><path d="M12.5 14 Q11 21 12.5 27" stroke="#b45309" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M25.5 14 Q27 21 25.5 27" stroke="#b45309" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/7.jpg" alt="Анна" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Анна</div>
@@ -317,7 +319,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#84cc16"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#bef264"/><circle cx="19" cy="8" r="3.5" fill="#1c1917"/><circle cx="19" cy="16" r="6.5" fill="#fed7aa"/><path d="M12.5 16c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#1c1917"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Екатерина" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Екатерина</div>
@@ -331,7 +333,7 @@
                 <div class="review-card" data-filter="gain">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#6366f1"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#a5b4fc"/><circle cx="19" cy="15" r="6.5" fill="#fde68a"/><path d="M13.5 19c0 3.5 2.4 5.5 5.5 5.5s5.5-2 5.5-5.5" fill="#374151"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-0.5-1-3-6.5-3s-6.5 2.5-6.5 3z" fill="#374151"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Максим" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Максим</div>
@@ -346,7 +348,7 @@
                 <div class="review-card" data-filter="gain">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#2563eb"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#93c5fd"/><circle cx="19" cy="15" r="6.5" fill="#fde68a"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-1-1.5-3.5-6.5-3.5s-6.5 2.5-6.5 3.5z" fill="#1c1917"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/43.jpg" alt="Вадим" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Вадим</div>
@@ -361,7 +363,7 @@
                 <div class="review-card" data-filter="gain">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#059669"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#6ee7b7"/><circle cx="19" cy="15" r="6.5" fill="#fcd3a0"/><path d="M13.5 19c0 3.5 2.4 5.5 5.5 5.5s5.5-2 5.5-5.5" fill="#1c1917"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-0.5-1-3-6.5-3s-6.5 2.5-6.5 3z" fill="#1c1917"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/61.jpg" alt="Иван" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Иван</div>
@@ -387,7 +389,7 @@
                 <div class="review-card" data-filter="gain">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#d97706"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#fcd34d"/><circle cx="19" cy="16" r="6.5" fill="#fcd3a0"/><circle cx="13" cy="12.5" r="3.2" fill="#78350f"/><circle cx="17.5" cy="10" r="3.2" fill="#78350f"/><circle cx="22" cy="10" r="3.2" fill="#78350f"/><circle cx="25.5" cy="12.5" r="3.2" fill="#78350f"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/5.jpg" alt="Тимур" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Тимур</div>
@@ -413,7 +415,7 @@
                 <div class="review-card" data-filter="gain">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#7c3aed"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#c4b5fd"/><circle cx="19" cy="15" r="6.5" fill="#fde68a"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-1-1.5-3.5-6.5-3.5s-6.5 2.5-6.5 3.5z" fill="#374151"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/38.jpg" alt="Фёдор" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Фёдор</div>
@@ -427,7 +429,7 @@
                 <div class="review-card" data-filter="gain">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#0d9488"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#5eead4"/><circle cx="19" cy="15" r="6.5" fill="#fcd3a0"/><path d="M13.5 19c0 3.5 2.4 5.5 5.5 5.5s5.5-2 5.5-5.5" fill="#134e4a"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-0.5-1-3-6.5-3s-6.5 2.5-6.5 3z" fill="#134e4a"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Антон" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Антон</div>
@@ -453,7 +455,7 @@
                 <div class="review-card" data-filter="gain">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#ea580c"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#fdba74"/><circle cx="19" cy="15" r="6.5" fill="#fde68a"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-1-1.5-3.5-6.5-3.5s-6.5 2.5-6.5 3.5z" fill="#1c1917"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/47.jpg" alt="Евгений" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Евгений</div>
@@ -467,7 +469,7 @@
                 <div class="review-card" data-filter="gain">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#dc2626"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#fca5a5"/><circle cx="19" cy="15" r="6.5" fill="#fcd3a0"/><path d="M13.5 19c0 3.5 2.4 5.5 5.5 5.5s5.5-2 5.5-5.5" fill="#7f1d1d"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-0.5-1-3-6.5-3s-6.5 2.5-6.5 3z" fill="#7f1d1d"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/59.jpg" alt="Борис" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Борис</div>
@@ -493,7 +495,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#3b82f6"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#93c5fd"/><circle cx="19" cy="15" r="6.5" fill="#fcd3a0"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-1-1.5-3.5-6.5-3.5s-6.5 2.5-6.5 3.5z" fill="#292524"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Андрей" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Андрей</div>
@@ -519,7 +521,7 @@
                 <div class="review-card" data-filter="loss">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#0ea5e9"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#7dd3fc"/><circle cx="19" cy="16" r="6.5" fill="#fcd3a0"/><circle cx="13" cy="12.5" r="3.2" fill="#1c1917"/><circle cx="17.5" cy="10" r="3.2" fill="#1c1917"/><circle cx="22" cy="10" r="3.2" fill="#1c1917"/><circle cx="25.5" cy="12.5" r="3.2" fill="#1c1917"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/20.jpg" alt="Влад" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Влад</div>
@@ -557,7 +559,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#f59e0b"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#fcd34d"/><circle cx="19" cy="15" r="6.5" fill="#fed7aa"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#292524"/><rect x="12" y="13.5" width="2.5" height="10" rx="1.25" fill="#292524"/><rect x="23.5" y="13.5" width="2.5" height="10" rx="1.25" fill="#292524"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="Дарья" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Дарья</div>
@@ -571,7 +573,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#8b5cf6"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#c4b5fd"/><circle cx="19" cy="15" r="6.5" fill="#fde68a"/><path d="M13.5 19c0 3.5 2.4 5.5 5.5 5.5s5.5-2 5.5-5.5" fill="#374151"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-0.5-1-3-6.5-3s-6.5 2.5-6.5 3z" fill="#374151"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/30.jpg" alt="Никита" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Никита</div>
@@ -585,7 +587,7 @@
                 <div class="review-card" data-filter="loss">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#06b6d4"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#67e8f9"/><circle cx="19" cy="15" r="6.5" fill="#fed7aa"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#b45309"/><path d="M12.5 14 Q11 21 12.5 27" stroke="#b45309" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M25.5 14 Q27 21 25.5 27" stroke="#b45309" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Светлана" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Светлана</div>
@@ -599,7 +601,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#ec4899"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#f9a8d4"/><circle cx="19" cy="15" r="6.5" fill="#fcd3a0"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0-1-1.5-3.5-6.5-3.5s-6.5 2.5-6.5 3.5z" fill="#292524"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/40.jpg" alt="Павел" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Павел</div>
@@ -613,7 +615,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#84cc16"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#bef264"/><circle cx="19" cy="15" r="6.5" fill="#fed7aa"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#1c1917"/><rect x="12" y="13.5" width="2.5" height="10" rx="1.25" fill="#1c1917"/><rect x="23.5" y="13.5" width="2.5" height="10" rx="1.25" fill="#1c1917"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Алина" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Алина</div>
@@ -639,7 +641,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#f97316"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#fdba74"/><circle cx="19" cy="8" r="3.5" fill="#78350f"/><circle cx="19" cy="16" r="6.5" fill="#fed7aa"/><path d="M12.5 16c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#78350f"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/38.jpg" alt="Елена" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Елена</div>
@@ -653,7 +655,7 @@
                 <div class="review-card" data-filter="gain">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#10b981"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#34d399"/><circle cx="19" cy="16" r="6.5" fill="#fcd3a0"/><circle cx="13" cy="12.5" r="3.2" fill="#292524"/><circle cx="17.5" cy="10" r="3.2" fill="#292524"/><circle cx="22" cy="10" r="3.2" fill="#292524"/><circle cx="25.5" cy="12.5" r="3.2" fill="#292524"/></svg>
+                            <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Артём" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Артём</div>
@@ -667,7 +669,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#14b8a6"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#5eead4"/><circle cx="19" cy="15" r="6.5" fill="#fed7aa"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#92400e"/><path d="M12.5 14 Q11 21 12.5 27" stroke="#92400e" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M25.5 14 Q27 21 25.5 27" stroke="#92400e" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Татьяна" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Татьяна</div>
@@ -693,7 +695,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#0ea5e9"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#7dd3fc"/><circle cx="19" cy="15" r="6.5" fill="#fed7aa"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#292524"/><rect x="12" y="13.5" width="2.5" height="10" rx="1.25" fill="#292524"/><rect x="23.5" y="13.5" width="2.5" height="10" rx="1.25" fill="#292524"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="Виктория" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Виктория</div>
@@ -719,7 +721,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#3b82f6"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#93c5fd"/><circle cx="19" cy="8" r="3.5" fill="#1c1917"/><circle cx="19" cy="16" r="6.5" fill="#fcd3a0"/><path d="M12.5 16c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#1c1917"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Ирина" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Ирина</div>
@@ -745,7 +747,7 @@
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
                         <div class="avatar">
-                            <svg width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="19" fill="#ec4899"/><path d="M6 38c0-7 5.8-12 13-12s13 5 13 12" fill="#f9a8d4"/><circle cx="19" cy="15" r="6.5" fill="#fed7aa"/><path d="M12.5 15c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 0-1-2-6.5-2s-6.5 2-6.5 2z" fill="#78350f"/><path d="M12.5 14 Q11 21 12.5 27" stroke="#78350f" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M25.5 14 Q27 21 25.5 27" stroke="#78350f" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+                            <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Полина" loading="lazy">
                         </div>
                         <div class="review-meta">
                             <div class="review-name">Полина</div>
