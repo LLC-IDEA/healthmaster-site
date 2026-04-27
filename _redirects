@@ -12,6 +12,8 @@
 
 /pay /eng/pay.html 200
 info.healthmaster.app/pay → info/pay.html
+info.healthmaster.app/privacy → info/privacy.html
+info.healthmaster.app/offer → info/offer.html
 
 /oauth/callback/* https://info.healthmaster.app/oauth/callback/:splat 200
 /api/oauth/callback/* https://api.healthmaster.app/oauth/callback/:splat 200

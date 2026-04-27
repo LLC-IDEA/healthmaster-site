@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Публичная оферта — HealthMaster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico">
+    <link rel="icon" type="image/png" href="/favicon-heart.png">
+    <link rel="shortcut icon" href="/favicon-heart.ico">
+    <link rel="apple-touch-icon" href="/favicon-heart.png">
+    <style>
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+            transition: color 0.15s;
+        }
+        .back-link:hover { color: var(--text-main); }
+
+        .content { max-width: 760px; margin: 0 auto; }
+
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { margin-bottom: 8px; font-size: 2rem; }
+        .page-meta { color: var(--text-muted); font-size: 0.9rem; }
+
+        .section {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px 28px;
+            margin-bottom: 16px;
+        }
+        .section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .section p, .section li {
+            color: var(--text-muted);
+            line-height: 1.75;
+            font-size: 0.95rem;
+        }
+        .section p { margin-bottom: 8px; }
+        .section p:last-child { margin-bottom: 0; }
+        .section ul, .section ol {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        .section li { margin-bottom: 6px; }
+
+        .requisites-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 24px;
+            margin-top: 12px;
+        }
+        .req-item { display: flex; flex-direction: column; gap: 2px; }
+        .req-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        .req-value {
+            font-size: 0.92rem;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .footer-doc {
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 24px;
+        }
+        .footer-doc p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.15s;
+        }
+        .legal-links a:hover { color: var(--text-main); text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .section { padding: 18px 20px; }
+            .page-header h1 { font-size: 1.6rem; }
+            .requisites-grid { grid-template-columns: 1fr; gap: 10px; }
+            .legal-links { gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="glass-container">
+        <a href="/" class="back-link">← HealthMaster</a>
+
+        <div class="content">
+            <div class="page-header">
+                <h1>Публичная оферта</h1>
+                <p class="page-meta">Договор об оказании услуг · Редакция от апреля 2026 г.</p>
+            </div>
+
+            <div class="section">
+                <p>
+                    Индивидуальный предприниматель Киселев Петр Алексеевич (далее — <strong>Исполнитель</strong>)
+                    предлагает любому физическому лицу (далее — <strong>Пользователь</strong>) заключить договор
+                    об оказании информационных услуг на условиях, изложенных ниже.
+                </p>
+                <p>
+                    Акцептом оферты является совершение оплаты. С момента оплаты договор считается заключённым.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>1. Предмет договора</h3>
+                <p>
+                    Исполнитель предоставляет Пользователю доступ к Премиум-функциям сервиса
+                    <strong>HealthMaster</strong> — AI-помощника по питанию в Telegram (@AIHealthMasterBot)
+                    на срок, указанный при оплате.
+                </p>
+                <p>В рамках Премиум-доступа Пользователю доступно:</p>
+                <ul>
+                    <li>Распознавание блюд по фотографии и штрих-коду</li>
+                    <li>AI-коуч с персональными рекомендациями на основе истории питания</li>
+                    <li>Расширенная аналитика и отчёты</li>
+                    <li>Приоритетная обработка запросов</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>2. Порядок заключения договора</h3>
+                <ol>
+                    <li>Пользователь получает ссылку на оплату через Telegram-бот @AIHealthMasterBot</li>
+                    <li>Пользователь вносит оплату через платёжный сервис ЮKassa</li>
+                    <li>После подтверждения платежа Исполнитель активирует Премиум-доступ в течение 5 минут</li>
+                </ol>
+            </div>
+
+            <div class="section">
+                <h3>3. Стоимость и порядок оплаты</h3>
+                <p>Стоимость Премиум-доступа: <strong>199 рублей за 30 дней</strong>.</p>
+                <p>Оплата производится единовременно, без автоматического продления.</p>
+                <p>
+                    Принимаются банковские карты Visa, Mastercard, МИР через ЮKassa,
+                    а также Telegram Stars.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>4. Права и обязанности Исполнителя</h3>
+                <ul>
+                    <li>Предоставить доступ к Премиум-функциям в течение 5 минут после оплаты</li>
+                    <li>Обеспечить работу сервиса не менее 95% времени в месяц</li>
+                    <li>Отвечать на обращения в поддержку в течение 2 рабочих дней</li>
+                    <li>Уведомлять о существенных изменениях сервиса заблаговременно</li>
+                    <li>Вправе изменять и улучшать функциональность без уведомления при сохранении ключевых функций</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>5. Права и обязанности Пользователя</h3>
+                <ul>
+                    <li>Использовать сервис только в личных некоммерческих целях</li>
+                    <li>Не передавать доступ к аккаунту третьим лицам</li>
+                    <li>Предоставлять достоверную информацию при использовании сервиса</li>
+                    <li>Вправе обратиться в поддержку в случае технических неполадок</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>6. Возврат средств</h3>
+                <p>
+                    Возврат возможен в течение <strong>14 дней</strong> с момента оплаты, если Пользователь
+                    не воспользовался Премиум-функциями (отсутствует история использования за оплаченный период).
+                </p>
+                <p>
+                    Для возврата напишите на
+                    <a href="mailto:support@healthmaster.app" style="color: var(--primary); text-decoration: none;">support@healthmaster.app</a>
+                    с указанием вашего Telegram ID и даты оплаты.
+                </p>
+                <p>
+                    Возврат осуществляется на карту, с которой производилась оплата, в течение 5–10 рабочих дней.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>7. Ограничение ответственности</h3>
+                <p>
+                    Сервис HealthMaster предоставляет информационные услуги. Рекомендации носят
+                    <strong>исключительно информационный характер</strong> и не являются медицинскими.
+                    Перед изменением режима питания проконсультируйтесь с врачом.
+                </p>
+                <p>
+                    Исполнитель не несёт ответственности за последствия решений, принятых
+                    Пользователем на основании рекомендаций сервиса.
+                </p>
+                <p>
+                    Суммарная ответственность Исполнителя ограничена стоимостью оплаченной подписки.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>8. Срок действия и расторжение</h3>
+                <p>
+                    Договор действует с момента оплаты до окончания оплаченного периода.
+                    Пользователь вправе прекратить использование сервиса в любой момент.
+                </p>
+                <p>
+                    Исполнитель вправе заблокировать доступ при нарушении условий использования,
+                    в этом случае оплата возвращается пропорционально неиспользованному времени.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>9. Порядок разрешения споров</h3>
+                <p>
+                    Споры решаются путём переговоров. При недостижении согласия — в судебном порядке
+                    по месту нахождения Исполнителя в соответствии с законодательством Российской Федерации.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>10. Реквизиты Исполнителя</h3>
+                <div class="requisites-grid">
+                    <div class="req-item">
+                        <span class="req-label">Наименование</span>
+                        <span class="req-value">ИП Киселев Петр Алексеевич</span>
+                    </div>
+                    <div class="req-item">
+                        <span class="req-label">ОГРНИП</span>
+                        <span class="req-value">324180000015181</span>
+                    </div>
+                    <div class="req-item">
+                        <span class="req-label">ИНН</span>
+                        <span class="req-value">183108472921</span>
+                    </div>
+                    <div class="req-item">
+                        <span class="req-label">Email</span>
+                        <span class="req-value">
+                            <a href="mailto:support@healthmaster.app" style="color: var(--primary); text-decoration: none;">support@healthmaster.app</a>
+                        </span>
+                    </div>
+                    <div class="req-item">
+                        <span class="req-label">Telegram-бот</span>
+                        <span class="req-value">@AIHealthMasterBot</span>
+                    </div>
+                    <div class="req-item">
+                        <span class="req-label">Сайт</span>
+                        <span class="req-value">healthmaster.app</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-doc">
+                <p>© 2026 HealthMaster. Все права защищены.</p>
+                <div class="legal-links">
+                    <a href="/">Главная</a>
+                    <a href="/offer.html">Публичная оферта</a>
+                    <a href="/privacy.html">Конфиденциальность</a>
+                    <a href="mailto:support@healthmaster.app">Поддержка</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
