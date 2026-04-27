@@ -16,6 +16,7 @@ info.healthmaster.app/privacy → info/privacy.html
 info.healthmaster.app/offer → info/offer.html
 info.healthmaster.app/faq → info/faq.html
 info.healthmaster.app/reviews → info/reviews.html
+info.healthmaster.app/contacts → info/contacts.html
 
 /oauth/callback/* https://info.healthmaster.app/oauth/callback/:splat 200
 /api/oauth/callback/* https://api.healthmaster.app/oauth/callback/:splat 200
