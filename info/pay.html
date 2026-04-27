@@ -20,18 +20,25 @@
             padding: 8px 0 32px;
         }
 
-        /* Back link */
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+        /* Site nav */
+        .site-nav {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+        .site-nav a {
+            padding: 6px 14px;
+            border-radius: 20px;
             color: var(--text-muted);
             text-decoration: none;
             font-size: 0.85rem;
-            margin-bottom: 28px;
-            transition: color 0.15s;
+            font-weight: 500;
+            transition: color 0.15s, background 0.15s;
         }
-        .back-link:hover { color: var(--text-main); }
+        .site-nav a:hover { color: var(--text-main); background: rgba(255,255,255,0.05); }
+        .site-nav a.active { color: var(--primary); background: rgba(16,185,129,0.1); }
 
         /* Product summary */
         .product-card {
@@ -133,90 +140,60 @@
             gap: 6px;
         }
         .field label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-muted);
+            font-size: 13px;
+            opacity: 0.7;
         }
         .field input {
             width: 100%;
             box-sizing: border-box;
-            padding: 13px 16px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.12);
             background: rgba(255,255,255,0.04);
             color: #fff;
             font-size: 16px;
             font-family: inherit;
             outline: none;
-            transition: border-color 0.15s, background 0.15s;
+            transition: border-color 0.15s;
         }
-        .field input:focus {
-            border-color: var(--primary);
-            background: rgba(16, 185, 129, 0.05);
-        }
+        .field input:focus { border-color: var(--primary); }
         .field input::placeholder { color: rgba(255,255,255,0.25); }
 
         .exp-cvc-row {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-        }
-
-        /* Card type icons */
-        .card-icons {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-        .card-icon {
-            height: 22px;
-            width: auto;
-            opacity: 0.6;
-            border-radius: 3px;
-        }
-        .field-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 6px;
-        }
-        .field-row label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-muted);
+            gap: 12px;
         }
 
         #pay-btn {
-            padding: 15px 18px;
+            margin-top: 6px;
+            padding: 14px 18px;
             border: none;
-            border-radius: 14px;
+            border-radius: 12px;
             background: var(--primary);
             color: #fff;
             font-size: 16px;
             font-weight: 700;
             font-family: inherit;
             cursor: pointer;
-            transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            transition: opacity 0.15s;
         }
-        #pay-btn:hover:not(:disabled) {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 12px 28px rgba(16, 185, 129, 0.4);
-        }
-        #pay-btn:active:not(:disabled) { transform: translateY(0); }
+        #pay-btn:hover:not(:disabled) { opacity: 0.9; }
         #pay-btn:disabled {
             opacity: 0.55;
             cursor: not-allowed;
-            box-shadow: none;
+        }
+
+        .vpn-notice {
+            text-align: center;
+            margin-top: 14px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            color: #fbbf24;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
         /* Trust row */
@@ -289,6 +266,12 @@
             display: flex;
             align-items: center;
             gap: 14px;
+            text-decoration: none;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .stars-card:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.2);
         }
         .stars-icon { font-size: 1.5rem; flex-shrink: 0; }
         .stars-info { flex: 1; }
@@ -331,7 +314,15 @@
 
     <main class="glass-container">
         <div class="pay-page">
-            <a href="/" class="back-link">← HealthMaster</a>
+            <nav class="site-nav">
+                <a href="/">Главная</a>
+                <a href="/pay" class="active">Оплатить</a>
+                <a href="/reviews.html">Отзывы</a>
+                <a href="/faq.html">FAQ</a>
+                <a href="/offer.html">Оферта</a>
+                <a href="/privacy.html">Конфиденциальность</a>
+                <a href="mailto:support@healthmaster.app">Поддержка</a>
+            </nav>
 
             <!-- Product Summary -->
             <div class="product-card">
@@ -370,44 +361,33 @@
 
                 <form id="card-form" novalidate>
                     <div class="field">
-                        <div class="field-row">
-                            <label for="cc-number">Номер карты</label>
-                            <div class="card-icons">
-                                <svg class="card-icon" viewBox="0 0 38 24" height="22"><rect width="38" height="24" rx="4" fill="#1A1F71"/><path d="M15.6 7.5h6.8l-4.3 9h-6.8l4.3-9z" fill="#fff" opacity=".9"/><path d="M22.4 7.5h4.3a2.5 2.5 0 0 1 2.3 3.5l-2 5.5h-4.3l2-5.5a.5.5 0 0 0-.5-.7h-4.3l2.5-2.8z" fill="#F7B600"/><circle cx="9" cy="12" r="3.5" fill="#EB001B"/><circle cx="13" cy="12" r="3.5" fill="#F79E1B" opacity=".85"/></svg>
-                                <svg class="card-icon" viewBox="0 0 38 24" height="22"><rect width="38" height="24" rx="4" fill="#252525"/><circle cx="15" cy="12" r="6" fill="#EB001B"/><circle cx="23" cy="12" r="6" fill="#F79E1B" opacity=".85"/></svg>
-                                <svg class="card-icon" viewBox="0 0 38 24" height="22"><rect width="38" height="24" rx="4" fill="#0F6F3C"/><text x="19" y="16" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="10" fill="#fff">МИР</text></svg>
-                            </div>
-                        </div>
+                        <label for="cc-number">Номер карты</label>
                         <input id="cc-number" type="text" inputmode="numeric" autocomplete="cc-number"
                             placeholder="0000 0000 0000 0000" maxlength="23">
                     </div>
-
                     <div class="exp-cvc-row">
                         <div class="field">
                             <label for="cc-month">Месяц</label>
                             <input id="cc-month" type="text" inputmode="numeric" autocomplete="cc-exp-month"
-                                placeholder="ММ" maxlength="2">
+                                placeholder="MM" maxlength="2">
                         </div>
                         <div class="field">
                             <label for="cc-year">Год</label>
                             <input id="cc-year" type="text" inputmode="numeric" autocomplete="cc-exp-year"
-                                placeholder="ГГ" maxlength="2">
+                                placeholder="YY" maxlength="2">
                         </div>
                         <div class="field">
                             <label for="cc-cvc">CVC</label>
                             <input id="cc-cvc" type="password" inputmode="numeric" autocomplete="cc-csc"
-                                placeholder="•••" maxlength="4">
+                                placeholder="CVC" maxlength="4">
                         </div>
                     </div>
-
-                    <button type="submit" id="pay-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        </svg>
-                        Оплатить
-                    </button>
+                    <button type="submit" id="pay-btn">Оплатить</button>
                 </form>
 
+                <div class="vpn-notice">
+                    ⚠️ Для оплаты отключите VPN
+                </div>
                 <div class="trust-row">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -419,13 +399,16 @@
             <div class="divider">или</div>
 
             <!-- Telegram Stars alternative -->
-            <div class="stars-card">
+            <a href="https://t.me/AIHealthMasterBot" target="_blank" rel="noopener noreferrer" class="stars-card">
                 <div class="stars-icon">⭐</div>
                 <div class="stars-info">
                     <div class="stars-title">Telegram Stars</div>
-                    <div class="stars-desc">Нажмите кнопку «Оплатить Stars» в боте @AIHealthMasterBot</div>
+                    <div class="stars-desc">Открыть бот и нажать «Оплатить Stars»</div>
                 </div>
-            </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </a>
 
             <div id="pay-status" class="pay-status" style="display:none;"></div>
 
@@ -485,7 +468,7 @@
 
             const amount = params.get('a');
             document.getElementById('pay-amount').textContent = amount + ' ₽';
-            payBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Оплатить ' + amount + ' ₽';
+            payBtn.textContent = 'Оплатить ' + amount + ' ₽';
 
             const shopId = parseInt(params.get('sh'), 10);
             if (!shopId || isNaN(shopId)) {
@@ -515,11 +498,7 @@
 
             function setLoading(loading) {
                 payBtn.disabled = loading;
-                if (loading) {
-                    payBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 1s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Обработка...';
-                } else {
-                    payBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Оплатить ' + amount + ' ₽';
-                }
+                payBtn.textContent = loading ? 'Обработка...' : 'Оплатить ' + amount + ' ₽';
             }
 
             function friendlyTokenizeError(res) {
@@ -634,8 +613,5 @@
         })();
     </script>
 
-    <style>
-        @keyframes spin { to { transform: rotate(360deg); } }
-    </style>
 </body>
 </html>
