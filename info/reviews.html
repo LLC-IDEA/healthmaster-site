@@ -486,16 +486,16 @@
                     <p class="review-text">Понял, что проблема не в еде в целом, а в мелочах — перекусы, напитки. Убрал их, результат пошёл.</p>
                 </div>
 
-                <!-- Юлия — initials -->
+                <!-- Айгуль — Tatar, initials -->
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
-                        <div class="avatar" style="background:#a855f7">Ю</div>
+                        <div class="avatar" style="background:#0891b2">А</div>
                         <div class="review-meta">
-                            <div class="review-name">Юлия</div>
+                            <div class="review-name">Айгуль</div>
                             <div class="review-stars">★★★★★</div>
                         </div>
                     </div>
-                    <p class="review-text">Мне нравится, что не нужно ничего устанавливать. Всё в Telegram. Это сильно упрощает.</p>
+                    <p class="review-text">Из Казани. Удобно, что всё прямо в телефоне без лишних приложений. Пользуюсь каждый день уже три месяца.</p>
                 </div>
 
                 <!-- Влад — SVG type D curly dark -->
@@ -524,16 +524,16 @@
                     <p class="review-text">Удобно, что можно просто написать текстом. Не всегда есть возможность фотографировать.</p>
                 </div>
 
-                <!-- Роман — initials -->
+                <!-- Ильдар — Tatar, initials -->
                 <div class="review-card" data-filter="control">
                     <div class="review-header">
-                        <div class="avatar" style="background:#10b981">Р</div>
+                        <div class="avatar" style="background:#b45309">И</div>
                         <div class="review-meta">
-                            <div class="review-name">Роман</div>
+                            <div class="review-name">Ильдар</div>
                             <div class="review-stars">★★★★★</div>
                         </div>
                     </div>
-                    <p class="review-text">Сравнивал с другими приложениями. Здесь быстрее и проще. Не надо искать продукты вручную.</p>
+                    <p class="review-text">Из Казани. Раньше вообще не следил за едой. Бот объяснил всё простым языком. Теперь хотя бы понимаю, что и сколько ем.</p>
                 </div>
 
                 <!-- Дарья — SVG type A long dark -->
@@ -774,6 +774,29 @@
                 });
             });
         });
+
+        // Load Slavic-looking portraits (Russian/Ukrainian/Belarusian nationality, fixed seed)
+        (function () {
+            const allImgs = [...document.querySelectorAll('.avatar img')];
+            const males = allImgs.filter(img => img.src.includes('/men/'));
+            const females = allImgs.filter(img => img.src.includes('/women/'));
+            const api = 'https://randomuser.me/api/?nat=ru,ua,by&seed=hm2026&inc=picture&noinfo';
+
+            function load(imgs, gender) {
+                if (!imgs.length) return;
+                fetch(api + '&gender=' + gender + '&results=' + imgs.length)
+                    .then(r => r.json())
+                    .then(d => d.results.forEach((u, i) => {
+                        if (imgs[i] && u.picture && u.picture.medium) {
+                            imgs[i].src = u.picture.medium;
+                        }
+                    }))
+                    .catch(() => {}); // keep fallback portrait if API fails
+            }
+
+            load(males, 'male');
+            load(females, 'female');
+        })();
     </script>
 </body>
 </html>

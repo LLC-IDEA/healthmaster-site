@@ -200,8 +200,8 @@
                     </svg>
                 </div>
                 <h2>Написать напрямую</h2>
-                <p>Есть вопрос, пожелание или идея для улучшения? Пишите — отвечаем быстро.</p>
-                <a href="https://t.me/adminHealthMaster" target="_blank" rel="noopener noreferrer" class="tg-btn">
+                <p>Читаем все отзывы и предложения — пишите, это помогает нам делать сервис лучше.</p>
+                <a href="https://t.me/HealthMasterAdmin" target="_blank" rel="noopener noreferrer" class="tg-btn">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M9.78 18.65c-.4 0-.33-.15-.47-.53l-1.2-3.95 9.24-5.84"/>
                         <path d="M9.78 18.65c.31 0 .45-.14.63-.31l1.68-1.63-2.09-1.26"/>
@@ -209,19 +209,23 @@
                     </svg>
                     Открыть Telegram
                 </a>
-                <div class="handle"><span>@adminHealthMaster</span></div>
+                <div class="handle"><span>@HealthMasterAdmin</span></div>
             </div>
 
             <div class="form-section">
                 <h3>Форма обращения</h3>
-                <p class="form-hint">Напишите сообщение — оно откроется в Telegram, чтобы вы могли отправить его нам.</p>
+                <p class="form-hint">Заполните форму — мы получим ваше сообщение на почту и ответим вам.</p>
                 <div class="form-group">
-                    <label for="contact-name">Ваше имя (необязательно)</label>
+                    <label for="contact-name">Ваше имя</label>
                     <input type="text" id="contact-name" placeholder="Как к вам обращаться?" autocomplete="name">
                 </div>
                 <div class="form-group">
-                    <label for="contact-message">Ваше сообщение</label>
-                    <textarea id="contact-message" placeholder="Расскажите, что хотели бы улучшить, или задайте вопрос..."></textarea>
+                    <label for="contact-email">Ваш email <span style="color:#f87171">*</span></label>
+                    <input type="email" id="contact-email" placeholder="Чтобы мы могли ответить вам" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">Ваше сообщение <span style="color:#f87171">*</span></label>
+                    <textarea id="contact-message" placeholder="Расскажите, что хотели бы улучшить, или задайте вопрос..." required></textarea>
                 </div>
                 <button class="send-btn" id="send-btn" type="button">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -229,9 +233,9 @@
                         <path d="M9.78 18.65c.31 0 .45-.14.63-.31l1.68-1.63-2.09-1.26"/>
                         <path d="M9.99 14.2l5.08 3.75c.58.32 1 .15 1.14-.54l2.03-9.56c.2-.85-.31-1.23-.86-.98L5.47 11.45c-.81.32-.8.77-.15.97l3.06.96 7.08-4.46c.33-.2.63-.09.38.13"/>
                     </svg>
-                    Отправить в Telegram
+                    Отправить
                 </button>
-                <p class="form-note">Нажимая кнопку, вы перейдёте в Telegram для отправки сообщения.</p>
+                <p class="form-note" id="form-note">Сообщение будет отправлено на почту поддержки.</p>
             </div>
 
             <div class="footer-doc">
@@ -249,13 +253,35 @@
     <script>
         document.getElementById('send-btn').addEventListener('click', () => {
             const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
             const msg = document.getElementById('contact-message').value.trim();
-            let text = '';
-            if (name) text += 'Меня зовут ' + name + '.\n\n';
-            if (msg) text += msg;
-            if (!text) text = 'Привет!';
-            const url = 'https://t.me/adminHealthMaster?text=' + encodeURIComponent(text);
-            window.open(url, '_blank', 'noopener,noreferrer');
+            const note = document.getElementById('form-note');
+
+            if (!email) {
+                note.textContent = 'Пожалуйста, укажите ваш email — иначе мы не сможем ответить.';
+                note.style.color = '#f87171';
+                document.getElementById('contact-email').focus();
+                return;
+            }
+            if (!msg) {
+                note.textContent = 'Пожалуйста, напишите сообщение.';
+                note.style.color = '#f87171';
+                document.getElementById('contact-message').focus();
+                return;
+            }
+
+            let body = '';
+            if (name) body += 'Меня зовут: ' + name + '\n';
+            body += 'Email для ответа: ' + email + '\n\n' + msg;
+
+            const mailUrl = 'mailto:support@healthmaster.app'
+                + '?subject=' + encodeURIComponent('Обращение с сайта HealthMaster')
+                + '&body=' + encodeURIComponent(body);
+
+            window.location.href = mailUrl;
+
+            note.textContent = 'Открываем почтовый клиент для отправки сообщения...';
+            note.style.color = '#34d399';
         });
     </script>
 </body>
