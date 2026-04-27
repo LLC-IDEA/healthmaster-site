@@ -199,6 +199,7 @@ h2 {
     padding: 32px;
     border-radius: 24px;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .feature-card:hover {
@@ -210,6 +211,11 @@ h2 {
 .feature-icon {
     font-size: 2rem;
     margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
 }
 
 .feature-card h3 {
@@ -352,4 +358,36 @@ h2 {
     .tagline {
         font-size: 0.95rem;
     }
+}
+
+/* Logo image */
+.logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+/* Hero subtitle */
+.hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* Footer legal links */
+.legal-links {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.legal-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.legal-links a:hover {
+    text-decoration: underline;
 }
