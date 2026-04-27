@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,36 +7,121 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css" />
-    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico" />
-    <link rel="icon" type="image/png" href="/favicon-heart.png" />
-    <link rel="shortcut icon" href="/favicon-heart.ico" />
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico">
+    <link rel="icon" type="image/png" href="/favicon-heart.png">
+    <link rel="shortcut icon" href="/favicon-heart.ico">
     <link rel="apple-touch-icon" href="/favicon-heart.png">
     <script src="https://static.yoomoney.ru/checkout-js/v1/checkout.js"></script>
     <style>
-        .pay-wrapper {
+        .pay-page {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 8px 0 32px;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 28px;
+            transition: color 0.15s;
+        }
+        .back-link:hover { color: var(--text-main); }
+
+        /* Product summary */
+        .product-card {
+            background: rgba(16, 185, 129, 0.07);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 20px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .product-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .product-info { flex: 1; }
+        .product-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #f8fafc;
+            margin-bottom: 3px;
+        }
+        .product-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        /* Features list */
+        .features-list {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 32px 20px;
-        }
-
-        .pay-title {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 6px;
-            text-align: center;
-        }
-
-        .pay-amount {
-            font-size: 16px;
-            opacity: 0.75;
+            gap: 8px;
             margin-bottom: 24px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .feature-check {
+            width: 20px;
+            height: 20px;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--primary);
+            font-size: 0.7rem;
+        }
+
+        /* Payment form card */
+        .form-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .form-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         #card-form {
-            width: 100%;
-            max-width: 420px;
             display: flex;
             flex-direction: column;
             gap: 14px;
@@ -48,95 +132,196 @@
             flex-direction: column;
             gap: 6px;
         }
-
         .field label {
-            font-size: 13px;
-            opacity: 0.7;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
         }
-
         .field input {
             width: 100%;
             box-sizing: border-box;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.04);
+            padding: 13px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.04);
             color: #fff;
             font-size: 16px;
             font-family: inherit;
             outline: none;
-            transition: border-color 0.15s;
+            transition: border-color 0.15s, background 0.15s;
         }
-
         .field input:focus {
             border-color: var(--primary);
+            background: rgba(16, 185, 129, 0.05);
         }
+        .field input::placeholder { color: rgba(255,255,255,0.25); }
 
         .exp-cvc-row {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
+        }
+
+        /* Card type icons */
+        .card-icons {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .card-icon {
+            height: 22px;
+            width: auto;
+            opacity: 0.6;
+            border-radius: 3px;
+        }
+        .field-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        .field-row label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
         }
 
         #pay-btn {
-            margin-top: 6px;
-            padding: 14px 18px;
+            padding: 15px 18px;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             background: var(--primary);
             color: #fff;
             font-size: 16px;
             font-weight: 700;
             font-family: inherit;
             cursor: pointer;
-            transition: opacity 0.15s;
+            transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-
+        #pay-btn:hover:not(:disabled) {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(16, 185, 129, 0.4);
+        }
+        #pay-btn:active:not(:disabled) { transform: translateY(0); }
         #pay-btn:disabled {
             opacity: 0.55;
             cursor: not-allowed;
+            box-shadow: none;
         }
 
-        .pay-status {
-            max-width: 420px;
-            margin: 20px auto 0;
-            padding: 18px 22px;
-            border-radius: 14px;
-            text-align: center;
-            line-height: 1.5;
-        }
-
-        .pay-status.error {
-            background: rgba(255, 80, 80, 0.10);
-            border: 1px solid rgba(255, 80, 80, 0.30);
-        }
-
-        .pay-status.success {
-            background: rgba(76, 175, 80, 0.10);
-            border: 1px solid rgba(76, 175, 80, 0.30);
-        }
-
-        .pay-tg-link {
-            display: inline-block;
+        /* Trust row */
+        .trust-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
             margin-top: 14px;
-            padding: 12px 24px;
+        }
+        .trust-row svg { opacity: 0.6; }
+
+        /* Status messages */
+        .pay-status {
+            border-radius: 14px;
+            padding: 18px 22px;
+            text-align: center;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-top: 16px;
+        }
+        .pay-status.error {
+            background: rgba(255,80,80,0.08);
+            border: 1px solid rgba(255,80,80,0.25);
+            color: #fca5a5;
+        }
+        .pay-status.success {
+            background: rgba(16,185,129,0.08);
+            border: 1px solid rgba(16,185,129,0.25);
+            color: #6ee7b7;
+        }
+        .pay-tg-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            padding: 11px 22px;
             background: var(--primary);
             color: #fff !important;
             text-decoration: none;
             border-radius: 12px;
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
-        .pay-hint {
-            font-size: 12px;
-            opacity: 0.6;
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 4px 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        /* Stars alternative */
+        .stars-card {
+            background: rgba(255,255,255,0.015);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .stars-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .stars-info { flex: 1; }
+        .stars-title { font-size: 0.9rem; font-weight: 600; color: #f8fafc; margin-bottom: 2px; }
+        .stars-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* Footer */
+        .pay-footer {
+            margin-top: 28px;
             text-align: center;
-            max-width: 420px;
-            margin-top: 12px;
+        }
+        .pay-footer p { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px; }
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.78rem;
+            transition: color 0.15s;
+        }
+        .legal-links a:hover { color: var(--text-main); text-decoration: underline; }
+
+        @media (max-width: 480px) {
+            .product-card { flex-direction: column; text-align: center; }
+            .product-info { text-align: center; }
+            .form-card { padding: 18px; }
         }
     </style>
 </head>
-
 <body>
     <div class="background-blobs">
         <div class="blob blob-1"></div>
@@ -145,47 +330,114 @@
     </div>
 
     <main class="glass-container">
-        <header>
-            <div class="logo">
-                <span class="logo-emoji">🥗</span>
-                <h1>HealthMaster</h1>
+        <div class="pay-page">
+            <a href="/" class="back-link">← HealthMaster</a>
+
+            <!-- Product Summary -->
+            <div class="product-card">
+                <div class="product-icon">🥗</div>
+                <div class="product-info">
+                    <div class="product-name">HealthMaster Премиум</div>
+                    <div class="product-desc">Доступ на 30 дней · Без автопродления</div>
+                </div>
+                <div class="product-price" id="pay-amount">199 ₽</div>
             </div>
-        </header>
 
-        <section class="pay-wrapper">
-            <div class="pay-title">Оплата доступа на 30 дней</div>
-            <div class="pay-amount" id="pay-amount"></div>
-
-            <form id="card-form" novalidate>
-                <div class="field">
-                    <label for="cc-number">Номер карты</label>
-                    <input id="cc-number" type="text" inputmode="numeric" autocomplete="cc-number"
-                        placeholder="0000 0000 0000 0000" maxlength="23">
+            <!-- Features included -->
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <span>Распознавание блюд по фото и штрих-коду</span>
                 </div>
-                <div class="exp-cvc-row">
-                    <div class="field">
-                        <label for="cc-month">Месяц</label>
-                        <input id="cc-month" type="text" inputmode="numeric" autocomplete="cc-exp-month"
-                            placeholder="MM" maxlength="2">
-                    </div>
-                    <div class="field">
-                        <label for="cc-year">Год</label>
-                        <input id="cc-year" type="text" inputmode="numeric" autocomplete="cc-exp-year"
-                            placeholder="YY" maxlength="2">
-                    </div>
-                    <div class="field">
-                        <label for="cc-cvc">CVC</label>
-                        <input id="cc-cvc" type="password" inputmode="numeric" autocomplete="cc-csc"
-                            placeholder="CVC" maxlength="4">
-                    </div>
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <span>AI-коуч с персональными рекомендациями</span>
                 </div>
-                <button type="submit" id="pay-btn">Оплатить</button>
-            </form>
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <span>Анализ питания на основе вашей истории</span>
+                </div>
+            </div>
 
-            <div class="pay-hint">Данные карты обрабатывает ЮKassa. Мы не видим номер и CVC.</div>
+            <!-- Card form -->
+            <div class="form-card">
+                <div class="form-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    Оплата картой
+                </div>
+
+                <form id="card-form" novalidate>
+                    <div class="field">
+                        <div class="field-row">
+                            <label for="cc-number">Номер карты</label>
+                            <div class="card-icons">
+                                <svg class="card-icon" viewBox="0 0 38 24" height="22"><rect width="38" height="24" rx="4" fill="#1A1F71"/><path d="M15.6 7.5h6.8l-4.3 9h-6.8l4.3-9z" fill="#fff" opacity=".9"/><path d="M22.4 7.5h4.3a2.5 2.5 0 0 1 2.3 3.5l-2 5.5h-4.3l2-5.5a.5.5 0 0 0-.5-.7h-4.3l2.5-2.8z" fill="#F7B600"/><circle cx="9" cy="12" r="3.5" fill="#EB001B"/><circle cx="13" cy="12" r="3.5" fill="#F79E1B" opacity=".85"/></svg>
+                                <svg class="card-icon" viewBox="0 0 38 24" height="22"><rect width="38" height="24" rx="4" fill="#252525"/><circle cx="15" cy="12" r="6" fill="#EB001B"/><circle cx="23" cy="12" r="6" fill="#F79E1B" opacity=".85"/></svg>
+                                <svg class="card-icon" viewBox="0 0 38 24" height="22"><rect width="38" height="24" rx="4" fill="#0F6F3C"/><text x="19" y="16" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="10" fill="#fff">МИР</text></svg>
+                            </div>
+                        </div>
+                        <input id="cc-number" type="text" inputmode="numeric" autocomplete="cc-number"
+                            placeholder="0000 0000 0000 0000" maxlength="23">
+                    </div>
+
+                    <div class="exp-cvc-row">
+                        <div class="field">
+                            <label for="cc-month">Месяц</label>
+                            <input id="cc-month" type="text" inputmode="numeric" autocomplete="cc-exp-month"
+                                placeholder="ММ" maxlength="2">
+                        </div>
+                        <div class="field">
+                            <label for="cc-year">Год</label>
+                            <input id="cc-year" type="text" inputmode="numeric" autocomplete="cc-exp-year"
+                                placeholder="ГГ" maxlength="2">
+                        </div>
+                        <div class="field">
+                            <label for="cc-cvc">CVC</label>
+                            <input id="cc-cvc" type="password" inputmode="numeric" autocomplete="cc-csc"
+                                placeholder="•••" maxlength="4">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="pay-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                        </svg>
+                        Оплатить
+                    </button>
+                </form>
+
+                <div class="trust-row">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    Данные карты обрабатывает ЮKassa · мы их не видим
+                </div>
+            </div>
+
+            <div class="divider">или</div>
+
+            <!-- Telegram Stars alternative -->
+            <div class="stars-card">
+                <div class="stars-icon">⭐</div>
+                <div class="stars-info">
+                    <div class="stars-title">Telegram Stars</div>
+                    <div class="stars-desc">Нажмите кнопку «Оплатить Stars» в боте @AIHealthMasterBot</div>
+                </div>
+            </div>
 
             <div id="pay-status" class="pay-status" style="display:none;"></div>
-        </section>
+
+            <div class="pay-footer">
+                <p>© 2026 HealthMaster · ИП Киселев Петр Алексеевич · ИНН 183108472921</p>
+                <div class="legal-links">
+                    <a href="/offer.html">Публичная оферта</a>
+                    <a href="/privacy.html">Конфиденциальность</a>
+                    <a href="mailto:support@healthmaster.app">Поддержка</a>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
@@ -203,11 +455,10 @@
                 statusEl.className = 'pay-status ' + type;
                 statusEl.innerHTML = html;
                 statusEl.style.display = 'block';
+                statusEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
 
-            function hideStatus() {
-                statusEl.style.display = 'none';
-            }
+            function hideStatus() { statusEl.style.display = 'none'; }
 
             function fatal(html) {
                 form.style.display = 'none';
@@ -216,8 +467,6 @@
                 );
             }
 
-            // Legacy mock-сценарий (embedded widget) — оставляем для обратной совместимости,
-            // если в бота попала старая подписанная ссылка с ?token=mock_...
             const legacyToken = params.get('token');
             if (legacyToken && legacyToken.indexOf('mock_') === 0) {
                 form.style.display = 'none';
@@ -228,21 +477,16 @@
                 return;
             }
 
-            // Проверка URL-параметров
             const missing = REQUIRED.filter(k => !params.get(k));
             if (missing.length > 0) {
                 fatal('Ссылка на оплату повреждена или устарела.<br>Вернитесь в бот и нажмите «Оплатить» ещё раз.');
                 return;
             }
 
-            // Сумма на кнопке
             const amount = params.get('a');
             document.getElementById('pay-amount').textContent = amount + ' ₽';
-            payBtn.textContent = 'Оплатить ' + amount + ' ₽';
+            payBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Оплатить ' + amount + ' ₽';
 
-            // shop_id из URL — задаётся ботом из settings.yookassa_shop_id.
-            // Backend (admin/api/checkout) сверяет URL-sh с env shop_id,
-            // плюс это часть HMAC-подписи — подмена сломает signature.
             const shopId = parseInt(params.get('sh'), 10);
             if (!shopId || isNaN(shopId)) {
                 fatal('Некорректный магазин в ссылке.');
@@ -258,44 +502,34 @@
                 return;
             }
 
-            // Форматирование номера карты — группы по 4 через пробел.
             const numberInput = document.getElementById('cc-number');
             numberInput.addEventListener('input', (e) => {
                 const digits = e.target.value.replace(/\D/g, '').slice(0, 19);
-                const spaced = digits.replace(/(\d{4})(?=\d)/g, '$1 ');
-                e.target.value = spaced;
+                e.target.value = digits.replace(/(\d{4})(?=\d)/g, '$1 ');
             });
-            // Фильтрация только цифр в остальных полях
             ['cc-month', 'cc-year', 'cc-cvc'].forEach(id => {
-                const el = document.getElementById(id);
-                el.addEventListener('input', (e) => {
+                document.getElementById(id).addEventListener('input', (e) => {
                     e.target.value = e.target.value.replace(/\D/g, '');
                 });
             });
 
             function setLoading(loading) {
                 payBtn.disabled = loading;
-                payBtn.textContent = loading
-                    ? 'Обработка...'
-                    : 'Оплатить ' + amount + ' ₽';
+                if (loading) {
+                    payBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 1s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg> Обработка...';
+                } else {
+                    payBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Оплатить ' + amount + ' ₽';
+                }
             }
 
             function friendlyTokenizeError(res) {
-                // YooKassa возвращает {status, error: {type, status_code, message}}
                 const err = res && res.error;
                 const type = err && err.type;
                 const message = err && err.message;
-
-                // authentication_error — магазин не имеет прав на Checkout.js
-                // (буквальный message от ЮKassa: «Вы не можете принимать платежи с
-                // карт. Обратитесь к менеджеру»). Это конфиг, не карта. Юзеру не
-                // имеет смысла ничего проверять — направляем на Stars.
                 if (type === 'authentication_error') {
                     return 'Оплата с карт временно недоступна — идёт настройка платёжной системы.<br>' +
                            'Альтернатива — Telegram Stars ⭐ (кнопка в боте рядом с «Оплатить»).';
                 }
-
-                // Ошибки самой карты — юзер может исправить ввод
                 const cardErrors = {
                     invalid_number: 'Проверьте номер карты.',
                     invalid_cvc: 'Проверьте CVC.',
@@ -304,15 +538,7 @@
                     card_declined: 'Банк отклонил карту. Попробуйте другую.',
                 };
                 if (cardErrors[type]) return cardErrors[type];
-
-                // validation_error — обычно сам ЮKassa пишет понятный message
-                // («Неверный формат номера карты» и т.д.). Показываем как есть.
-                if (type === 'validation_error') {
-                    return message || 'Проверьте введённые данные карты.';
-                }
-
-                // Fallback: покажем сам message от ЮKassa, если он есть —
-                // юзеру и нам полезнее увидеть реальный текст, чем общий «не удалось».
+                if (type === 'validation_error') return message || 'Проверьте введённые данные карты.';
                 if (message) return 'Ошибка оплаты: ' + message;
                 return 'Не удалось обработать данные карты. Проверьте введённое и попробуйте ещё раз.';
             }
@@ -338,9 +564,7 @@
                     tokenRes = await checkout.tokenize({ number, cvc, month, year });
                 } catch (err) {
                     console.error('tokenize threw:', err);
-                    showStatus('error',
-                        'Сбой связи с ЮKassa. Проверьте соединение и попробуйте ещё раз.'
-                    );
+                    showStatus('error', 'Сбой связи с ЮKassa. Проверьте соединение и попробуйте ещё раз.');
                     setLoading(false);
                     return;
                 }
@@ -373,28 +597,24 @@
                     apiData = await apiRes.json();
                 } catch (err) {
                     console.error('create-payment fetch failed:', err);
-                    showStatus('error',
-                        'Не удалось связаться с сервером. Проверьте соединение и попробуйте ещё раз.'
-                    );
+                    showStatus('error', 'Не удалось связаться с сервером. Проверьте соединение и попробуйте ещё раз.');
                     setLoading(false);
                     return;
                 }
 
                 if (apiData && apiData.status === 'redirect' && apiData.confirmation_url) {
-                    // 3DS — редирект на страницу банка, после неё юзер вернётся в бот
                     window.location.href = apiData.confirmation_url;
                     return;
                 }
                 if (apiData && apiData.status === 'succeeded') {
                     form.style.display = 'none';
                     showStatus('success',
-                        'Оплата прошла успешно.' +
+                        'Оплата прошла успешно! Премиум активирован.' +
                         '<br><a class="pay-tg-link" href="' + RETURN_URL + '">Вернуться в Telegram</a>'
                     );
                     return;
                 }
 
-                // Ошибки от нашего бэка или неожиданный ответ
                 const errCode = (apiData && apiData.error) || 'unknown_error';
                 const friendly = {
                     invalid_signature: 'Ссылка оплаты устарела или повреждена. Вернитесь в бот и запросите оплату заново.',
@@ -413,6 +633,9 @@
             });
         })();
     </script>
-</body>
 
+    <style>
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</body>
 </html>
