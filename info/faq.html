@@ -34,31 +34,109 @@
 
         .content { max-width: 720px; margin: 0 auto; }
 
-        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header { text-align: center; margin-bottom: 32px; }
         .page-header h1 { margin-bottom: 8px; font-size: 2rem; }
         .page-header p { color: var(--text-muted); font-size: 1rem; }
 
+        /* Search */
+        .search-wrap {
+            position: relative;
+            margin-bottom: 32px;
+        }
+        .search-wrap svg {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+        #faq-search {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px 16px 14px 46px;
+            border-radius: 14px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.03);
+            color: #f8fafc;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.15s, background 0.15s;
+        }
+        #faq-search:focus {
+            border-color: var(--primary);
+            background: rgba(16,185,129,0.04);
+        }
+        #faq-search::placeholder { color: var(--text-muted); }
+
+        .no-results {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 32px 0;
+            display: none;
+        }
+
+        /* Category tabs */
+        .cat-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .cat-tab {
+            padding: 7px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            background: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .cat-tab:hover { color: var(--text-main); border-color: rgba(255,255,255,0.2); }
+        .cat-tab.active {
+            background: rgba(16,185,129,0.12);
+            border-color: rgba(16,185,129,0.35);
+            color: var(--primary);
+        }
+
+        /* Category groups */
+        .faq-group { margin-bottom: 28px; }
+        .faq-group-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            padding-left: 4px;
+        }
+
         /* FAQ accordion */
-        .faq-list { display: flex; flex-direction: column; gap: 10px; }
+        .faq-list { display: flex; flex-direction: column; gap: 8px; }
 
         .faq-item {
             background: rgba(255,255,255,0.02);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
             transition: border-color 0.2s;
         }
         .faq-item:hover { border-color: rgba(255,255,255,0.18); }
         .faq-item.open { border-color: rgba(16,185,129,0.3); }
+        .faq-item.hidden { display: none; }
 
         .faq-question {
             width: 100%;
             background: none;
             border: none;
-            padding: 18px 22px;
+            padding: 16px 20px;
             text-align: left;
             color: #f8fafc;
-            font-size: 1rem;
+            font-size: 0.97rem;
             font-weight: 600;
             font-family: inherit;
             cursor: pointer;
@@ -68,7 +146,6 @@
             gap: 12px;
             line-height: 1.4;
         }
-        .faq-question:hover { color: #fff; }
 
         .faq-icon {
             width: 22px;
@@ -82,7 +159,6 @@
             transition: transform 0.25s ease, background 0.2s;
             color: var(--text-muted);
             font-size: 1rem;
-            line-height: 1;
         }
         .faq-item.open .faq-icon {
             transform: rotate(45deg);
@@ -94,16 +170,16 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
-            padding: 0 22px;
+            padding: 0 20px;
         }
         .faq-item.open .faq-answer {
             max-height: 300px;
-            padding: 0 22px 18px;
+            padding: 0 20px 16px;
         }
         .faq-answer p {
             color: #e2e8f0;
             line-height: 1.75;
-            font-size: 0.95rem;
+            font-size: 0.93rem;
             margin: 0;
         }
         .faq-answer ul {
@@ -111,14 +187,19 @@
             padding-left: 18px;
             color: #e2e8f0;
             line-height: 1.75;
-            font-size: 0.95rem;
+            font-size: 0.93rem;
         }
         .faq-answer li { margin-bottom: 4px; }
-        .faq-answer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
+        .faq-answer a { color: var(--primary); text-decoration: none; }
         .faq-answer a:hover { text-decoration: underline; }
+
+        /* highlight search match */
+        mark {
+            background: rgba(16,185,129,0.25);
+            color: inherit;
+            border-radius: 3px;
+            padding: 0 2px;
+        }
 
         /* CTA block */
         .cta-block {
@@ -129,12 +210,7 @@
             padding: 28px 24px;
             text-align: center;
         }
-        .cta-block p {
-            color: #e2e8f0;
-            margin-bottom: 18px;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
+        .cta-block p { color: #e2e8f0; margin-bottom: 18px; font-size: 1rem; line-height: 1.6; }
         .cta-block strong { color: #f8fafc; }
         .cta-btn {
             display: inline-block;
@@ -148,10 +224,7 @@
             transition: background 0.15s, transform 0.1s;
             box-shadow: 0 8px 20px rgba(16,185,129,0.25);
         }
-        .cta-btn:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
-        }
+        .cta-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
 
         /* Footer */
         .footer-doc {
@@ -177,10 +250,11 @@
 
         @media (max-width: 768px) {
             .page-header h1 { font-size: 1.6rem; }
-            .faq-question { font-size: 0.95rem; padding: 16px 18px; }
-            .faq-answer { padding: 0 18px; }
-            .faq-item.open .faq-answer { padding: 0 18px 16px; }
-            .cta-block { padding: 22px 18px; }
+            .faq-question { font-size: 0.92rem; padding: 14px 16px; }
+            .faq-answer { padding: 0 16px; }
+            .faq-item.open .faq-answer { padding: 0 16px 14px; }
+            .cat-tabs { gap: 6px; }
+            .cat-tab { font-size: 0.8rem; padding: 6px 12px; }
         }
     </style>
 </head>
@@ -207,137 +281,289 @@
                 <p>Всё, что нужно знать о HealthMaster</p>
             </div>
 
-            <div class="faq-list">
+            <!-- Search -->
+            <div class="search-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <input id="faq-search" type="text" placeholder="Поиск по вопросам..." autocomplete="off">
+            </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Как работает HealthMaster?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Ты отправляешь фото еды или пишешь, что съел. Бот определяет блюдо и считает калории, белки, жиры и углеводы. Дальше ты видишь итог за день.</p>
+            <!-- Category tabs -->
+            <div class="cat-tabs" id="cat-tabs">
+                <button class="cat-tab active" data-cat="all">Все</button>
+                <button class="cat-tab" data-cat="start">Начало работы</button>
+                <button class="cat-tab" data-cat="tracking">Подсчёт калорий</button>
+                <button class="cat-tab" data-cat="goals">Цели и AI-коуч</button>
+                <button class="cat-tab" data-cat="payment">Оплата</button>
+            </div>
+
+            <div id="faq-groups">
+
+                <!-- Начало работы -->
+                <div class="faq-group" data-group="start">
+                    <div class="faq-group-title">Начало работы</div>
+                    <div class="faq-list">
+
+                        <div class="faq-item" data-cat="start">
+                            <button class="faq-question">
+                                Как работает HealthMaster?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Ты отправляешь фото еды или пишешь, что съел. Бот определяет блюдо и считает калории, белки, жиры и углеводы. Дальше ты видишь итог за день.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="start">
+                            <button class="faq-question">
+                                Нужно ли устанавливать приложение?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Нет. Всё работает прямо в Telegram — никаких дополнительных установок.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="start">
+                            <button class="faq-question">
+                                Можно ли пользоваться без фото?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Да. Можно вводить еду текстом, например: «курица с рисом» — бот всё посчитает.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="start">
+                            <button class="faq-question">
+                                Сколько времени занимает ведение питания?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Обычно 10–20 секунд на приём пищи: отправил фото или написал текст — готово.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="start">
+                            <button class="faq-question">
+                                Можно ли пользоваться бесплатно?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Да. Базовый функционал доступен бесплатно. Премиум нужен для расширенных возможностей: фото, штрих-код, AI-коуч.</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Насколько точно считаются калории?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Для обычных продуктов и простых блюд точность высокая. Если блюдо сложное, бот может задать уточняющие вопросы, чтобы улучшить результат.</p>
+                <!-- Подсчёт калорий -->
+                <div class="faq-group" data-group="tracking">
+                    <div class="faq-group-title">Подсчёт калорий</div>
+                    <div class="faq-list">
+
+                        <div class="faq-item" data-cat="tracking">
+                            <button class="faq-question">
+                                Насколько точно считаются калории?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Для обычных продуктов и простых блюд точность высокая. Если блюдо сложное, бот может задать уточняющие вопросы, чтобы улучшить результат.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="tracking">
+                            <button class="faq-question">
+                                Нужно ли взвешивать еду?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Нет, не обязательно. Можно вводить примерно — бот сам оценит порцию. Точность можно улучшать по желанию.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="tracking">
+                            <button class="faq-question">
+                                Что если я ем домашнюю еду или сложные блюда?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Бот умеет работать с обычной домашней едой. При необходимости он задаст уточняющий вопрос о составе или размере порции.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="tracking">
+                            <button class="faq-question">
+                                Работает ли бот с продуктами из магазина?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Да. Можно вводить вручную или использовать штрих-код (доступно в Премиуме).</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="tracking">
+                            <button class="faq-question">
+                                Что если я забываю записывать еду?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Бот напоминает и помогает вернуться в привычку через стрики и отчёты.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="tracking">
+                            <button class="faq-question">
+                                Сохраняется ли история питания?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Да. Ты видишь статистику за день, неделю и месяц.</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Что делает AI-коуч?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Он анализирует твой день и показывает, где ошибка: перебор калорий или недобор белка. После этого даёт одно конкретное действие — что исправить сегодня или завтра.</p>
+                <!-- Цели и AI-коуч -->
+                <div class="faq-group" data-group="goals">
+                    <div class="faq-group-title">Цели и AI-коуч</div>
+                    <div class="faq-list">
+
+                        <div class="faq-item" data-cat="goals">
+                            <button class="faq-question">
+                                Что делает AI-коуч?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Он анализирует твой день и показывает, где ошибка: перебор калорий или недобор белка. После этого даёт одно конкретное действие — что исправить сегодня или завтра.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="goals">
+                            <button class="faq-question">
+                                Подойдёт ли это, если я хочу похудеть?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Да. Бот показывает, где перебор калорий и что именно исправить, чтобы двигаться к цели по весу.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="goals">
+                            <button class="faq-question">
+                                А если я хочу набрать вес или мышечную массу?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Да. Бот покажет, хватает ли калорий и белка, и что добавить в рацион для набора массы.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-cat="goals">
+                            <button class="faq-question">
+                                Чем это лучше обычных приложений для подсчёта калорий?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Не нужно искать продукты и считать вручную — бот делает это за тебя и сразу показывает, что исправить. Всё прямо в Telegram, без отдельного приложения.</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Что входит в Премиум?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <ul>
-                            <li>AI-коуч — разбор питания и рекомендации</li>
-                            <li>Ввод продуктов по штрих-коду</li>
-                            <li>Распознавание еды по фото</li>
-                        </ul>
-                    </div>
-                </div>
+                <!-- Оплата -->
+                <div class="faq-group" data-group="payment">
+                    <div class="faq-group-title">Оплата и доступ</div>
+                    <div class="faq-list">
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Сколько стоит доступ?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>199 ₽ за 30 дней.</p>
-                    </div>
-                </div>
+                        <div class="faq-item" data-cat="payment">
+                            <button class="faq-question">
+                                Что входит в Премиум?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <ul>
+                                    <li>AI-коуч — разбор питания и рекомендации каждый день</li>
+                                    <li>Распознавание блюд по фото</li>
+                                    <li>Ввод продуктов по штрих-коду</li>
+                                    <li>Анализ питания на основе истории</li>
+                                </ul>
+                            </div>
+                        </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Есть ли автопродление?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Нет. Оплата разовая, подписка не продлевается автоматически.</p>
-                    </div>
-                </div>
+                        <div class="faq-item" data-cat="payment">
+                            <button class="faq-question">
+                                Сколько стоит доступ?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>199 ₽ за 30 дней. Без автопродления.</p>
+                            </div>
+                        </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Когда открывается доступ после оплаты?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Сразу после оплаты — прямо в Telegram-боте.</p>
-                    </div>
-                </div>
+                        <div class="faq-item" data-cat="payment">
+                            <button class="faq-question">
+                                Есть ли автопродление?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Нет. Оплата разовая, подписка не продлевается автоматически.</p>
+                            </div>
+                        </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Как происходит оплата?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Оплата проходит через защищённый платёжный сервис ЮKassa. Данные карты не сохраняются на стороне HealthMaster.</p>
-                    </div>
-                </div>
+                        <div class="faq-item" data-cat="payment">
+                            <button class="faq-question">
+                                Когда открывается доступ после оплаты?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Сразу после оплаты — прямо в Telegram-боте.</p>
+                            </div>
+                        </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Что делать, если оплата не прошла?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Попробуй повторить оплату или использовать другую карту. Также отключи VPN — он может мешать прохождению платежа. Если не получается — напиши в поддержку.</p>
-                    </div>
-                </div>
+                        <div class="faq-item" data-cat="payment">
+                            <button class="faq-question">
+                                Как происходит оплата?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Оплата проходит через защищённый сервис ЮKassa. Данные карты не сохраняются на стороне HealthMaster. Также принимаются Telegram Stars.</p>
+                            </div>
+                        </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Можно ли пользоваться бесплатно?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Да. Базовый функционал доступен бесплатно. Премиум нужен для расширенных возможностей.</p>
-                    </div>
-                </div>
+                        <div class="faq-item" data-cat="payment">
+                            <button class="faq-question">
+                                Что делать, если оплата не прошла?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Попробуй повторить оплату или использовать другую карту. Обязательно отключи VPN — он часто мешает прохождению платежа. Если не получается — напиши в поддержку.</p>
+                            </div>
+                        </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Нужно ли устанавливать приложение?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Нет. Всё работает прямо в Telegram.</p>
-                    </div>
-                </div>
+                        <div class="faq-item" data-cat="payment">
+                            <button class="faq-question">
+                                Как связаться с поддержкой?
+                                <span class="faq-icon">+</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Напиши на почту: <a href="mailto:support@healthmaster.app">support@healthmaster.app</a></p>
+                            </div>
+                        </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Как связаться с поддержкой?
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Напиши на почту: <a href="mailto:support@healthmaster.app">support@healthmaster.app</a></p>
                     </div>
                 </div>
 
             </div>
 
+            <div class="no-results" id="no-results">Ничего не найдено. Попробуй другой запрос.</div>
+
             <!-- CTA -->
             <div class="cta-block">
-                <p>Остались вопросы? Попробуй бесплатно прямо сейчас.<br><strong>Первые 3 дня — без оплаты.</strong></p>
+                <p>Остался вопрос? Попробуй бесплатно прямо сейчас.<br><strong>Базовый функционал — без оплаты.</strong></p>
                 <a href="https://t.me/AIHealthMasterBot" target="_blank" rel="noopener noreferrer" class="cta-btn">Открыть в Telegram</a>
             </div>
 
@@ -355,12 +581,109 @@
     </main>
 
     <script>
+        // Accordion
         document.querySelectorAll('.faq-item').forEach(item => {
             item.querySelector('.faq-question').addEventListener('click', () => {
                 const isOpen = item.classList.contains('open');
                 document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
                 if (!isOpen) item.classList.add('open');
             });
+        });
+
+        // Category filter
+        const catTabs = document.querySelectorAll('.cat-tab');
+        const groups = document.querySelectorAll('.faq-group');
+
+        catTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                catTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const cat = tab.dataset.cat;
+
+                // Clear search
+                document.getElementById('faq-search').value = '';
+                restoreAll();
+
+                if (cat === 'all') {
+                    groups.forEach(g => g.style.display = '');
+                } else {
+                    groups.forEach(g => {
+                        g.style.display = g.dataset.group === cat ? '' : 'none';
+                    });
+                }
+                document.getElementById('no-results').style.display = 'none';
+            });
+        });
+
+        function restoreAll() {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('hidden');
+                // Remove highlights
+                item.querySelector('.faq-question').childNodes.forEach(node => {
+                    if (node.nodeType === 3) return;
+                });
+                restoreText(item.querySelector('.faq-question'));
+                restoreText(item.querySelector('.faq-answer'));
+            });
+        }
+
+        function restoreText(el) {
+            el.querySelectorAll('mark').forEach(m => {
+                m.replaceWith(document.createTextNode(m.textContent));
+            });
+            el.normalize();
+        }
+
+        function highlight(el, query) {
+            const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+            const nodes = [];
+            while (walker.nextNode()) nodes.push(walker.currentNode);
+            const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+            nodes.forEach(node => {
+                if (!re.test(node.nodeValue)) return;
+                const span = document.createElement('span');
+                span.innerHTML = node.nodeValue.replace(re, '<mark>$1</mark>');
+                node.parentNode.replaceChild(span, node);
+            });
+        }
+
+        // Search
+        document.getElementById('faq-search').addEventListener('input', function () {
+            const query = this.value.trim().toLowerCase();
+
+            // Reset category tabs
+            catTabs.forEach(t => t.classList.remove('active'));
+            document.querySelector('[data-cat="all"]').classList.add('active');
+            groups.forEach(g => g.style.display = '');
+
+            restoreAll();
+
+            if (!query) {
+                document.getElementById('no-results').style.display = 'none';
+                return;
+            }
+
+            let anyVisible = false;
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const qText = item.querySelector('.faq-question').textContent.toLowerCase();
+                const aText = item.querySelector('.faq-answer').textContent.toLowerCase();
+                if (qText.includes(query) || aText.includes(query)) {
+                    item.classList.remove('hidden');
+                    highlight(item.querySelector('.faq-question'), this.value.trim());
+                    highlight(item.querySelector('.faq-answer'), this.value.trim());
+                    anyVisible = true;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            // Hide empty groups
+            groups.forEach(g => {
+                const visible = Array.from(g.querySelectorAll('.faq-item')).some(i => !i.classList.contains('hidden'));
+                g.style.display = visible ? '' : 'none';
+            });
+
+            document.getElementById('no-results').style.display = anyVisible ? 'none' : 'block';
         });
     </script>
 </body>
