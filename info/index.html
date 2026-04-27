@@ -1,19 +1,168 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthMaster — Твой AI-помощник по питанию</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="icon" href="/favicon-heart.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/favicon-heart.png">
-    <script src="https://static.yoomoney.ru/checkout-js/v1/checkout.js"></script>
-</head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HealthMaster – AI-помощник по питанию в Telegram</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico" />
+    <link rel="icon" type="image/png" href="/favicon-heart.png" />
+    <link rel="shortcut icon" href="/favicon-heart.ico" />
+    <link rel="apple-touch-icon" href="/favicon-heart.png" />
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        .hero { margin-bottom: 48px; }
+        header { margin-bottom: 28px; }
+        .hero-subtitle { margin-bottom: 12px; }
+        .hero-content p { margin: 0 auto 24px; }
+
+        .cta-group {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .telegram-icon-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 8px;
+            text-decoration: none;
+        }
+
+        .telegram-icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #229ED9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(34, 158, 217, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .telegram-icon-circle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 26px rgba(34, 158, 217, 0.4);
+        }
+
+        .telegram-icon-circle svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        .features { margin-bottom: 48px; }
+
+        .how-it-works { margin-bottom: 48px; }
+        .how-it-works h2 { text-align: center; margin-bottom: 20px; }
+        .how-it-works-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 24px;
+            border-radius: 24px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .how-it-works-box ol {
+            margin: 0;
+            padding-left: 22px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .pricing-section { margin-bottom: 40px; }
+        .pricing-section h2 { text-align: center; margin-bottom: 20px; }
+        .pricing-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 24px;
+            border-radius: 24px;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .pricing-box p { margin-bottom: 8px; }
+        .pricing-box ul {
+            padding-left: 0;
+            margin: 10px 0 20px;
+            list-style: none;
+            text-align: center;
+        }
+        .pricing-box li { margin-bottom: 8px; color: var(--text-muted); }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #f8fafc;
+            margin: 10px 0;
+            line-height: 1.2;
+        }
+        .price-note { color: var(--text-muted); margin-bottom: 18px; }
+        .pricing-actions {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .trust-section { margin-bottom: 40px; }
+        .trust-section h2 { text-align: center; margin-bottom: 20px; }
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .trust-badge {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .trust-badge span:first-child { font-size: 1.3rem; }
+
+        .legal-info { padding-top: 24px; }
+        .footer-bottom { text-align: center; padding-top: 0; }
+        .legal-links {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .legal-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+        .legal-links a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            header { margin-bottom: 20px; }
+            .hero { margin-bottom: 36px; }
+            .hero-content p { font-size: 1.05rem; line-height: 1.6; margin: 0 auto 20px; }
+            .cta-group { margin-bottom: 10px; }
+            .features { margin-bottom: 36px; }
+            .how-it-works { margin-bottom: 36px; }
+            .pricing-section { margin-bottom: 32px; }
+            .pricing-box, .how-it-works-box { padding: 20px; }
+            .price { font-size: 1.7rem; }
+            .trust-badges { flex-direction: column; align-items: center; }
+            .trust-badge { width: 100%; max-width: 320px; justify-content: center; }
+            .legal-links { gap: 12px; margin-top: 10px; }
+        }
+    </style>
+</head>
 <body>
     <div class="background-blobs">
         <div class="blob blob-1"></div>
@@ -24,21 +173,48 @@
     <main class="glass-container">
         <header>
             <div class="logo">
-                <span class="logo-emoji">🥗</span>
-                <h1>Healthmaster</h1>
+                <img src="/logo.png" class="logo-img" alt="HealthMaster" />
+                <h1>HealthMaster</h1>
             </div>
-            <p class="tagline">Твой персональный AI-диетолог в Telegram</p>
         </header>
 
         <section class="hero">
             <div class="hero-content">
-                <h2>Контролируй питание просто</h2>
-                <p>Мы используем передовые технологии искусственного интеллекта, чтобы сделать учет калорий и нутриентов
-                    таким же простым, как отправка фото или сообщения.</p>
+                <p class="hero-subtitle">AI-помощник по питанию в Telegram</p>
+                <p>
+                    HealthMaster считает калории, белки, жиры и углеводы по фото или тексту —
+                    прямо в Telegram. Без приложений, без сложных таблиц.
+                </p>
+
                 <div class="cta-group">
-                    <a href="https://t.me/AIHealthMasterBot" class="btn btn-primary" target="_blank">Открыть в
-                        Telegram</a>
+                    <a href="https://t.me/AIHealthMasterBot" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        Открыть в Telegram
+                    </a>
+                    <a href="/pay" class="btn btn-primary">
+                        Оплатить Премиум
+                    </a>
                 </div>
+
+                <a href="https://t.me/AIHealthMasterBot" class="telegram-icon-link" target="_blank" rel="noopener noreferrer" aria-label="Открыть HealthMaster в Telegram">
+                    <span class="telegram-icon-circle">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9.78 18.65c-.4 0-.33-.15-.47-.53l-1.2-3.95 9.24-5.84"></path>
+                            <path d="M9.78 18.65c.31 0 .45-.14.63-.31l1.68-1.63-2.09-1.26"></path>
+                            <path d="M9.99 14.2l5.08 3.75c.58.32 1 .15 1.14-.54l2.03-9.56c.2-.85-.31-1.23-.86-.98L5.47 11.45c-.81.32-.8.77-.15.97l3.06.96 7.08-4.46c.33-.2.63-.09.38.13"></path>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>Как это работает</h2>
+            <div class="how-it-works-box">
+                <ol>
+                    <li>Открой бот в Telegram</li>
+                    <li>Отправь фото блюда или напиши, что съел</li>
+                    <li>Получи расчёт калорий, белков, жиров и углеводов</li>
+                </ol>
             </div>
         </section>
 
@@ -46,17 +222,61 @@
             <div class="feature-card">
                 <div class="feature-icon">📸</div>
                 <h3>Распознавание по фото</h3>
-                <p>Просто сфотографируй еду, и наш AI мгновенно рассчитает КБЖУ.</p>
+                <p>Сфотографируй еду — бот сам посчитает калории, белки, жиры и углеводы.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">✍️</div>
                 <h3>Текстовый ввод</h3>
-                <p>Напиши «Кофе с молоком и два сырника», и бот все посчитает.</p>
+                <p>Напиши «кофе с молоком и сырник» — бот всё посчитает за секунды.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
-                <h3>Статистика</h3>
-                <p>Наглядные отчеты за день, неделю и месяц для достижения твоих целей.</p>
+                <h3>Дневник и статистика</h3>
+                <p>Видишь сводку за день, отслеживаешь вес и двигаешься к своей цели.</p>
+            </div>
+        </section>
+
+        <section class="pricing-section" id="pricing">
+            <h2>Стоимость</h2>
+            <div class="pricing-box">
+                <p><strong>Бесплатно</strong></p>
+                <ul>
+                    <li>Текстовый ввод питания</li>
+                    <li>Подсчёт калорий</li>
+                    <li>Отслеживание веса</li>
+                </ul>
+
+                <p><strong>Премиум</strong></p>
+                <div class="price">199 ₽ / 30&nbsp;дней</div>
+                <div class="price-note">Без автопродления</div>
+
+                <ul>
+                    <li>AI-коуч с персональными рекомендациями каждый день</li>
+                    <li>Распознавание блюд по фото и штрих-коду</li>
+                    <li>Анализ питания на основе истории</li>
+                </ul>
+
+                <div class="pricing-actions">
+                    <a href="/pay" class="btn btn-primary">Оплатить Премиум</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="trust-section">
+            <h2>Безопасная оплата</h2>
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <span>🔒</span>
+                    <span>Данные карты обрабатывает ЮKassa</span>
+                </div>
+                <div class="trust-badge">
+                    <span>🚫</span>
+                    <span>Без автопродления</span>
+                </div>
+                <div class="trust-badge">
+                    <span>⭐</span>
+                    <span>Принимаем Telegram Stars</span>
+                </div>
             </div>
         </section>
 
@@ -76,35 +296,28 @@
                 </div>
                 <div class="legal-item">
                     <span class="label">Email</span>
-                    <span class="value"><a href="mailto:support@healthmaster.app"
-                            style="color: inherit; text-decoration: none;">support@healthmaster.app</a></span>
+                    <span class="value">
+                        <a href="mailto:support@healthmaster.app" style="color: inherit; text-decoration: none;">support@healthmaster.app</a>
+                    </span>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Healthmaster. Все права защищены.</p>
+                <p>© 2026 HealthMaster. Все права защищены.</p>
             </div>
         </footer>
     </main>
 
     <script>
-        // Simple reveal animation on scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.feature-card, .legal-info').forEach(el => {
+        document.querySelectorAll('.feature-card, .how-it-works-box, .pricing-box, .trust-badges, .legal-info').forEach(el => {
             el.classList.add('reveal');
             observer.observe(el);
         });
     </script>
 </body>
-
 </html>
