@@ -463,8 +463,16 @@
                 return;
             }
 
+            // PAGE_OPENED fires before REQUIRED check so broken-URL visits
+            // and widget-load failures are still captured in the funnel.
+            logFunnelEvent('PAYMENT_PAGE_OPENED', { token_present: !!params.get('pa') });
+
             const missing = REQUIRED.filter(k => !params.get(k));
             if (missing.length > 0) {
+                logFunnelEvent('PAYMENT_FORM_ERROR', {
+                    error_type: 'broken_url',
+                    error_message: 'missing: ' + missing.join(','),
+                });
                 fatal('Ссылка на оплату повреждена или устарела.<br>Вернитесь в бот и нажмите «Оплатить» ещё раз.');
                 return;
             }
@@ -472,8 +480,6 @@
             const amount = params.get('a');
             document.getElementById('pay-amount').textContent = amount + ' ₽';
             payBtn.textContent = 'Оплатить ' + amount + ' ₽';
-
-            logFunnelEvent('PAYMENT_PAGE_OPENED', { token_present: true });
 
             const shopId = parseInt(params.get('sh'), 10);
             if (!shopId || isNaN(shopId)) {
