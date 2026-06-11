@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Отзывы — HealthMaster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico">
+    <link rel="icon" type="image/png" href="/favicon-heart.png">
+    <link rel="shortcut icon" href="/favicon-heart.ico">
+    <link rel="apple-touch-icon" href="/favicon-heart.png">
+    <style>
+        .content { max-width: 900px; margin: 0 auto; }
+
+        .page-header { text-align: center; margin-bottom: 28px; }
+        .page-header h1 { margin-bottom: 8px; font-size: clamp(1.5rem, 4vw, 1.875rem); font-weight: 800; letter-spacing: -0.02em; }
+        .page-header p { color: var(--text-muted); font-size: 0.95rem; }
+        .review-text { color: var(--text-main); font-size: 0.95rem; line-height: 1.7; margin: 0; }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-value { font-size: 1.6rem; font-weight: 800; color: var(--primary); line-height: 1; }
+        .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+            justify-content: center;
+        }
+        .filter-tab {
+            padding: 7px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            background: none;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .filter-tab:hover { color: var(--text-main); border-color: rgba(255,255,255,0.2); }
+        .filter-tab.active {
+            background: rgba(16,185,129,0.12);
+            border-color: rgba(16,185,129,0.35);
+            color: var(--primary);
+        }
+
+        .reviews-grid {
+            columns: 3;
+            column-gap: 16px;
+        }
+        @media (max-width: 768px) { .reviews-grid { columns: 2; } }
+        @media (max-width: 480px) { .reviews-grid { columns: 1; } }
+
+        .review-card {
+            break-inside: avoid;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .review-card:hover { border-color: rgba(255,255,255,0.18); transform: translateY(-2px); }
+        .review-card.hidden { display: none; }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+            color: #fff;
+            overflow: hidden;
+        }
+        .avatar svg { display: block; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .review-meta { flex: 1; }
+        .review-name { font-weight: 600; font-size: 0.95rem; color: var(--text-main); line-height: 1.2; }
+        .review-stars { display: flex; gap: 2px; margin-top: 2px; color: #f59e0b; font-size: 0.7rem; }
+
+        .result-badge {
+            background: rgba(16,185,129,0.12);
+            border: 1px solid rgba(16,185,129,0.25);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .review-text { color: var(--text-main); font-size: 0.92rem; line-height: 1.65; margin: 0; }
+
+        .cta-block {
+            margin-top: 40px;
+            background: rgba(16,185,129,0.07);
+            border: 1px solid rgba(16,185,129,0.25);
+            border-radius: 20px;
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .cta-block p { color: var(--text-main); margin-bottom: 18px; font-size: 1rem; line-height: 1.6; }
+        .cta-block strong { color: #f8fafc; }
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background 0.15s, transform 0.1s;
+            box-shadow: 0 8px 20px rgba(16,185,129,0.25);
+        }
+        .cta-btn:hover { background: var(--primary-hover); transform: translateY(-1px); }
+
+        .footer-doc {
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 24px;
+        }
+        .footer-doc p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
+        .legal-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .legal-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.15s; }
+        .legal-links a:hover { color: var(--text-main); text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="glass-container">
+        <nav class="site-nav">
+            <a href="/">Главная</a>
+            <a href="/pay">Премиум</a>
+            <a href="/reviews.html" class="active">Отзывы</a>
+            <a href="/faq.html">FAQ</a>
+            <a href="/contacts.html">Контакты</a>
+        </nav>
+
+        <div class="content">
+            <div class="page-header">
+                <h1>Отзывы пользователей</h1>
+                <p>Реальные люди, реальные результаты</p>
+            </div>
+
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-value">40+</div>
+                    <div class="stat-label">отзывов</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4.9</div>
+                    <div class="stat-label">средняя оценка</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">−4 кг</div>
+                    <div class="stat-label">лучший результат за месяц</div>
+                </div>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">Все отзывы</button>
+                <button class="filter-tab" data-filter="loss">Похудение</button>
+                <button class="filter-tab" data-filter="gain">Набор массы</button>
+                <button class="filter-tab" data-filter="control">Контроль питания</button>
+            </div>
+
+            <div class="reviews-grid" id="reviews-grid">
+
+                <!-- Алексей — SVG type B male short brown -->
+                <div class="review-card" data-filter="loss">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Алексей" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Алексей</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                        <span class="result-badge">−4 кг</span>
+                    </div>
+                    <p class="review-text">Начал просто записывать еду ради интереса. Через пару дней стало видно, где перебор. За месяц ушло −4 кг без жёстких ограничений.</p>
+                </div>
+
+                <!-- Марина — SVG type A female long dark -->
+                <div class="review-card" data-filter="loss">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Марина" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Марина</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                        <span class="result-badge">−3 кг</span>
+                    </div>
+                    <p class="review-text">Раньше считала калории вручную — быстро бросала. Здесь просто отправляю фото. За 3 недели −3 кг и без стресса.</p>
+                </div>
+
+                <!-- Игорь — initials -->
+                <div class="review-card" data-filter="loss">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#8b5cf6">И</div>
+                        <div class="review-meta">
+                            <div class="review-name">Игорь</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Главное — коуч. Не грузит, а говорит конкретно, что поменять. Вес наконец начал двигаться.</p>
+                </div>
+
+                <!-- Антон -->
+                <div class="review-card" data-filter="loss">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/71.jpg" alt="Антон" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Антон</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                        <span class="result-badge">−2 кг</span>
+                    </div>
+                    <p class="review-text">Думал, что ем нормально. Оказалось перебор почти каждый день. Убрал сладкое вечером — −2 кг за 2 недели.</p>
+                </div>
+
+                <!-- Дмитрий — SVG type B male -->
+                <div class="review-card" data-filter="loss">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="Дмитрий" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Дмитрий</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Просто пишу, что съел. Через месяц стал лучше контролировать питание, ушёл живот.</p>
+                </div>
+
+                <!-- Анна — SVG type E shoulder auburn -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/7.jpg" alt="Анна" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Анна</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Постоянно не добирала белок. Бот показал это сразу. Добавила — стало легче держать форму.</p>
+                </div>
+
+                <!-- Сергей — initials -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#f97316">С</div>
+                        <div class="review-meta">
+                            <div class="review-name">Сергей</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Сначала бесплатно, потом взял премиум. Коуч реально помогает, особенно когда не понимаешь, что не так.</p>
+                </div>
+
+                <!-- Екатерина — SVG type C bun dark -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Екатерина" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Екатерина</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Очень быстро: отправил фото — готово. За 20 секунд понятно, как прошёл день.</p>
+                </div>
+
+                <!-- Максим — SVG type F beard -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Максим" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Максим</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                        <span class="result-badge">+2 кг</span>
+                    </div>
+                    <p class="review-text">Думал, набор — это просто «есть больше». Оказалось, ел много, но белка почти не было: 70 г в день при норме 160 г. Перебирал углеводы и жиры, а белок не добирал. Как только исправил — прогресс пошёл.</p>
+                </div>
+
+                <!-- Вадим — SVG type B male, blue -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/76.jpg" alt="Вадим" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Вадим</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                        <span class="result-badge">+1.5 кг</span>
+                    </div>
+                    <p class="review-text">Полгода пил гейнер и не рос. Бот показал: белка всего 75 г в день, а гейнер почти весь из углеводов. Заменил часть гейнера на курицу и творог — через месяц плюс 1.5 кг сухой массы.</p>
+                </div>
+
+                <!-- Джейсон -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="Джейсон" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Джейсон</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Слышал, что много белка вредно для почек — и специально ел поменьше. Бот показал: 55 г в день. Поговорил с врачом — оказалось это миф. Добрал до 150 г. Наконец начал расти.</p>
+                </div>
+
+                <!-- Захар — initials -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#d97706">З</div>
+                        <div class="review-meta">
+                            <div class="review-name">Захар</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Два года тренировался — масса не шла. Думал, дело в программе тренировок. Бот показал: недобираю 600 калорий в день и белка всего 65 г. Оказывается, просто не ел достаточно.</p>
+                </div>
+
+                <!-- Тимур — SVG type D curly, amber -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/57.jpg" alt="Тимур" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Тимур</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Был уверен: без спортпита мышц не будет, откладывал покупку. Бот показал, что обычная еда покрывает всё — просто я хронически недобирал белок. Добавил яйца, рыбу, творог. Пошло без всяких добавок.</p>
+                </div>
+
+                <!-- Глеб — initials -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#7c3aed">Г</div>
+                        <div class="review-meta">
+                            <div class="review-name">Глеб</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Не ужинал из-за мифа «нельзя есть после 6». Бот посчитал: из-за этого минус 700 калорий в день и белка не хватало. Никакого набора и быть не могло. Убрал ограничение — прирост пошёл.</p>
+                </div>
+
+                <!-- Фёдор — SVG type B male, violet -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://api.dicebear.com/9.x/bottts/svg?seed=Fedor&backgroundColor=0f172a" alt="Фёдор" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Фёдор</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Думал: нет крепатуры — значит тренировка прошла зря. Но бот показал другое: белка 60 г при нужных 150. Мышцы просто не восстанавливались из-за нехватки питания. Добавил белок — восстановление стало заметно лучше.</p>
+                </div>
+
+                <!-- Роман — SVG type F beard, teal -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Роман" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Роман</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Читал про «чистый набор» — убрал почти все жиры. Питание стало скудным. Бот показал: калорийность 1900, белок 80 г при норме 150. Пересмотрел подход, стал есть нормально — наконец пошли результаты.</p>
+                </div>
+
+                <!-- Виталий — initials -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#0284c7">В</div>
+                        <div class="review-meta">
+                            <div class="review-name">Виталий</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Постоянно казалось, что ем с хорошим профицитом. Бот по факту: 70 г белка и 2300 калорий при нужных 3100. Добавил белок до 160 г в день — через 6 недель плюс 2 кг.</p>
+                </div>
+
+                <!-- Евгений — SVG type B male, orange -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Евгений" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Евгений</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Думал: пью протеиновый коктейль — значит всё ок. Бот посчитал: коктейль 30 г плюс вся еда 55 г = итого 85 г в день. При норме 150+. Добавил белковые блюда — результат пошёл.</p>
+                </div>
+
+                <!-- Борис — SVG type F beard, red -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://api.dicebear.com/9.x/avataaars/svg?seed=Boris&backgroundColor=1e293b&mouth=smile&eyebrows=defaultNatural" alt="Борис" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Борис</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Год ждал результата. Тренировки серьёзные, масса не шла. Бот за один день показал проблему: 2100 калорий и 75 г белка при весе 80 кг. Миф «главное — тренировки, а питание — дело второе» сыграл злую шутку.</p>
+                </div>
+
+                <!-- Наталья — initials -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#14b8a6">Н</div>
+                        <div class="review-meta">
+                            <div class="review-name">Наталья</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Самое ценное — выводы. Не просто цифры, а конкретное действие.</p>
+                </div>
+
+                <!-- Андрей — SVG type B male dark -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Андрей" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Андрей</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Понял, что проблема не в еде в целом, а в мелочах — перекусы, напитки. Убрал их, результат пошёл.</p>
+                </div>
+
+                <!-- Айгуль — Tatar, initials -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#0891b2">А</div>
+                        <div class="review-meta">
+                            <div class="review-name">Айгуль</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Из Казани. Удобно, что всё прямо в телефоне без лишних приложений. Пользуюсь каждый день уже три месяца.</p>
+                </div>
+
+                <!-- Влад — SVG type D curly dark -->
+                <div class="review-card" data-filter="loss">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/20.jpg" alt="Влад" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Влад</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Долго не мог понять, почему вес стоит. Бот показал, что перебираю калории вечером. Исправил — пошёл минус.</p>
+                </div>
+
+                <!-- Ксения — initials -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#f43f5e">К</div>
+                        <div class="review-meta">
+                            <div class="review-name">Ксения</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Удобно, что можно просто написать текстом. Не всегда есть возможность фотографировать.</p>
+                </div>
+
+                <!-- Ильдар — Tatar, initials -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#b45309">И</div>
+                        <div class="review-meta">
+                            <div class="review-name">Ильдар</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Из Казани. Раньше вообще не следил за едой. Бот объяснил всё простым языком. Теперь хотя бы понимаю, что и сколько ем.</p>
+                </div>
+
+                <!-- Дарья — SVG type A long dark -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/19.jpg" alt="Дарья" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Дарья</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Через неделю стало понятно, как я на самом деле питаюсь. Это немного отрезвляет.</p>
+                </div>
+
+                <!-- Никита — SVG type F beard -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/30.jpg" alt="Никита" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Никита</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Коуч даёт одно действие — и это работает. Не нужно думать, просто делаешь.</p>
+                </div>
+
+                <!-- Светлана — SVG type E shoulder -->
+                <div class="review-card" data-filter="loss">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Светлана" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Светлана</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Раньше постоянно срывалась. Сейчас хотя бы понимаю, где ошибка.</p>
+                </div>
+
+                <!-- Павел — SVG type B male -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/64.jpg" alt="Павел" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Павел</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Начал ради интереса, но втянулся. Удобно, что всё быстро и без лишних шагов.</p>
+                </div>
+
+                <!-- Алина — SVG type A long dark -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Алина" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Алина</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Сначала не верила, что по фото можно нормально считать. Но в большинстве случаев попадает точно.</p>
+                </div>
+
+                <!-- Степан — initials -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#6366f1">С</div>
+                        <div class="review-meta">
+                            <div class="review-name">Степан</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Помог выровнять питание. Раньше ел как попало, теперь хотя бы есть понимание.</p>
+                </div>
+
+                <!-- Елена — SVG type C bun brown -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/38.jpg" alt="Елена" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Елена</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Очень помогает, когда нет времени разбираться самой. Бот сразу показывает суть.</p>
+                </div>
+
+                <!-- Артём — SVG type D curly -->
+                <div class="review-card" data-filter="gain">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Артём" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Артём</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Думал: если не есть каждые 2 часа — мышцы начнут «сгорать». Из-за этого перекусывал чем попало. Бот показал: суточный белок 80 г при норме 150+. Перестал гоняться за частотой, просто добрал белок — восстановление заметно улучшилось.</p>
+                </div>
+
+                <!-- Татьяна — SVG type E shoulder light -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Татьяна" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Татьяна</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Нравится, что не нужно считать самой. Это снимает половину нагрузки.</p>
+                </div>
+
+                <!-- Денис — initials -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#a855f7">Д</div>
+                        <div class="review-meta">
+                            <div class="review-name">Денис</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Использую каждый день. Уже привычка. Видно прогресс по неделям.</p>
+                </div>
+
+                <!-- Виктория — SVG type A long dark -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="Виктория" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Виктория</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Хорошо показывает картину дня. Раньше вообще не задумывалась, что ем.</p>
+                </div>
+
+                <!-- Олег — initials -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#f43f5e">О</div>
+                        <div class="review-meta">
+                            <div class="review-name">Олег</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Сам бы не заметил, что перебираю по жирам. Бот подсветил — стало понятнее.</p>
+                </div>
+
+                <!-- Кирилл — male portrait -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/men/35.jpg" alt="Кирилл" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Кирилл</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Начал с бесплатной версии, потом перешёл на премиум. Коуч стоит своих денег.</p>
+                </div>
+
+                <!-- Константин — initials -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar" style="background:#8b5cf6">К</div>
+                        <div class="review-meta">
+                            <div class="review-name">Константин</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Работает проще, чем любые калькуляторы. Особенно когда спешишь.</p>
+                </div>
+
+                <!-- Полина — SVG type E shoulder -->
+                <div class="review-card" data-filter="control">
+                    <div class="review-header">
+                        <div class="avatar">
+                            <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Полина" loading="lazy">
+                        </div>
+                        <div class="review-meta">
+                            <div class="review-name">Полина</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Главное — появляется контроль. Не строгий, а понятный.</p>
+                </div>
+
+            </div>
+
+            <div class="cta-block">
+                <p>Попробуй сам — базовый функционал бесплатно.<br><strong>Премиум — 199 ₽ за 30 дней.</strong></p>
+                <a href="https://t.me/AIHealthMasterBot" target="_blank" rel="noopener noreferrer" class="cta-btn">Открыть в Telegram</a>
+            </div>
+
+            <div class="footer-doc">
+                <p>© 2026 HealthMaster. Все права защищены.</p>
+                <div class="legal-links">
+                    <a href="/">Главная</a>
+                    <a href="/pay">Премиум</a>
+                    <a href="/faq.html">FAQ</a>
+                    <a href="/offer.html">Публичная оферта</a>
+                    <a href="/privacy.html">Конфиденциальность</a>
+                    <a href="mailto:support@healthmaster.app">Поддержка</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const filter = tab.dataset.filter;
+                document.querySelectorAll('.review-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.filter === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

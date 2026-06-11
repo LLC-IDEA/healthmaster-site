@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата — HealthMaster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico">
+    <link rel="icon" type="image/png" href="/favicon-heart.png">
+    <link rel="shortcut icon" href="/favicon-heart.ico">
+    <link rel="apple-touch-icon" href="/favicon-heart.png">
+    <script src="https://static.yoomoney.ru/checkout-js/v1/checkout.js"></script>
+    <style>
+        .pay-page {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 8px 0 32px;
+        }
+
+        /* Product summary */
+        .product-card {
+            background: rgba(16, 185, 129, 0.07);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 20px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .product-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .product-info { flex: 1; }
+        .product-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #f8fafc;
+            margin-bottom: 3px;
+        }
+        .product-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        /* Features list */
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .feature-check {
+            width: 20px;
+            height: 20px;
+            background: rgba(16, 185, 129, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--primary);
+            font-size: 0.7rem;
+        }
+
+        /* Payment form card */
+        .form-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .form-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #card-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .field label {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+        .field input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            font-size: 16px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+        .field input:focus { border-color: var(--primary); }
+        .field input::placeholder { color: rgba(255,255,255,0.25); }
+
+        .exp-cvc-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        #pay-btn {
+            margin-top: 6px;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 12px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        #pay-btn:hover:not(:disabled) { opacity: 0.9; }
+        #pay-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .vpn-notice {
+            text-align: center;
+            margin-top: 14px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            color: #fbbf24;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Trust row */
+        .trust-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 14px;
+        }
+        .trust-row svg { opacity: 0.6; }
+
+        /* Status messages */
+        .pay-status {
+            border-radius: 14px;
+            padding: 18px 22px;
+            text-align: center;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-top: 16px;
+        }
+        .pay-status.error {
+            background: rgba(255,80,80,0.08);
+            border: 1px solid rgba(255,80,80,0.25);
+            color: #fca5a5;
+        }
+        .pay-status.success {
+            background: rgba(16,185,129,0.08);
+            border: 1px solid rgba(16,185,129,0.25);
+            color: #6ee7b7;
+        }
+        .pay-tg-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            padding: 11px 22px;
+            background: var(--primary);
+            color: #fff !important;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 4px 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        /* Stars alternative */
+        .stars-card {
+            background: rgba(255,255,255,0.015);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .stars-card:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .stars-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .stars-info { flex: 1; }
+        .stars-title { font-size: 0.9rem; font-weight: 600; color: #f8fafc; margin-bottom: 2px; }
+        .stars-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+        /* Footer */
+        .pay-footer {
+            margin-top: 28px;
+            text-align: center;
+        }
+        .pay-footer p { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px; }
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.78rem;
+            transition: color 0.15s;
+        }
+        .legal-links a:hover { color: var(--text-main); text-decoration: underline; }
+
+        @media (max-width: 480px) {
+            .product-card { flex-direction: column; text-align: center; }
+            .product-info { text-align: center; }
+            .form-card { padding: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="glass-container">
+        <div class="pay-page">
+            <nav class="site-nav">
+                <a href="/">Главная</a>
+                <a href="/pay" class="active">Оплатить</a>
+                <a href="/reviews.html">Отзывы</a>
+                <a href="/faq.html">FAQ</a>
+                <a href="/contacts.html">Контакты</a>
+            </nav>
+
+            <!-- Product Summary -->
+            <div class="product-card">
+                <div class="product-icon">🥗</div>
+                <div class="product-info">
+                    <div class="product-name">HealthMaster Премиум</div>
+                    <div class="product-desc">Доступ на 30 дней · Без автопродления</div>
+                </div>
+                <div class="product-price" id="pay-amount">199 ₽</div>
+            </div>
+
+            <!-- Features included -->
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <span>Распознавание блюд по фото и штрих-коду</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <span>AI-коуч с персональными рекомендациями</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-check">✓</div>
+                    <span>Анализ питания на основе вашей истории</span>
+                </div>
+            </div>
+
+            <!-- Card form -->
+            <div class="form-card">
+                <div class="form-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    Оплата картой
+                </div>
+
+                <form id="card-form" novalidate>
+                    <div class="field">
+                        <label for="cc-number">Номер карты</label>
+                        <input id="cc-number" type="text" inputmode="numeric" autocomplete="cc-number"
+                            placeholder="0000 0000 0000 0000" maxlength="23">
+                    </div>
+                    <div class="exp-cvc-row">
+                        <div class="field">
+                            <label for="cc-month">Месяц</label>
+                            <input id="cc-month" type="text" inputmode="numeric" autocomplete="cc-exp-month"
+                                placeholder="MM" maxlength="2">
+                        </div>
+                        <div class="field">
+                            <label for="cc-year">Год</label>
+                            <input id="cc-year" type="text" inputmode="numeric" autocomplete="cc-exp-year"
+                                placeholder="YY" maxlength="2">
+                        </div>
+                        <div class="field">
+                            <label for="cc-cvc">CVC</label>
+                            <input id="cc-cvc" type="password" inputmode="numeric" autocomplete="cc-csc"
+                                placeholder="CVC" maxlength="4">
+                        </div>
+                    </div>
+                    <button type="submit" id="pay-btn">Оплатить</button>
+                </form>
+
+                <div class="vpn-notice">
+                    ⚠️ Для оплаты отключите VPN
+                </div>
+                <div class="trust-row">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                    Данные карты обрабатывает ЮKassa · мы их не видим
+                </div>
+            </div>
+
+            <div class="divider">или</div>
+
+            <!-- Telegram Stars alternative -->
+            <a href="https://t.me/AIHealthMasterBot" target="_blank" rel="noopener noreferrer" class="stars-card">
+                <div class="stars-icon">⭐</div>
+                <div class="stars-info">
+                    <div class="stars-title">Telegram Stars</div>
+                    <div class="stars-desc">Открыть бот и нажать «Оплатить Stars»</div>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" opacity="0.4">
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+            </a>
+
+            <div id="pay-status" class="pay-status" style="display:none;"></div>
+
+            <div class="pay-footer">
+                <p>© 2026 HealthMaster · ИП Киселев Петр Алексеевич · ИНН 183108472921</p>
+                <div class="legal-links">
+                    <a href="/offer.html">Публичная оферта</a>
+                    <a href="/privacy.html">Конфиденциальность</a>
+                    <a href="mailto:support@healthmaster.app">Поддержка</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const RETURN_URL = 'https://t.me/AIHealthMasterBot';
+            const API_BASE = 'https://admin.healthmaster.app/api/checkout';
+            const API_URL = API_BASE + '/create-payment';
+            const EVENT_URL = API_BASE + '/event';
+            const REQUIRED = ['u', 'a', 't', 'ts', 'sh', 's', 'pa', 'sig'];
+
+            const statusEl = document.getElementById('pay-status');
+            const form = document.getElementById('card-form');
+            const payBtn = document.getElementById('pay-btn');
+
+            // Funnel-события (PAYMENT_PAGE_OPENED / FORM_SUBMIT / FORM_ERROR)
+            // отправляются в admin/api/checkout/event. Подпись (sig) обязательна —
+            // без неё admin не сможет атрибутировать событие к юзеру и просто
+            // вернёт {status: "ignored"} (HTTP 200, чтобы фронт не словил catch).
+            function logFunnelEvent(eventType, payload) {
+                const body = { event_type: eventType, payload: payload || {} };
+                ['u', 'a', 't', 'm', 'ts', 'sh', 's', 'pa', 'sig'].forEach(k => {
+                    body[k] = params.get(k) || '';
+                });
+                try {
+                    fetch(EVENT_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(body),
+                        // keepalive позволяет отправить событие даже при
+                        // переходе на другую страницу (3DS-redirect).
+                        keepalive: true,
+                    }).catch(err => console.warn('event ' + eventType + ' failed:', err));
+                } catch (e) {
+                    console.warn('event ' + eventType + ' threw:', e);
+                }
+            }
+
+            function showStatus(type, html) {
+                statusEl.className = 'pay-status ' + type;
+                statusEl.innerHTML = html;
+                statusEl.style.display = 'block';
+                statusEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            function hideStatus() { statusEl.style.display = 'none'; }
+
+            function fatal(html) {
+                form.style.display = 'none';
+                showStatus('error',
+                    html + '<br><a class="pay-tg-link" href="' + RETURN_URL + '">Вернуться в Telegram</a>'
+                );
+            }
+
+            const legacyToken = params.get('token');
+            if (legacyToken && legacyToken.indexOf('mock_') === 0) {
+                form.style.display = 'none';
+                showStatus('success',
+                    '<b>Mock-режим:</b> реальная оплата не производится.' +
+                    '<br><a class="pay-tg-link" href="' + RETURN_URL + '">Вернуться в Telegram</a>'
+                );
+                return;
+            }
+
+            // PAGE_OPENED fires before REQUIRED check so broken-URL visits
+            // and widget-load failures are still captured in the funnel.
+            logFunnelEvent('PAYMENT_PAGE_OPENED', { token_present: !!params.get('pa') });
+
+            const missing = REQUIRED.filter(k => !params.get(k));
+            if (missing.length > 0) {
+                logFunnelEvent('PAYMENT_FORM_ERROR', {
+                    error_type: 'broken_url',
+                    error_message: 'missing: ' + missing.join(','),
+                });
+                fatal('Ссылка на оплату повреждена или устарела.<br>Вернитесь в бот и нажмите «Оплатить» ещё раз.');
+                return;
+            }
+
+            const amount = params.get('a');
+            document.getElementById('pay-amount').textContent = amount + ' ₽';
+            payBtn.textContent = 'Оплатить ' + amount + ' ₽';
+
+            const shopId = parseInt(params.get('sh'), 10);
+            if (!shopId || isNaN(shopId)) {
+                fatal('Некорректный магазин в ссылке.');
+                return;
+            }
+
+            let checkout;
+            try {
+                checkout = YooMoneyCheckout(shopId);
+            } catch (e) {
+                console.error('YooMoneyCheckout init error:', e);
+                logFunnelEvent('PAYMENT_FORM_ERROR', {
+                    error_type: 'widget_load_error',
+                    error_message: String(e && (e.message || e)).slice(0, 500),
+                });
+                fatal('Не удалось загрузить форму оплаты. Обновите страницу или попробуйте чуть позже.');
+                return;
+            }
+
+            const numberInput = document.getElementById('cc-number');
+            numberInput.addEventListener('input', (e) => {
+                const digits = e.target.value.replace(/\D/g, '').slice(0, 19);
+                e.target.value = digits.replace(/(\d{4})(?=\d)/g, '$1 ');
+            });
+            ['cc-month', 'cc-year', 'cc-cvc'].forEach(id => {
+                document.getElementById(id).addEventListener('input', (e) => {
+                    e.target.value = e.target.value.replace(/\D/g, '');
+                });
+            });
+
+            function setLoading(loading) {
+                payBtn.disabled = loading;
+                payBtn.textContent = loading ? 'Обработка...' : 'Оплатить ' + amount + ' ₽';
+            }
+
+            function friendlyTokenizeError(res) {
+                const err = res && res.error;
+                const type = err && err.type;
+                const message = err && err.message;
+                if (type === 'authentication_error') {
+                    return 'Оплата с карт временно недоступна — идёт настройка платёжной системы.<br>' +
+                           'Альтернатива — Telegram Stars ⭐ (кнопка в боте рядом с «Оплатить»).';
+                }
+                const cardErrors = {
+                    invalid_number: 'Проверьте номер карты.',
+                    invalid_cvc: 'Проверьте CVC.',
+                    invalid_expiry: 'Проверьте срок действия карты.',
+                    expired_card: 'Срок действия карты истёк.',
+                    card_declined: 'Банк отклонил карту. Попробуйте другую.',
+                };
+                if (cardErrors[type]) return cardErrors[type];
+                if (type === 'validation_error') return message || 'Проверьте введённые данные карты.';
+                if (message) return 'Ошибка оплаты: ' + message;
+                return 'Не удалось обработать данные карты. Проверьте введённое и попробуйте ещё раз.';
+            }
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                hideStatus();
+                setLoading(true);
+
+                const number = numberInput.value.replace(/\s/g, '');
+                const cvc = document.getElementById('cc-cvc').value;
+                const month = document.getElementById('cc-month').value;
+                const year = document.getElementById('cc-year').value;
+
+                if (!number || !cvc || !month || !year) {
+                    logFunnelEvent('PAYMENT_FORM_ERROR', {
+                        error_type: 'submit_error',
+                        error_message: 'empty_fields',
+                    });
+                    showStatus('error', 'Заполните все поля.');
+                    setLoading(false);
+                    return;
+                }
+
+                // PAYMENT_FORM_SUBMIT — нажали «Оплатить», поля заполнены.
+                // Событие пишется ДО tokenize, чтобы видеть попытку даже если
+                // токенизация упадёт.
+                logFunnelEvent('PAYMENT_FORM_SUBMIT', {
+                    method: 'card',
+                    amount: parseFloat(amount),
+                });
+
+                let tokenRes;
+                try {
+                    tokenRes = await checkout.tokenize({ number, cvc, month, year });
+                } catch (err) {
+                    console.error('tokenize threw:', err);
+                    logFunnelEvent('PAYMENT_FORM_ERROR', {
+                        error_type: 'js_error',
+                        error_message: 'tokenize_threw: ' + String(err && (err.message || err)).slice(0, 400),
+                    });
+                    showStatus('error', 'Сбой связи с ЮKassa. Проверьте соединение и попробуйте ещё раз.');
+                    setLoading(false);
+                    return;
+                }
+
+                if (!tokenRes || tokenRes.status !== 'success' ||
+                    !tokenRes.data || !tokenRes.data.response || !tokenRes.data.response.paymentToken) {
+                    const ykErr = tokenRes && tokenRes.error;
+                    logFunnelEvent('PAYMENT_FORM_ERROR', {
+                        error_type: (ykErr && ykErr.type) || 'tokenize_failed',
+                        error_message: (ykErr && ykErr.message) || 'no_payment_token',
+                    });
+                    showStatus('error', friendlyTokenizeError(tokenRes));
+                    setLoading(false);
+                    return;
+                }
+
+                const paymentToken = tokenRes.data.response.paymentToken;
+
+                let apiRes, apiData;
+                try {
+                    apiRes = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            payment_token: paymentToken,
+                            u: params.get('u'),
+                            a: params.get('a'),
+                            t: params.get('t'),
+                            m: params.get('m') || '',
+                            ts: params.get('ts'),
+                            sh: params.get('sh'),
+                            s: params.get('s') || '',
+                            pa: params.get('pa') || '',
+                            sig: params.get('sig'),
+                        }),
+                    });
+                    apiData = await apiRes.json();
+                } catch (err) {
+                    console.error('create-payment fetch failed:', err);
+                    logFunnelEvent('PAYMENT_FORM_ERROR', {
+                        error_type: 'js_error',
+                        error_message: 'create_payment_fetch_failed: ' + String(err && (err.message || err)).slice(0, 400),
+                    });
+                    showStatus('error', 'Не удалось связаться с сервером. Проверьте соединение и попробуйте ещё раз.');
+                    setLoading(false);
+                    return;
+                }
+
+                if (apiData && apiData.status === 'redirect' && apiData.confirmation_url) {
+                    window.location.href = apiData.confirmation_url;
+                    return;
+                }
+                if (apiData && apiData.status === 'succeeded') {
+                    form.style.display = 'none';
+                    showStatus('success',
+                        'Оплата прошла успешно! Премиум активирован.' +
+                        '<br><a class="pay-tg-link" href="' + RETURN_URL + '">Вернуться в Telegram</a>'
+                    );
+                    return;
+                }
+
+                const errCode = (apiData && apiData.error) || 'unknown_error';
+                logFunnelEvent('PAYMENT_FORM_ERROR', {
+                    error_type: 'submit_error',
+                    error_message: 'backend_' + errCode,
+                });
+                const friendly = {
+                    invalid_signature: 'Ссылка оплаты устарела или повреждена. Вернитесь в бот и запросите оплату заново.',
+                    missing_fields: 'В ссылке оплаты не хватает данных. Вернитесь в бот.',
+                    shop_mismatch: 'Конфигурация магазина не совпадает. Напишите в поддержку.',
+                    amount_mismatch: 'Сумма не соответствует прайсу. Вернитесь в бот.',
+                    unknown_payment_type: 'Неизвестный тип платежа. Вернитесь в бот.',
+                    yookassa_error: 'Банк отклонил платёж. Попробуйте другую карту или позже.',
+                    yookassa_unreachable: 'ЮKassa временно недоступна. Попробуйте через минуту.',
+                };
+                showStatus('error',
+                    (friendly[errCode] || ('Ошибка оплаты: ' + errCode)) +
+                    '<br><a class="pay-tg-link" href="' + RETURN_URL + '">Вернуться в Telegram</a>'
+                );
+                setLoading(false);
+            });
+        })();
+    </script>
+
+</body>
+</html>
