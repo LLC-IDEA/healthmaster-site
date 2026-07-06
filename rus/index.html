@@ -4,7 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthMaster — Твой AI-помощник по питанию</title>
+    <title>HealthMaster — AI-дневник питания в Telegram и мобильном приложении</title>
+    <meta name="description" content="HealthMaster: считай КБЖУ по фото, голосу, штрих-коду. AI-коуч разбирает питание. Дневник, витамины, замеры. Работает в Telegram и мобильном приложении.">
+    <meta name="keywords" content="дневник питания, счётчик калорий, КБЖУ, AI диетолог, распознавание еды по фото, health, healthmaster">
+
+    <!-- Open Graph (соц-шаринг) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HealthMaster — AI-дневник питания">
+    <meta property="og:description" content="Фото еды → калории и КБЖУ. AI-коуч разберёт день. Работает в Telegram и приложении.">
+    <meta property="og:url" content="https://healthmaster.app/rus/">
+    <meta property="og:image" content="https://healthmaster.app/rus/logo.png">
+    <meta property="og:locale" content="ru_RU">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -12,6 +23,250 @@
 
     <link rel="icon" href="/favicon-heart.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/favicon-heart.png">
+
+    <style>
+        /* Скриншоты — горизонтальный скролл */
+        .screenshots {
+            margin: 48px 0 32px;
+        }
+        .screenshots-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .screenshots-header h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+        .screenshots-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .screenshots-strip {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding: 20px 4px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .screenshots-strip::-webkit-scrollbar { height: 6px; }
+        .screenshots-strip::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
+        .screenshots-strip::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+        .shot {
+            flex: 0 0 auto;
+            width: 220px;
+            scroll-snap-align: start;
+            text-align: center;
+        }
+        .shot img {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            display: block;
+        }
+        .shot-caption {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Отзывы */
+        .reviews {
+            margin: 48px 0 32px;
+        }
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .reviews-header h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+        .reviews-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .review-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .review-avatar.purple { background: #8b5cf6; }
+        .review-avatar.orange { background: #f97316; }
+        .review-avatar.pink { background: #ec4899; }
+        .review-meta { flex: 1; min-width: 0; }
+        .review-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .review-stars {
+            color: #fbbf24;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+        .result-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .review-text {
+            color: var(--text-main);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .reviews-more {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Ценовой блок */
+        .pricing {
+            margin: 48px 0 32px;
+        }
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .pricing-header h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+        .pricing-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .price-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            position: relative;
+        }
+        .price-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.2);
+        }
+        .price-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 999px;
+        }
+        .price-name {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+        .price-value {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+        }
+        .price-sub {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+        }
+        .price-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px;
+        }
+        .price-features li {
+            padding: 6px 0;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+        .price-features li::before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: 700;
+            margin-right: 6px;
+        }
+        .trial-note {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        /* Правовой футер */
+        .legal-links-footer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .legal-links-footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .legal-links-footer a:hover {
+            color: var(--text-main);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .pricing-cards { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 
 <body>
@@ -27,17 +282,16 @@
                 <span class="logo-emoji">🥗</span>
                 <h1>Healthmaster</h1>
             </div>
-            <p class="tagline">Твой персональный AI-диетолог в Telegram</p>
+            <p class="tagline">Твой персональный AI-диетолог в Telegram и мобильном приложении</p>
         </header>
 
         <section class="hero">
             <div class="hero-content">
                 <h2>Контролируй питание просто</h2>
-                <p>Мы используем передовые технологии искусственного интеллекта, чтобы сделать учет калорий и нутриентов
+                <p>Мы используем передовые технологии искусственного интеллекта, чтобы сделать учёт калорий и нутриентов
                     таким же простым, как отправка фото или сообщения.</p>
                 <div class="cta-group">
-                    <a href="https://t.me/AIHealthMasterBot" class="btn btn-primary" target="_blank">Открыть в
-                        Telegram</a>
+                    <a href="https://t.me/AIHealthMasterBot" class="btn btn-primary" target="_blank">Открыть в Telegram</a>
                 </div>
             </div>
         </section>
@@ -46,30 +300,167 @@
             <div class="feature-card">
                 <div class="feature-icon">📸</div>
                 <h3>Распознавание по фото</h3>
-                <p>Просто сфотографируй еду, и наш AI мгновенно рассчитает КБЖУ.</p>
+                <p>Сфотографируй еду — AI мгновенно рассчитает КБЖУ.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">✍️</div>
-                <h3>Текстовый ввод</h3>
-                <p>Напиши «Кофе с молоком и два сырника», и бот все посчитает.</p>
+                <div class="feature-icon">🎙</div>
+                <h3>Голосовой ввод</h3>
+                <p>Скажи «Кофе с молоком и два сырника» — бот всё посчитает.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Статистика</h3>
-                <p>Наглядные отчеты за день, неделю и месяц для достижения твоих целей.</p>
+                <div class="feature-icon">📦</div>
+                <h3>Штрих-код</h3>
+                <p>Наведи камеру на упаковку — сразу получишь состав.</p>
             </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-коуч</h3>
+                <p>Разбирает день, отвечает на вопросы, подсказывает что добавить.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌿</div>
+                <h3>Витамины и минералы</h3>
+                <p>13 нутриентов в каждом блюде — не только КБЖУ.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📏</div>
+                <h3>Замеры и вес</h3>
+                <p>Талия, грудь, бёдра, бицепс, вес — прогресс всегда на виду.</p>
+            </div>
+        </section>
+
+        <section class="screenshots">
+            <div class="screenshots-header">
+                <h2>Как это выглядит</h2>
+                <p>Дневник, разбор блюда, коуч, замеры — всё в одном приложении</p>
+            </div>
+            <div class="screenshots-strip">
+                <div class="shot">
+                    <img src="/rus/screenshots/journal.png" alt="Дневник питания с КБЖУ и витаминами" loading="lazy">
+                    <div class="shot-caption">Дневник</div>
+                </div>
+                <div class="shot">
+                    <img src="/rus/screenshots/meal-nutrients.png" alt="Микронутриенты по конкретному блюду" loading="lazy">
+                    <div class="shot-caption">Микро по блюду</div>
+                </div>
+                <div class="shot">
+                    <img src="/rus/screenshots/coach.png" alt="AI-коуч по питанию" loading="lazy">
+                    <div class="shot-caption">AI-коуч</div>
+                </div>
+                <div class="shot">
+                    <img src="/rus/screenshots/measurements.png" alt="Замеры тела в профиле" loading="lazy">
+                    <div class="shot-caption">Замеры</div>
+                </div>
+                <div class="shot">
+                    <img src="/rus/screenshots/paywall.png" alt="Premium с 7 дней бесплатно" loading="lazy">
+                    <div class="shot-caption">Premium</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <div class="reviews-header">
+                <h2>Что говорят пользователи</h2>
+                <p>Реальные истории — от снижения веса до контроля дефицитов</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">А</div>
+                        <div class="review-meta">
+                            <div class="review-name">Алексей</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                        <span class="result-badge">−4 кг</span>
+                    </div>
+                    <p class="review-text">Начал просто записывать еду ради интереса. Через пару дней стало видно, где перебор. За месяц ушло −4 кг без жёстких ограничений.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar pink">М</div>
+                        <div class="review-meta">
+                            <div class="review-name">Марина</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                        <span class="result-badge">−3 кг</span>
+                    </div>
+                    <p class="review-text">Раньше считала калории вручную — быстро бросала. Здесь просто отправляю фото. За 3 недели −3 кг и без стресса.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar purple">И</div>
+                        <div class="review-meta">
+                            <div class="review-name">Игорь</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Главное — коуч. Не грузит, а говорит конкретно, что поменять. Вес наконец начал двигаться.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar orange">А</div>
+                        <div class="review-meta">
+                            <div class="review-name">Анна</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Постоянно не добирала белок. Бот показал это сразу. Добавила — стало легче держать форму.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing">
+            <div class="pricing-header">
+                <h2>Стоимость</h2>
+                <p>Попробуй 48 часов бесплатно — потом привяжи карту и получи ещё 7 дней Premium</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <div class="price-name">Месячная</div>
+                    <div class="price-value">249 ₽ <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ месяц</span></div>
+                    <div class="price-sub">Подписка, отмена в любой момент</div>
+                    <ul class="price-features">
+                        <li>Безлимитное распознавание фото и голоса</li>
+                        <li>Штрих-код без ограничений</li>
+                        <li>AI-коуч без лимитов</li>
+                        <li>Витамины и минералы по каждому блюду</li>
+                        <li>Прогноз достижения цели</li>
+                    </ul>
+                </div>
+                <div class="price-card featured">
+                    <div class="price-badge">Выгодно −33%</div>
+                    <div class="price-name">Годовая</div>
+                    <div class="price-value">1990 ₽ <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ год</span></div>
+                    <div class="price-sub">≈ 166 ₽ / месяц · экономия 998 ₽</div>
+                    <ul class="price-features">
+                        <li>Всё из месячной</li>
+                        <li>Один платёж в год — не забудешь продлить</li>
+                        <li>Приоритетная поддержка</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="trial-note">
+                💳 После 48 часов бесплатного периода — привязка карты через ЮKassa.
+                Первые 7 дней списаний не будет. Отмена в любой момент.
+            </p>
         </section>
 
         <footer class="legal-info">
             <div class="legal-grid">
                 <div class="legal-item">
                     <span class="label">Организация</span>
-                    <span class="value">Самозанятый Минаков Павел Олегович</span>
+                    <span class="value">ИП Минаков Павел Олегович</span>
                 </div>
-               
                 <div class="legal-item">
                     <span class="label">ИНН</span>
                     <span class="value">773172389090</span>
+                </div>
+                <div class="legal-item">
+                    <span class="label">ОГРНИП</span>
+                    <span class="value">326774600439701</span>
                 </div>
                 <div class="legal-item">
                     <span class="label">Email</span>
@@ -77,6 +468,13 @@
                             style="color: inherit; text-decoration: none;">support@healthmaster.app</a></span>
                 </div>
             </div>
+
+            <div class="legal-links-footer">
+                <a href="/rus/privacy.html">Политика конфиденциальности</a>
+                <a href="mailto:support@healthmaster.app">Поддержка</a>
+                <a href="https://t.me/AIHealthMasterBot" target="_blank">Telegram-бот</a>
+            </div>
+
             <div class="footer-bottom">
                 <p>&copy; 2026 Healthmaster. Все права защищены.</p>
             </div>
@@ -85,10 +483,7 @@
 
     <script>
         // Simple reveal animation on scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
-
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -97,7 +492,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .legal-info').forEach(el => {
+        document.querySelectorAll('.feature-card, .price-card, .legal-info').forEach(el => {
             el.classList.add('reveal');
             observer.observe(el);
         });

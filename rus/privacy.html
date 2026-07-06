@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Политика конфиденциальности — HealthMaster</title>
+    <meta name="description" content="Политика конфиденциальности HealthMaster. Как мы собираем и защищаем данные пользователей." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico">
+    <link rel="icon" type="image/png" href="/favicon-heart.png">
+    <link rel="shortcut icon" href="/favicon-heart.ico">
+    <link rel="apple-touch-icon" href="/favicon-heart.png">
+    <style>
+        .content { max-width: 760px; margin: 0 auto; }
+        .page-header { text-align: center; margin-bottom: 32px; }
+        .page-header h1 { margin-bottom: 8px; font-size: clamp(1.5rem, 4vw, 1.875rem); font-weight: 800; letter-spacing: -0.02em; }
+        .page-meta { color: var(--text-muted); font-size: 0.875rem; }
+
+        .section {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px 24px;
+            margin-bottom: 14px;
+        }
+        .section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section p, .section li {
+            color: var(--text-main);
+            line-height: 1.75;
+            font-size: 0.95rem;
+        }
+        .section p { margin-bottom: 8px; }
+        .section p:last-child { margin-bottom: 0; }
+        .section ul { padding-left: 20px; margin: 8px 0; }
+        .section li { margin-bottom: 6px; }
+
+        .footer-doc {
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 24px;
+        }
+        .footer-doc p { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.15s;
+        }
+        .legal-links a:hover { color: var(--text-main); text-decoration: underline; }
+
+        nav.site-nav {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        nav.site-nav a {
+            margin: 0 12px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        nav.site-nav a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .section { padding: 18px 20px; }
+            .page-header h1 { font-size: 1.6rem; }
+            .legal-links { gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="glass-container">
+        <nav class="site-nav">
+            <a href="/rus/">Главная</a>
+            <a href="mailto:support@healthmaster.app">Поддержка</a>
+        </nav>
+
+        <div class="content">
+            <div class="page-header">
+                <h1>Политика конфиденциальности</h1>
+                <p class="page-meta">Последнее обновление: июль 2026 г.</p>
+            </div>
+
+            <div class="section">
+                <p>
+                    Настоящая Политика конфиденциальности описывает, какие данные собирает сервис HealthMaster,
+                    как они используются и как защищаются. Используя бот @AIHealthMasterBot, сайт healthmaster.app
+                    или мобильное приложение HealthMaster, вы соглашаетесь с условиями данной политики.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>1. Оператор данных</h3>
+                <p>Индивидуальный предприниматель Минаков Павел Олегович</p>
+                <p>ОГРНИП: 326774600439701 &nbsp;·&nbsp; ИНН: 773172389090</p>
+                <p>Email: <a href="mailto:support@healthmaster.app" style="color: var(--primary); text-decoration: none;">support@healthmaster.app</a></p>
+            </div>
+
+            <div class="section">
+                <h3>2. Какие данные мы собираем</h3>
+                <ul>
+                    <li>Telegram ID пользователя и публичное имя профиля</li>
+                    <li>Google-аккаунт (email, имя) — при входе через Google в мобильном приложении</li>
+                    <li>Сообщения, отправляемые боту (фото блюд, текстовые описания, вес, замеры тела)</li>
+                    <li>История питания, весовые записи, микронутриенты</li>
+                    <li>Дата и время взаимодействий</li>
+                    <li>Данные об оплате (обрабатываются ЮKassa; номер карты нам не передаётся)</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>3. Цели обработки данных</h3>
+                <ul>
+                    <li>Предоставление сервиса: подсчёт КБЖУ, дневник питания, AI-рекомендации, AI-коуч</li>
+                    <li>Обработка платежей и активация подписки</li>
+                    <li>Техническая поддержка пользователей</li>
+                    <li>Улучшение качества сервиса и точности AI</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>4. Передача данных третьим лицам</h3>
+                <p>Мы не продаём и не передаём персональные данные третьим лицам, за исключением:</p>
+                <ul>
+                    <li><strong>ЮKassa</strong> — для обработки платежей банковскими картами</li>
+                    <li><strong>OpenAI / провайдеры AI</strong> — для анализа питания и генерации рекомендаций (данные передаются в обезличенном виде, без Telegram ID)</li>
+                    <li><strong>Google Sign-In</strong> — для аутентификации в мобильном приложении (мы получаем только email и имя)</li>
+                    <li>Случаев, предусмотренных действующим законодательством РФ</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>5. Хранение данных</h3>
+                <p>
+                    Данные хранятся на защищённых серверах на территории Российской Федерации и в ЕС.
+                    Срок хранения — не более 3 лет с момента последней активности пользователя,
+                    либо до поступления запроса на удаление.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>6. Права пользователя</h3>
+                <p>Вы вправе в любой момент:</p>
+                <ul>
+                    <li>Запросить копию ваших данных</li>
+                    <li>Потребовать исправления неточных данных</li>
+                    <li>Потребовать удаления всех данных (в приложении: Профиль → Удалить аккаунт)</li>
+                    <li>Отозвать согласие на обработку данных</li>
+                </ul>
+                <p>Для этого напишите на <a href="mailto:support@healthmaster.app" style="color: var(--primary); text-decoration: none;">support@healthmaster.app</a>. Мы ответим в течение 30 дней.</p>
+            </div>
+
+            <div class="section">
+                <h3>7. Безопасность</h3>
+                <p>
+                    Мы применяем технические и организационные меры для защиты данных от несанкционированного доступа,
+                    изменения или уничтожения. Данные карт обрабатываются напрямую ЮKassa — мы не получаем и не
+                    храним реквизиты карт. Пароли Google-аккаунтов нам не передаются (используем OAuth 2.0).
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>8. Файлы cookie</h3>
+                <p>
+                    Наш сайт использует минимальный набор технических cookies, необходимых для работы страницы оплаты.
+                    Маркетинговые или трекинговые cookies не используются.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>9. Дети до 14 лет</h3>
+                <p>
+                    Сервис не предназначен для лиц младше 14 лет. Если нам станет известно, что мы собрали
+                    данные ребёнка младше 14 лет без согласия родителей, мы удалим такие данные.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>10. Изменения политики</h3>
+                <p>
+                    Мы можем обновлять данную политику. При существенных изменениях уведомим пользователей
+                    через Telegram-бот или push-уведомление в приложении. Актуальная версия всегда доступна на этой странице.
+                </p>
+            </div>
+
+            <div class="footer-doc">
+                <p>© 2026 HealthMaster · ИП Минаков Павел Олегович · ИНН 773172389090</p>
+                <div class="legal-links">
+                    <a href="/rus/">Главная</a>
+                    <a href="mailto:support@healthmaster.app">Поддержка</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
