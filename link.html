@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opening HealthMaster…</title>
+    <link rel="icon" href="/eng/favicon-heart.ico" type="image/x-icon">
+    <style>
+        :root { color-scheme: dark; }
+        html, body {
+            margin: 0; padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #10b981 0%, #065f46 100%);
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+        }
+        .card {
+            max-width: 420px;
+            padding: 32px 24px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+        }
+        h1 { margin: 0 0 8px; font-size: 1.4rem; font-weight: 800; }
+        p { margin: 0 0 20px; color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.5; }
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #fff;
+            color: #065f46;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 999px;
+            font-size: 1rem;
+            margin: 6px 4px;
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .hint { margin-top: 18px; font-size: 0.8rem; color: rgba(255,255,255,0.65); }
+        .token-box {
+            font-family: ui-monospace, "SF Mono", Consolas, monospace;
+            background: rgba(0,0,0,0.25);
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            word-break: break-all;
+            margin: 10px 0;
+            user-select: all;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🥗 HealthMaster</h1>
+        <p id="lead">Opening the app…</p>
+        <a id="openApp" class="btn" href="#">Open in HealthMaster</a>
+        <br>
+        <a class="btn btn-secondary" href="https://t.me/AIHealthMasterBot?start=web">Open in Telegram</a>
+        <div id="tokenBlock" style="display:none;">
+            <p class="hint">If nothing happened, install the app first, then paste this code in the login screen:</p>
+            <div class="token-box" id="tokenView"></div>
+        </div>
+        <p class="hint" id="fallbackHint">Don't have the app yet? Use HealthMaster in Telegram — it works right now.</p>
+    </div>
+
+    <script>
+        (function () {
+            const params = new URLSearchParams(location.search);
+            const token = params.get('token') || '';
+            const appUrl = 'healthmaster://link' + (token ? '?token=' + encodeURIComponent(token) : '');
+            const openBtn = document.getElementById('openApp');
+            openBtn.href = appUrl;
+
+            if (token) {
+                document.getElementById('tokenView').textContent = token;
+                document.getElementById('tokenBlock').style.display = 'block';
+            }
+
+            // Пытаемся автозапустить приложение сразу
+            setTimeout(function () {
+                location.href = appUrl;
+            }, 100);
+        })();
+    </script>
+</body>
+</html>

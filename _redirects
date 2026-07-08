@@ -11,6 +11,7 @@
 /logo.png /eng/logo.png 200
 
 /pay /eng/pay.html 200
+/link /link.html 200
 info.healthmaster.app/pay → info/pay.html
 info.healthmaster.app/privacy → info/privacy.html
 info.healthmaster.app/offer → info/offer.html
