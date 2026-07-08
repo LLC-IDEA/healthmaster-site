@@ -1,120 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HealthMaster – AI Nutrition Tracking in Telegram</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css" />
-    <link rel="icon" type="image/x-icon" href="/favicon-heart.ico" />
-    <link rel="icon" type="image/png" href="/favicon-heart.png" />
-    <link rel="shortcut icon" href="/favicon-heart.ico" />
-    <link rel="apple-touch-icon" href="/favicon-heart.png" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthMaster — AI Nutrition Diary in Telegram and Mobile App</title>
+    <meta name="description" content="HealthMaster: log meals by photo, voice or barcode. AI coach reviews your day. Diary, vitamins, body measurements. Works in Telegram and mobile app.">
+    <meta name="keywords" content="calorie counter, nutrition diary, AI dietitian, food recognition, macros tracker, healthmaster">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="HealthMaster — AI Nutrition Diary">
+    <meta property="og:description" content="Snap a photo of your meal → calories and macros. AI coach reviews your day. Works in Telegram and in the mobile app.">
+    <meta property="og:url" content="https://healthmaster.app/">
+    <meta property="og:image" content="https://healthmaster.app/logo.png">
+    <meta property="og:locale" content="en_US">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/eng/styles.css">
+
+    <link rel="icon" href="/eng/favicon-heart.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/eng/favicon-heart.png">
 
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
-        nav {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+        nav { text-align: center; margin-bottom: 20px; }
+        nav a { margin: 0 12px; color: #fff; text-decoration: none; font-weight: 500; }
+        nav a:hover { text-decoration: underline; }
+        @media (max-width: 768px) { nav a { display: inline-block; margin: 6px 8px; } }
 
-        nav a {
-            margin: 0 12px;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 500;
-        }
+        header { margin-bottom: 28px; }
+        .tagline { text-align: center; color: var(--text-muted); font-size: 1.05rem; margin-top: 8px; }
 
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        .hero {
-            margin-bottom: 48px;
-        }
-
-        header {
-            margin-bottom: 28px;
-        }
-
-        .hero-subtitle {
+        .hero { margin-bottom: 48px; }
+        .hero-content { text-align: center; }
+        .hero-content h2 {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
             margin-bottom: 12px;
         }
-
-        .hero-content p {
-            margin: 0 auto 24px;
-        }
+        .hero-content p { margin: 0 auto 24px; max-width: 620px; color: var(--text-muted); line-height: 1.6; }
 
         .cta-group {
-            margin-bottom: 12px;
             display: flex;
             justify-content: center;
             gap: 14px;
             flex-wrap: wrap;
+            margin-bottom: 12px;
         }
-
-        .telegram-icon-link {
+        .btn-telegram {
+            background: #229ED9;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            margin-top: 8px;
+            gap: 8px;
+            transition: transform 0.15s, box-shadow 0.15s;
+            box-shadow: 0 10px 20px rgba(34, 158, 217, 0.3);
+        }
+        .btn-telegram:hover { transform: translateY(-2px); box-shadow: 0 14px 26px rgba(34, 158, 217, 0.4); }
+
+        .btn-app {
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            border: 1px solid var(--glass-border);
+            padding: 12px 24px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.15s, transform 0.15s;
+        }
+        .btn-app:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+        .btn-app .badge-soon {
+            font-size: 0.7rem;
+            background: rgba(16,185,129,0.2);
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(16,185,129,0.4);
+            font-weight: 700;
+        }
+
+        /* "Where you use it" — 2 platforms */
+        .platforms {
+            margin: 48px 0 32px;
+        }
+        .platforms-header { text-align: center; margin-bottom: 24px; }
+        .platforms-header h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+        .platforms-header p { color: var(--text-muted); font-size: 0.95rem; }
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .platform-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            position: relative;
+        }
+        .platform-card .platform-icon { font-size: 2rem; margin-bottom: 12px; }
+        .platform-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .platform-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; }
+        .platform-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px;
+        }
+        .platform-card ul li {
+            padding: 4px 0;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+        .platform-card ul li::before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: 700;
+            margin-right: 6px;
+        }
+        .platform-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.9rem;
             text-decoration: none;
         }
-
-        .telegram-icon-circle {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
+        .platform-cta.telegram {
             background: #229ED9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 20px rgba(34, 158, 217, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            color: #fff;
+        }
+        .platform-cta.app {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid var(--glass-border);
+            cursor: default;
         }
 
-        .telegram-icon-circle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 26px rgba(34, 158, 217, 0.4);
-        }
+        /* Features */
+        .features { margin-bottom: 48px; }
 
-        .telegram-icon-circle svg {
-            width: 28px;
-            height: 28px;
-            fill: white;
-        }
-
-        .features {
-            margin-bottom: 48px;
-        }
-
-        .feature-card {
-            text-align: center;
-        }
-
-        .feature-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            text-align: center;
-        }
-
-        .how-it-works {
-            margin-bottom: 48px;
-        }
-
-        .how-it-works h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
+        /* How it works */
+        .how-it-works { margin-bottom: 48px; }
+        .how-it-works h2 { text-align: center; margin-bottom: 20px; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.02em; }
         .how-it-works-box {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--glass-border);
@@ -123,151 +166,116 @@
             max-width: 720px;
             margin: 0 auto;
         }
+        .how-it-works-box ol { margin: 0; padding-left: 22px; color: var(--text-muted); line-height: 1.8; }
+        .how-it-works-box ol li { padding: 4px 0; color: var(--text-main); }
 
-        .how-it-works-box ol {
-            margin: 0;
-            padding-left: 22px;
-            color: var(--text-muted);
-            line-height: 1.8;
-        }
-
-        .pricing-section {
-            margin-bottom: 40px;
-        }
-
-        .pricing-section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .pricing-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--glass-border);
-            padding: 24px;
-            border-radius: 24px;
-            max-width: 720px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .pricing-box p {
-            margin-bottom: 8px;
-        }
-
-        .pricing-box ul {
-            padding-left: 0;
-            margin: 10px 0 20px;
-            list-style: none;
-            text-align: center;
-        }
-
-        .pricing-box li {
-            margin-bottom: 8px;
-            color: var(--text-muted);
-        }
-
-        .price {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #f8fafc;
-            margin: 10px 0 10px;
-            line-height: 1.2;
-        }
-
-        .price-note {
-            color: var(--text-muted);
-            margin-bottom: 18px;
-        }
-
-        .pricing-actions {
-            margin-top: 18px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .legal-info {
-            padding-top: 24px;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 0;
-        }
-
-        .legal-links {
-            margin-top: 12px;
-            display: flex;
-            justify-content: center;
+        /* Reviews */
+        .reviews { margin: 48px 0 32px; }
+        .reviews-header { text-align: center; margin-bottom: 24px; }
+        .reviews-header h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+        .reviews-header p { color: var(--text-muted); font-size: 0.95rem; }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 16px;
-            flex-wrap: wrap;
+        }
+        .review-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .review-avatar {
+            width: 40px; height: 40px; border-radius: 999px;
+            background: var(--primary); color: #fff;
+            font-weight: 700; display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+        }
+        .review-avatar.purple { background: #8b5cf6; }
+        .review-avatar.orange { background: #f97316; }
+        .review-avatar.pink { background: #ec4899; }
+        .review-meta { flex: 1; min-width: 0; }
+        .review-name { font-weight: 700; font-size: 0.95rem; }
+        .review-stars { color: #fbbf24; font-size: 0.85rem; letter-spacing: 2px; }
+        .review-text { color: var(--text-main); font-size: 0.9rem; line-height: 1.6; }
+
+        /* Pricing */
+        .pricing { margin: 48px 0 32px; }
+        .pricing-header { text-align: center; margin-bottom: 24px; }
+        .pricing-header h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+        .pricing-header p { color: var(--text-muted); font-size: 0.95rem; }
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .price-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            position: relative;
+        }
+        .price-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.2);
+        }
+        .price-badge {
+            position: absolute; top: -12px; right: 20px;
+            background: var(--primary); color: #fff;
+            font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+        }
+        .price-name {
+            font-size: 0.85rem; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;
+        }
+        .price-value { font-size: 2rem; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.02em; }
+        .price-sub { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 16px; }
+        .price-features { list-style: none; padding: 0; margin: 0 0 20px; }
+        .price-features li { padding: 6px 0; font-size: 0.9rem; color: var(--text-main); }
+        .price-features li::before { content: "✓ "; color: var(--primary); font-weight: 700; margin-right: 6px; }
+        .trial-note {
+            text-align: center; color: var(--text-muted);
+            font-size: 0.85rem; margin-top: 20px; line-height: 1.5;
         }
 
-        .legal-links a {
-            color: var(--text-muted);
-            text-decoration: none;
+        /* FAQ */
+        .faq { margin: 48px 0 32px; }
+        .faq h2 { text-align: center; margin-bottom: 20px; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.02em; }
+        .faq-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 10px;
         }
-
-        .legal-links a:hover {
-            text-decoration: underline;
+        .faq-item summary {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            list-style: none;
         }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: " +"; float: right; color: var(--text-muted); }
+        .faq-item[open] summary::after { content: " −"; }
+        .faq-item p { margin-top: 10px; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
 
-        @media (max-width: 768px) {
-            nav {
-                margin-bottom: 16px;
-            }
+        /* Legal links footer */
+        .legal-links-footer {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+            margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--glass-border);
+        }
+        .legal-links-footer a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; }
+        .legal-links-footer a:hover { color: var(--text-main); text-decoration: underline; }
 
-            nav a {
-                display: inline-block;
-                margin: 6px 8px;
-            }
-
-            header {
-                margin-bottom: 20px;
-            }
-
-            .hero {
-                margin-bottom: 36px;
-            }
-
-            .hero-content p {
-                font-size: 1.05rem;
-                line-height: 1.6;
-                margin: 0 auto 20px;
-            }
-
-            .cta-group {
-                margin-bottom: 10px;
-            }
-
-            .features {
-                margin-bottom: 36px;
-            }
-
-            .how-it-works {
-                margin-bottom: 36px;
-            }
-
-            .pricing-section {
-                margin-bottom: 32px;
-            }
-
-            .pricing-box,
-            .how-it-works-box {
-                padding: 20px;
-            }
-
-            .price {
-                font-size: 1.7rem;
-                line-height: 1.2;
-            }
-
-            .legal-links {
-                gap: 12px;
-                margin-top: 10px;
-            }
+        @media (max-width: 640px) {
+            .pricing-cards { grid-template-columns: 1fr; }
+            .platforms-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
+
 <body>
     <div class="background-blobs">
         <div class="blob blob-1"></div>
@@ -277,11 +285,11 @@
 
     <main class="glass-container">
         <nav>
-            <a href="/index.html">Home</a>
-            <a href="/privacy.html">Privacy Policy</a>
-            <a href="/terms.html">Terms</a>
-            <a href="/refund.html">Refund Policy</a>
-            <a href="/contact.html">Contact</a>
+            <a href="/">Home</a>
+            <a href="/eng/privacy.html">Privacy</a>
+            <a href="/eng/terms.html">Terms</a>
+            <a href="/eng/refund.html">Refund</a>
+            <a href="/eng/contact.html">Contact</a>
         </nav>
 
         <header>
@@ -289,52 +297,96 @@
                 <span class="logo-emoji">🥗</span>
                 <h1>HealthMaster</h1>
             </div>
+            <p class="tagline">Your personal AI dietitian — in Telegram and in the mobile app</p>
         </header>
 
         <section class="hero">
             <div class="hero-content">
-                <p class="hero-subtitle">Track nutrition with AI, right inside Telegram</p>
+                <h2>Nutrition tracking, made simple</h2>
                 <p>
-                    HealthMaster is an AI-powered nutrition assistant in Telegram.
-                    Users can log meals by text or photo, track weight, and receive personalized nutrition recommendations based on their goals.
+                    Snap a photo of your meal, describe it in a voice message, or scan a barcode — AI counts calories,
+                    macros and micronutrients in seconds. One account works everywhere: Telegram, mobile app, PWA.
                 </p>
-
                 <div class="cta-group">
-                    <a href="https://t.me/AIHealthMasterBot?start=w" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                        Try in Telegram
+                    <a href="https://t.me/AIHealthMasterBot?start=w" class="btn-telegram" target="_blank" rel="noopener noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.24 3.64 11.94c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"></path>
+                        </svg>
+                        Open in Telegram
                     </a>
-                    <a href="/pay" class="btn btn-primary">
-                        Pay for Premium
+                    <a href="#waitlist" class="btn-app">
+                        📱 Mobile App
+                        <span class="badge-soon">Coming soon</span>
                     </a>
                 </div>
+            </div>
+        </section>
 
-                <a href="https://t.me/AIHealthMasterBot?start=w" class="telegram-icon-link" target="_blank" rel="noopener noreferrer" aria-label="Open HealthMaster in Telegram">
-                    <span class="telegram-icon-circle">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M9.78 18.65c-.4 0-.33-.15-.47-.53l-1.2-3.95 9.24-5.84"></path>
-                            <path d="M9.78 18.65c.31 0 .45-.14.63-.31l1.68-1.63-2.09-1.26"></path>
-                            <path d="M9.99 14.2l5.08 3.75c.58.32 1 .15 1.14-.54l2.03-9.56c.2-.85-.31-1.23-.86-.98L5.47 11.45c-.81.32-.8.77-.15.97l3.06.96 7.08-4.46c.33-.2.63-.09.38.13"></path>
-                        </svg>
+        <section class="platforms">
+            <div class="platforms-header">
+                <h2>Use it where you are</h2>
+                <p>One account. Same data. Different form factors.</p>
+            </div>
+            <div class="platforms-grid">
+                <div class="platform-card">
+                    <div class="platform-icon">💬</div>
+                    <h3>In Telegram</h3>
+                    <p>Open a chat, send a photo — that's it. Nothing to install. Works on iOS, Android, desktop and web.</p>
+                    <ul>
+                        <li>Zero-friction start</li>
+                        <li>Photo, voice, text, barcode input</li>
+                        <li>Daily summary right in the chat</li>
+                    </ul>
+                    <a href="https://t.me/AIHealthMasterBot?start=w" class="platform-cta telegram" target="_blank" rel="noopener noreferrer">
+                        Open the bot →
+                    </a>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">📱</div>
+                    <h3>In the Mobile App</h3>
+                    <p>Home-screen icon, push notifications, works offline, native charts. Sign in with Google or Telegram — data is already there.</p>
+                    <ul>
+                        <li>Beautiful daily diary and charts</li>
+                        <li>Push reminders (never miss a meal)</li>
+                        <li>Works offline, syncs when online</li>
+                    </ul>
+                    <span class="platform-cta app">
+                        Coming soon to Google Play
                     </span>
-                </a>
+                </div>
             </div>
         </section>
 
         <section class="features">
             <div class="feature-card">
                 <div class="feature-icon">📸</div>
-                <h3>Meal logging</h3>
-                <p>Users can log meals using text or food photos directly in Telegram.</p>
+                <h3>Photo recognition</h3>
+                <p>Take a photo — AI instantly calculates calories, protein, fat and carbs.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">⚖️</div>
-                <h3>Weight tracking</h3>
-                <p>Track weight changes over time and keep progress visible in one place.</p>
+                <div class="feature-icon">🎙</div>
+                <h3>Voice input</h3>
+                <p>Say “Coffee with milk and two syrniki” — the bot counts everything.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📦</div>
+                <h3>Barcode scan</h3>
+                <p>Point your camera at the package — get the full breakdown immediately.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🤖</div>
-                <h3>AI coaching</h3>
-                <p>Get daily AI-powered nutrition analysis and simple recommendations based on logged meals.</p>
+                <h3>AI Coach</h3>
+                <p>Reviews your day, answers questions, suggests what to adjust.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌿</div>
+                <h3>Vitamins &amp; minerals</h3>
+                <p>13 micronutrients per meal — not just calories and macros.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📏</div>
+                <h3>Body measurements</h3>
+                <p>Waist, chest, hips, biceps, weight — progress stays visible.</p>
             </div>
         </section>
 
@@ -342,50 +394,162 @@
             <h2>How it works</h2>
             <div class="how-it-works-box">
                 <ol>
-                    <li>Open the bot in Telegram</li>
-                    <li>Log your meals by text or photo</li>
-                    <li>Get AI-powered insights and recommendations</li>
+                    <li>Open the bot in Telegram or sign in to the app</li>
+                    <li>Log meals by photo, voice, text or barcode</li>
+                    <li>Get calories, macros and micronutrients for each meal</li>
+                    <li>Let the AI coach review your day and suggest what to fix</li>
                 </ol>
             </div>
         </section>
 
-        <section class="pricing-section" id="pricing">
-            <h2>Pricing</h2>
-            <div class="pricing-box">
-                <p><strong>Free</strong></p>
-                <ul>
-                    <li>Text-based food logging</li>
-                    <li>Basic calorie tracking</li>
-                    <li>Weight tracking</li>
-                </ul>
-
-                <p><strong>Premium</strong></p>
-                <div class="price">$2.99 / 30&nbsp;days</div>
-                <div class="price-note">No auto-renewal</div>
-
-                <ul>
-                    <li>AI Coach with personalized daily guidance</li>
-                    <li>Nutrition analysis based on logged meals</li>
-                    <li>Food recognition by photo and barcode</li>
-                </ul>
-
-                <div class="pricing-actions">
-                    <a href="/pay" class="btn btn-primary">Pay for Premium</a>
+        <section class="reviews">
+            <div class="reviews-header">
+                <h2>What users say</h2>
+                <p>Real feedback from the first thousand users</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">A</div>
+                        <div class="review-meta">
+                            <div class="review-name">Alex</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Started logging meals just out of curiosity. Within a few days I could see exactly where I was overeating. Dropped 9 lbs in a month without any strict diet.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar pink">S</div>
+                        <div class="review-meta">
+                            <div class="review-name">Sarah</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">I used to count calories manually and always quit after a week. Here I just send a photo. 3 weeks in — down 7 lbs, no stress.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar purple">M</div>
+                        <div class="review-meta">
+                            <div class="review-name">Mike</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">The coach is the killer feature. Doesn't lecture — just tells me exactly what to change. Finally the scale started moving.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar orange">R</div>
+                        <div class="review-meta">
+                            <div class="review-name">Rachel</div>
+                            <div class="review-stars">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="review-text">Was constantly missing my protein target. The bot flagged it right away. Fixed it — much easier to stay in shape now.</p>
                 </div>
             </div>
         </section>
 
-        <footer class="legal-info">
-            <div class="footer-bottom">
-                <p>© 2026 HealthMaster. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="/privacy.html">Privacy Policy</a>
-                    <a href="/terms.html">Terms</a>
-                    <a href="/refund.html">Refund Policy</a>
-                    <a href="/contact.html">Contact</a>
+        <section class="pricing" id="pricing">
+            <div class="pricing-header">
+                <h2>Pricing</h2>
+                <p>48 hours free · then add a card and get 7 more days of Premium</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="price-card">
+                    <div class="price-name">Monthly</div>
+                    <div class="price-value">$3.99 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ month</span></div>
+                    <div class="price-sub">Subscription, cancel anytime</div>
+                    <ul class="price-features">
+                        <li>Unlimited photo &amp; voice recognition</li>
+                        <li>Unlimited barcode scans</li>
+                        <li>AI Coach without limits</li>
+                        <li>Vitamins &amp; minerals per meal</li>
+                        <li>Goal forecast</li>
+                    </ul>
                 </div>
+                <div class="price-card featured">
+                    <div class="price-badge">Save 33%</div>
+                    <div class="price-name">Yearly</div>
+                    <div class="price-value">$31.99 <span style="font-size: 1rem; color: var(--text-muted); font-weight: 400;">/ year</span></div>
+                    <div class="price-sub">≈ $2.67 / month · save $16</div>
+                    <ul class="price-features">
+                        <li>Everything in Monthly</li>
+                        <li>One payment a year — never forget to renew</li>
+                        <li>Priority support</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="trial-note">
+                💳 After the 48-hour free trial — add a card. First 7 days won't be charged. Cancel anytime.
+            </p>
+        </section>
+
+        <section class="faq">
+            <h2>Frequently asked</h2>
+            <details class="faq-item">
+                <summary>Do I need the app if I already use the bot?</summary>
+                <p>No. The Telegram bot is a fully functional product on its own. The mobile app adds push reminders, offline mode, home-screen access and native charts — but every core feature works in Telegram too. Use whichever fits you better; data is synced.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Is there an iOS app?</summary>
+                <p>Not yet. Android version is currently in Google Play internal testing and will be publicly available soon. iOS is on the roadmap. Meanwhile, Telegram bot works perfectly on iOS.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Which languages are supported?</summary>
+                <p>Interface: English and Russian. Food recognition and the AI coach handle input in any language.</p>
+            </details>
+            <details class="faq-item">
+                <summary>How is my data used?</summary>
+                <p>We store your meal history, weight and measurements to give you personalized guidance. Payment data is processed by our payment provider — we never see card numbers. See our <a href="/eng/privacy.html" style="color: var(--primary);">Privacy Policy</a>.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Can I cancel anytime?</summary>
+                <p>Yes. One tap in the app or a message to support. Refund policy is available <a href="/eng/refund.html" style="color: var(--primary);">here</a>.</p>
+            </details>
+        </section>
+
+        <footer class="legal-info">
+            <div class="legal-links-footer">
+                <a href="/eng/privacy.html">Privacy Policy</a>
+                <a href="/eng/terms.html">Terms of Service</a>
+                <a href="/eng/refund.html">Refund Policy</a>
+                <a href="/eng/contact.html">Contact</a>
+                <a href="https://t.me/AIHealthMasterBot" target="_blank" rel="noopener noreferrer">Telegram bot</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 HealthMaster. All rights reserved.</p>
             </div>
         </footer>
     </main>
+
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.feature-card, .platform-card, .review-card, .price-card, .legal-info').forEach(el => {
+            el.classList.add('reveal');
+            observer.observe(el);
+        });
+
+        (function detectPlatform() {
+            const ua = navigator.userAgent || '';
+            const btnApp = document.querySelector('.btn-app');
+            const platformCtaApp = document.querySelector('.platform-cta.app');
+            if (/Android/i.test(ua)) {
+                if (btnApp) btnApp.querySelector('.badge-soon').textContent = 'Coming soon on Google Play';
+                if (platformCtaApp) platformCtaApp.textContent = 'Coming soon on Google Play';
+            } else if (/iPhone|iPad|iPod/i.test(ua)) {
+                if (btnApp) btnApp.querySelector('.badge-soon').textContent = 'iOS in development';
+                if (platformCtaApp) platformCtaApp.textContent = 'iOS in development';
+            }
+        })();
+    </script>
 </body>
+
 </html>
