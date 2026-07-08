@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.healthmaster.android",
+      "sha256_cert_fingerprints": [
+        "7B:F0:3E:B5:1C:E6:23:EC:E7:24:F8:D8:E0:7B:54:81:A9:FF:94:2B:CD:71:97:78:84:FA:B2:C0:65:E6:2C:F1",
+        "D1:13:42:08:CD:E1:83:B6:0E:E1:01:7B:4E:25:BF:A5:A4:CF:9E:C3:4D:BC:81:48:06:F2:D4:D8:09:28:D0:BC"
+      ]
+    }
+  }
+]
