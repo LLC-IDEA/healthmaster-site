@@ -73,19 +73,40 @@
         (function () {
             const params = new URLSearchParams(location.search);
             const token = params.get('token') || '';
-            const appUrl = 'healthmaster://link' + (token ? '?token=' + encodeURIComponent(token) : '');
+            const ua = navigator.userAgent || '';
+            const isAndroid = /Android/i.test(ua);
+            const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+            // Основная схема: Android intent-URI со scheme=https. Chrome
+            // Custom Tabs (через них Gmail открывает ссылки) штатно
+            // передаёт intent-URI в apу с сохранением полного URL и query.
+            // Custom-scheme "healthmaster://link?token=..." в WebView
+            // теряет query — отсюда прежний баг с "Unmatched Route".
+            const httpsUrl = 'https://healthmaster.app/link' +
+                (token ? '?token=' + encodeURIComponent(token) : '');
+            const androidIntent = 'intent://healthmaster.app/link' +
+                (token ? '?token=' + encodeURIComponent(token) : '') +
+                '#Intent;scheme=https;package=app.healthmaster.android;' +
+                'S.browser_fallback_url=' + encodeURIComponent(
+                    'https://play.google.com/store/apps/details?id=app.healthmaster.android'
+                ) + ';end';
+            const iosUrl = 'healthmaster://link' +
+                (token ? '?token=' + encodeURIComponent(token) : '');
+            const openInApp = isAndroid ? androidIntent : (isIOS ? iosUrl : httpsUrl);
+
             const openBtn = document.getElementById('openApp');
-            openBtn.href = appUrl;
+            openBtn.href = openInApp;
 
             if (token) {
                 document.getElementById('tokenView').textContent = token;
                 document.getElementById('tokenBlock').style.display = 'block';
             }
 
-            // Пытаемся автозапустить приложение сразу
-            setTimeout(function () {
-                location.href = appUrl;
-            }, 100);
+            // Автозапуск: сразу пытаемся передать intent apу. Для Chrome
+            // Custom Tabs это открывает apу напрямую с полным URL, минуя
+            // веб-страницу. Без auto-click юзер видит фолбэк-страницу и
+            // должен тапнуть кнопку — то что просили не делать.
+            try { openBtn.click(); } catch (e) {}
         })();
     </script>
 </body>
