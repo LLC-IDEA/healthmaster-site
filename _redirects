@@ -14,6 +14,9 @@
 
 /pay /eng/pay.html 200
 /link /link.html 200
+# Умная инвайт-ссылка: с установленным приложением Android перехватывает клик
+# (App Link, сборка 35+), без приложения — редирект в Play с install-referrer.
+/r/:id https://play.google.com/store/apps/details?id=app.healthmaster.android&referrer=ref_:id 302
 info.healthmaster.app/pay → info/pay.html
 info.healthmaster.app/privacy → info/privacy.html
 info.healthmaster.app/offer → info/offer.html
