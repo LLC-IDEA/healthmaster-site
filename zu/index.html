@@ -331,6 +331,16 @@
             background: rgba(0,0,0,0.5); color: #fff;
             font-size: 22px; cursor: pointer;
         }
+        /* Polish 10.09: выровненные кнопки и центрованные заголовки */
+        .platform-card { display: flex; flex-direction: column; }
+        .platform-card .platform-icon, .platform-card h3, .platform-card > p { text-align: center; }
+        .platform-card ul { display: inline-block; text-align: left; margin-left: auto; margin-right: auto; }
+        .platform-card .platform-cta { margin-top: auto; align-self: center; }
+        .feature-card { text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .price-card { display: flex; flex-direction: column; text-align: center; }
+        .price-card .price-features { display: inline-block; text-align: left; margin-left: auto; margin-right: auto; }
+        .screenshots-header, .reviews-header, .pricing-header, .platforms-header { text-align: center; }
+
     </style>
 </head>
 
