@@ -279,6 +279,19 @@
             .pricing-cards { grid-template-columns: 1fr; }
             .platforms-grid { grid-template-columns: 1fr; }
         }
+
+        /* Screenshots strip */
+        .screenshots { margin: 48px 0 32px; }
+        .screenshots-header { text-align: center; margin-bottom: 24px; }
+        .screenshots-header h2 { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+        .screenshots-header p { color: var(--text-muted); font-size: 0.95rem; }
+        .screenshots-strip { display: flex; gap: 16px; overflow-x: auto; padding: 20px 4px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+        .screenshots-strip::-webkit-scrollbar { height: 6px; }
+        .screenshots-strip::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 3px; }
+        .screenshots-strip::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+        .shot { flex: 0 0 auto; width: 220px; scroll-snap-align: start; text-align: center; }
+        .shot img { width: 100%; height: auto; border-radius: 24px; border: 1px solid var(--glass-border); box-shadow: 0 8px 24px rgba(0,0,0,0.4); display: block; }
+        .shot-caption { margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); }
     </style>
 </head>
 
@@ -299,7 +312,7 @@
             <span style="opacity:.4">|</span>
             <a href="/eng/index.html">EN</a>
             <a href="/es/index.html" style="font-weight:700">ES</a>
-            <a href="/rus/index.html">RU</a>
+            <a href="/l/rus">RU</a>
             <a href="/zu/index.html">ZU</a>
         </nav>
 
@@ -413,6 +426,43 @@
             </div>
         </section>
 
+        
+        <section class="screenshots">
+            <div class="screenshots-header">
+                <h2>Así se ve</h2>
+                <p>Diario, nutricionista IA, entrenador y menú — una sola app</p>
+            </div>
+            <div class="screenshots-strip">
+                <div class="shot">
+                    <img src="/es/screenshots/01_card.jpg" alt="Tu objetivo" loading="lazy">
+                    <div class="shot-caption">Tu objetivo</div>
+                </div>
+                <div class="shot">
+                    <img src="/es/screenshots/02_knows.jpg" alt="Te conoce" loading="lazy">
+                    <div class="shot-caption">Te conoce</div>
+                </div>
+                <div class="shot">
+                    <img src="/es/screenshots/03_workouts.jpg" alt="Entrenador IA" loading="lazy">
+                    <div class="shot-caption">Entrenador IA</div>
+                </div>
+                <div class="shot">
+                    <img src="/es/screenshots/04_menu.jpg" alt="Menú diario" loading="lazy">
+                    <div class="shot-caption">Menú diario</div>
+                </div>
+                <div class="shot">
+                    <img src="/es/screenshots/05_plan.jpg" alt="Tu plan" loading="lazy">
+                    <div class="shot-caption">Tu plan</div>
+                </div>
+                <div class="shot">
+                    <img src="/es/screenshots/06_foods.jpg" alt="Diario de comidas" loading="lazy">
+                    <div class="shot-caption">Diario de comidas</div>
+                </div>
+                <div class="shot">
+                    <img src="/es/screenshots/07_change.jpg" alt="Ajustes fáciles" loading="lazy">
+                    <div class="shot-caption">Ajustes fáciles</div>
+                </div>
+            </div>
+        </section>
         <section class="how-it-works">
             <h2>Cómo funciona</h2>
             <div class="how-it-works-box">
