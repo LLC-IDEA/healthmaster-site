@@ -292,6 +292,42 @@
         .shot { flex: 0 0 auto; width: 220px; scroll-snap-align: start; text-align: center; }
         .shot img { width: 100%; height: auto; border-radius: 24px; border: 1px solid var(--glass-border); box-shadow: 0 8px 24px rgba(0,0,0,0.4); display: block; }
         .shot-caption { margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); }
+
+        /* Слайдер скринов: стрелки, полоса прокрутки скрыта */
+        .shots-wrap { position: relative; }
+        .screenshots-strip { scrollbar-width: none; -ms-overflow-style: none; }
+        .screenshots-strip::-webkit-scrollbar { display: none; height: 0; }
+        .shot-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            z-index: 2; width: 44px; height: 44px; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(0,0,0,0.55); color: #fff;
+            font-size: 24px; line-height: 1; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background .15s, transform .15s;
+        }
+        .shot-arrow:hover { background: rgba(16,185,129,0.8); transform: translateY(-50%) scale(1.08); }
+        .shot-arrow.prev { left: -6px; }
+        .shot-arrow.next { right: -6px; }
+        @media (max-width: 640px) { .shot-arrow { width: 38px; height: 38px; font-size: 20px; } }
+        .shot img { cursor: zoom-in; }
+        .shot-lightbox {
+            position: fixed; inset: 0; z-index: 999;
+            background: rgba(0,0,0,0.88);
+            display: flex; align-items: center; justify-content: center;
+            padding: 24px; cursor: zoom-out;
+        }
+        .shot-lightbox img {
+            max-width: 94vw; max-height: 92vh;
+            border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+        .shot-lightbox .lb-close {
+            position: absolute; top: 16px; right: 20px;
+            width: 40px; height: 40px; border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.5); color: #fff;
+            font-size: 22px; cursor: pointer;
+        }
     </style>
 </head>
 
@@ -620,6 +656,57 @@
                 if (playBtn) playBtn.style.display = 'none';
             }
         })();
+    </script>
+
+    <script>
+        // Стрелки слайдера скриншотов; полоса прокрутки скрыта в CSS,
+        // свайп пальцем на мобильных сохраняется.
+        document.querySelectorAll('.screenshots-strip').forEach(function (strip) {
+            var wrap = document.createElement('div');
+            wrap.className = 'shots-wrap';
+            strip.parentNode.insertBefore(wrap, strip);
+            wrap.appendChild(strip);
+            [['prev', '\u2039'], ['next', '\u203a']].forEach(function (a) {
+                var b = document.createElement('button');
+                b.className = 'shot-arrow ' + a[0];
+                b.type = 'button';
+                b.setAttribute('aria-label', a[0] === 'prev' ? 'Previous' : 'Next');
+                b.textContent = a[1];
+                b.addEventListener('click', function () {
+                    strip.scrollBy({
+                        left: (a[0] === 'next' ? 1 : -1) * Math.round(strip.clientWidth * 0.8),
+                        behavior: 'smooth'
+                    });
+                });
+                wrap.appendChild(b);
+            });
+        });
+
+        // Лайтбокс: клик по скриншоту — увеличение на весь экран
+        document.querySelectorAll('.shot img').forEach(function (img) {
+            img.addEventListener('click', function () {
+                var lb = document.createElement('div');
+                lb.className = 'shot-lightbox';
+                var big = document.createElement('img');
+                big.src = img.src;
+                big.alt = img.alt || '';
+                var x = document.createElement('button');
+                x.className = 'lb-close';
+                x.type = 'button';
+                x.setAttribute('aria-label', 'Close');
+                x.textContent = '\u00d7';
+                lb.appendChild(big);
+                lb.appendChild(x);
+                function close() {
+                    lb.remove();
+                    document.removeEventListener('keydown', onKey);
+                }
+                function onKey(e) { if (e.key === 'Escape') close(); }
+                lb.addEventListener('click', close);
+                document.addEventListener('keydown', onKey);
+                document.body.appendChild(lb);
+            });
+        });
     </script>
 </body>
 
