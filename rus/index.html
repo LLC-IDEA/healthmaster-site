@@ -313,6 +313,24 @@
         .screenshots-header, .reviews-header, .pricing-header, .platforms-header { text-align: center; }
 
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KL9LJLBHRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-KL9LJLBHRL');
+        // Именованные события: переходы в Google Play и Telegram
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest && e.target.closest('a[href]');
+            if (!a) return;
+            if (a.href.indexOf('play.google.com') !== -1) {
+                gtag('event', 'click_google_play', { page_lang: document.documentElement.lang });
+            } else if (a.href.indexOf('t.me/') !== -1) {
+                gtag('event', 'click_telegram', { page_lang: document.documentElement.lang });
+            }
+        }, true);
+    </script>
 </head>
 
 <body>
